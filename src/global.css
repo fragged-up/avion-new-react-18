@@ -1,0 +1,149 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap");
+@import url("https://fonts.cdnfonts.com/css/satoshi");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:root {
+  --font-satoshi-family: "Satoshi", sans-serif;
+  --font-clash-family: "Clash Display", sans-serif;
+  --font-wght-thin: 100;
+  --font-wght-ExtraLight: 200;
+  --font-wght-light: 300;
+  --font-wght-regular: 400;
+  --font-wght-medium: 500;
+  --font-wght-semiBold: 600;
+  --font-wght-bold: 700;
+  --font-wght-ExtraBold: 800;
+  --font-wght-heavy: 900;
+}
+
+/* html{
+    width: fit-content;
+} */
+
+html {
+  overflow-x: hidden;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+/* Header Component Styling */
+
+.wrapper {
+  width: 100%;
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons-container {
+  padding: 1em;
+  display: flex;
+  gap: 1.4em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon,
+.search-icon {
+  width: 100%;
+}
+
+.logo-container {
+  padding: 1.5em;
+  display: flex;
+}
+
+.logo {
+  font-family: var(--font-clash-family);
+  font-weight: 400;
+  font-size: 1em;
+}
+
+/* Finish Header Component Styling */
+
+/* Footer Component Styling */
+
+.footer-join-c {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #4e4d93;
+}
+
+.footer-join-in {
+  max-height: 43px;
+  width: 70%;
+  background-color: #4e4d93;
+  padding-block: 1.1em;
+  border-radius: 0;
+  color: white;
+}
+
+.footer-join-in::placeholder {
+  padding-block: 1em;
+  padding-inline: 1.5em;
+  color: white;
+}
+
+.footer-join-button {
+  max-height: 43px;
+  width: 30%;
+  background-color: white;
+  color: #2a254b;
+  cursor: pointer;
+  font-family: var(--font-satoshi-family);
+  font-weight: var(--font-wght-regular);
+  text-align: center;
+  padding-block: 1em;
+  text-wrap: nowrap;
+}
+
+.copyright-c {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright-sb {
+  font-size: 0.7em;
+  font-family: var(--font-satoshi-family);
+  font-weight: var(--font-wght-regular);
+  text-align: center;
+  padding: 1em;
+  color: white;
+}
+
+/* Finish Footer Component Styling */
+
+@media (min-width: 600px) {
+  html,
+  body {
+    min-height: 100vh;
+  }
+}
