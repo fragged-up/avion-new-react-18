@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "@/CSSModules/HomeM.module.css";
 import menuIcon from "@/assets/icons/menuIcon.svg";
 import searchIcon from "@/assets/icons/searchIcon.svg";
@@ -58,7 +58,37 @@ export function Header() {
           </div>
         </div>
       </div>
-
+      <div className="mobile-new-header block bg-blue-400 p-4 md:hidden">
+        <h1 className="text-center text-3xl font-extrabold text-blue-200">
+          MainTance Pages :{" "}
+        </h1>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <Link to="/" className="text-2xl font-medium text-yellow-500">
+            Home Page
+          </Link>
+          <Link
+            to="/listing-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Listing Page
+          </Link>
+          <Link to="/Products" className="text-2xl font-medium text-yellow-500">
+            Products Page
+          </Link>
+          <Link
+            to="/about-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            About Page
+          </Link>
+          <Link
+            to="/basket-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Basket Page
+          </Link>
+        </div>
+      </div>
       <div className={styles["desktop-w"]}>
         <div className={styles["desktop-c"]}>
           <div className={styles["desk-search-c"]}>
@@ -91,6 +121,37 @@ export function Header() {
           <span className={styles["link"]}>Crockery</span>
           <span className={styles["link"]}>Tableware</span>
           <span className={styles["link"]}>Cutlery</span>
+        </div>
+      </div>
+      <div className="desktop-new-header my-12 hidden flex-col gap-4 bg-blue-400 p-6 md:flex">
+        <h1 className="text-center text-3xl font-extrabold text-blue-200">
+          Maintance Pages:
+        </h1>
+        <div className="flex items-center justify-center gap-4">
+          <Link to="/" className="text-2xl font-medium text-yellow-500">
+            Home Page
+          </Link>
+          <Link
+            to="/listing-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Listing Page
+          </Link>
+          <Link to="/Products" className="text-2xl font-medium text-yellow-500">
+            Products Page
+          </Link>
+          <Link
+            to="/about-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            About Page
+          </Link>
+          <Link
+            to="/basket-page"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Basket Page
+          </Link>
         </div>
       </div>
     </div>

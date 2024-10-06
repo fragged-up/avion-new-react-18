@@ -3,6 +3,17 @@ import inspectImage from "../assets/images/Inspect-image.svg";
 import CatalogDataContainer from "./CatalogData";
 import { Unique } from "./Unique";
 
+type ProductInformationProps = {
+  dcTitle: string;
+  dcPrice: string;
+  dcT: string;
+  dcG1: string;
+  dcG2: string;
+  dcG3: string;
+  dcHeight: string;
+  dcWidth: string;
+  dcDepth: string;
+};
 function DcText({
   dcTitle,
   dcPrice,
@@ -13,7 +24,7 @@ function DcText({
   dcHeight,
   dcWidth,
   dcDepth,
-}) {
+}: ProductInformationProps) {
   return (
     <div className={styles["dc-w"]}>
       <div className={styles["dc-c"]}>
