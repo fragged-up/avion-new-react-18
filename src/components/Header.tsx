@@ -87,6 +87,15 @@ export function Header() {
           >
             Basket Page
           </Link>
+          <Link to="/sort" className="text-2xl font-medium text-yellow-500">
+            Sort Page
+          </Link>
+          <Link
+            to="/Maintance"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Maintance Page
+          </Link>
         </div>
       </div>
       <div className={styles["desktop-w"]}>
@@ -151,6 +160,15 @@ export function Header() {
             className="text-2xl font-medium text-yellow-500"
           >
             Basket Page
+          </Link>
+          <Link to="/sort" className="text-2xl font-medium text-yellow-500">
+            Sort Page
+          </Link>
+          <Link
+            to="/Maintance"
+            className="text-2xl font-medium text-yellow-500"
+          >
+            Maintance Page
           </Link>
         </div>
       </div>

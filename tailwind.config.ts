@@ -4,8 +4,13 @@ import { Config } from "tailwindcss";
 const config: Config = {
   content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        satoshi: ['"Satoshi"', "sans-serif"],
+        clash: ['"Clash Display"', "sans-serif"],
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
 };
 export default config;

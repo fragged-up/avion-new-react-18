@@ -6,6 +6,7 @@ import BasketPage from "./pages/BasketPage";
 import InspectPage from "./pages/InspectPage";
 import NotFoundPage from "./pages/NotFound";
 import SortPage from "@/pages/SortPage";
+import MaintancePage from "@/pages/MaintancePage";
 export default function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/basket-page" element={<BasketPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="sort" element={<SortPage />} />
+          <Route path="Maintance" element={<MaintancePage />} />
         </Routes>
       </BrowserRouter>
     </div>
