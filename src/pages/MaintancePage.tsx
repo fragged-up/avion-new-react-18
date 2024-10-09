@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router";
 interface Product {
   id: number;
   name: string;
@@ -15,8 +15,12 @@ export default function MaintancePage({ category }: MaintancePageProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState(20);
 
+  const navigateToProductId = useNavigate();
+  const handleNavigation = (product: Product) => {
+    navigateToProductId(`/product/${product.id}`, { state: { product } });
+  };
+
   const getProductApi = async () => {
-    const category = "chairs";
     try {
       const request = await fetch(
         `http://localhost:5001/products/${category}`,
@@ -25,8 +29,7 @@ export default function MaintancePage({ category }: MaintancePageProps) {
         },
       );
       const response = await request.json();
-      const products = response.products;
-      setProducts(products);
+      setProducts(response.products);
     } catch (err) {
       console.error(err);
     }
@@ -37,43 +40,47 @@ export default function MaintancePage({ category }: MaintancePageProps) {
   }, [category]);
 
   const loadMoreProducts = () => {
-    setVisibleCount((prevCount) => prevCount + 10);
+    setVisibleCount((prevCount) => prevCount + 12);
   };
 
   return (
-    <div className="w-full">
-      <h1 className="text-center">Sh... Maintaining Here!</h1>
-      <div className="mx-auto grid max-w-[90%] grid-cols-5 items-start justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {products.slice(0, visibleCount).map((prod: Product) => (
-          <div key={prod.id} className="flex w-[156px] flex-col items-start">
-            <div className="h-[192px] w-[156px]">
-              <img
-                className="h-full w-full object-cover"
-                src={prod.productImage}
-                alt={prod.name}
-                width={156}
-                height={192}
-                loading="lazy"
-              />
+    <section className="mx-auto w-[90%]">
+      <div className="w-auto">
+        <h1 className="text-center">Sh... Maintaining Here!</h1>
+        <div className="product-container">
+          {products.slice(0, visibleCount).map((prod: Product) => (
+            <div className="product-item" key={prod.id}>
+              <div
+                className="product-exc-image flex"
+                onClick={() => handleNavigation(prod)}
+              >
+                <img
+                  className="product-exc-image"
+                  src={prod.productImage}
+                  alt={prod.name}
+                  loading="lazy"
+                />
+              </div>
+              <div className="product-details">
+                <h1 className="font-clash text-xl font-light">{prod.name}</h1>
+                <h1 className="font-satoshi text-xl font-extralight">
+                  £{prod.productPrice}
+                </h1>
+              </div>
             </div>
-            <h1 className="mt-2 font-clash text-xl font-light">{prod.name}</h1>
-            <h1 className="font-satoshi font-extralight">
-              £{prod.productPrice}
-            </h1>
-          </div>
-        ))}
-      </div>
-
-      {visibleCount < products.length && (
-        <div className="mt-6 flex justify-center">
-          <button
-            onClick={loadMoreProducts}
-            className="rounded-lg bg-blue-500 px-4 py-2 text-white"
-          >
-            Load More
-          </button>
+          ))}
         </div>
-      )}
-    </div>
+        {visibleCount < products.length && (
+          <div className="mt-[2.5rem] flex justify-center md:mt-[3rem]">
+            <button
+              onClick={loadMoreProducts}
+              className="rounded-lg bg-[#F9F9F9] px-4 py-2 font-satoshi text-base text-[#2A254B]"
+            >
+              View Collection
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

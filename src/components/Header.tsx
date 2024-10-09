@@ -6,7 +6,7 @@ import searchIcon from "@/assets/icons/searchIcon.svg";
 import userCart from "@/assets/icons/user-cart.svg";
 import userAvatar from "@/assets/icons/user-avatar.svg";
 
-export function Header() {
+export default function Header() {
   const [isMenu, setMenu] = useState(false);
 
   function openMenu() {
