@@ -1,7 +1,6 @@
 import styles from "../CSSModules/AboutSc.module.css";
 import imageSc from "../assets/images/Image-sc.svg";
 import srImage from "../assets/images/sr-image.svg";
-import { GreyUnique } from "./Unique";
 
 function AboutSc() {
   return (
@@ -64,7 +63,6 @@ function AboutSc() {
             </div>
           </div>
         </div>
-        <GreyUnique />
       </div>
     </>
   );

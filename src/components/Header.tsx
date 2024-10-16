@@ -166,6 +166,9 @@ export default function Header() {
           <Link to="/product/chairs" className={styles["link"]}>
             Chairs
           </Link>
+          <Link to="basket-page" className={styles["link"]}>
+            Basket
+          </Link>
           <Link to="/" className={styles["link"]}>
             Lights
           </Link>

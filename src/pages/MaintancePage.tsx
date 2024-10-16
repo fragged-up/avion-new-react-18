@@ -8,10 +8,6 @@ interface Product {
   productPrice: number;
 }
 
-interface MaintancePageProps {
-  category: string;
-}
-
 export default function MaintancePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState(20);

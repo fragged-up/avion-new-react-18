@@ -197,3 +197,14 @@ body {
   flex-direction: column;
   gap: 1rem;
 }
+
+.description-list-container {
+  padding-left: 2em;
+}
+
+.description-list {
+  list-style-type: disc;
+  font-size: 0.9em;
+  font-family: var(--font-clash-family);
+  font-weight: var(--font-wght-regular);
+}

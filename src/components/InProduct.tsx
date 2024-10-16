@@ -1,7 +1,7 @@
 import styles from "../CSSModules/Inspect.module.css";
 import inspectImage from "../assets/images/Inspect-image.svg";
 import CatalogDataContainer from "./CatalogData";
-import { Unique } from "./Unique";
+import Unique from "./Unique";
 
 type ProductInformationProps = {
   dcTitle: string;

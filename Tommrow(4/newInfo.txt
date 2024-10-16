@@ -1,6 +1,39 @@
-16/10/2024 
+WHAT'S LEFT TO FINISH THE ECOMMERCE 
 
-Structure navigating for products .. 
-its supposed to be 
 
-http://localhost:5173/chairs/:chairId
+
+
+1. **productId Page** :
+one: make algorithem for you may also like these [...products]
+two: fix the height image on the desktop screen that will be exact like the other 50% width div 
+
+2. **optional** you can make weekly carousells based of the week ..
+
+3.finished the Sorting&Filtering
+filter :  page by product-type/catagory/price/brand 
+Sort : date-added
+this should be with collapsing-left-side-brand
+
+4. make the basket page to make sense and continue for purchasing .. 
+
+5. make searching algorithem 
+
+6. menu-bar for mobile 
+
+7. profile-user-page 
+ in the profile user-page should be 
+ *user-history-purchasing
+ *when the product arrived - if not arrived in which state the product shipment is on 
+
+
+
+8. make email-marketing that will send notifications  
+type of events : 
+*exclusive offers 
+*free events
+*large discounts
+
+
+9. make the footer links work
+
+CONGRATS YOU FINISHED THE PROJECT !! 
