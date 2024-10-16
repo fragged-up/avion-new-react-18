@@ -5,7 +5,7 @@ ________________________________________________________________________________
  
  {
  
-  #Filtering  <
+  #Filtering <
 
   1.filter by catatgory this is means we need to expand catagories on every each product (Cheramics, Chairs, Lights, Plants, Tables)
   2.filter by product type (Cheramics, Chairs, Lights, Plants, Tables)
@@ -17,7 +17,7 @@ ________________________________________________________________________________
   
     In one minute i see two optional options to achive this : 
 
- 1. Option One :  Submit on all the filtering and sorting, that if the users choose one sorting option to force him to do fill and filtering and sorting with validaitons.  
+ 1. Option One : Submit on all the filtering and sorting, that if the users choose one sorting option to force him to do fill and filtering and sorting with validaitons.  
  2. Option Two : Filter by what only the users has choosen no validations required, and set default scenario for every one paramets:  (Cheramics, Chairs, Lights, Plants, Tables), in the search 
     in case the user choose only one filtering or sorting option.
  3. Option Three : Make a rnd in sites for filtering and sorting and look on the modern way .. and implement the logic here ..

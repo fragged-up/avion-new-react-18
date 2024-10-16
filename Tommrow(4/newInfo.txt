@@ -1,0 +1,6 @@
+16/10/2024 
+
+Structure navigating for products .. 
+its supposed to be 
+
+http://localhost:5173/chairs/:chairId

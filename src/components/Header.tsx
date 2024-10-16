@@ -47,18 +47,32 @@ export default function Header() {
             </div>
 
             <div className={styles["headline-c"]}>
-              <span className={styles["headline"]}>Plant dots</span>
-              <span className={styles["headline"]}>Ceramics</span>
-              <span className={styles["headline"]}>Tables</span>
-              <span className={styles["headline"]}>Chairs</span>
-              <span className={styles["headline"]}>Crockery</span>
-              <span className={styles["headline"]}>Tableware</span>
-              <span className={styles["headline"]}>Cutlery</span>
+              <Link to="/About" className={styles["headline"]}>
+                About
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                Plants
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                Ceramics
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                Tables
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                Chairs
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                Lights
+              </Link>
+              <Link to="/" className={styles["headline"]}>
+                All Products
+              </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="mobile-new-header block bg-blue-400 p-4 md:hidden">
+      {/* <div className="mobile-new-header block bg-blue-400 p-4 md:hidden">
         <h1 className="text-center text-3xl font-extrabold text-blue-200">
           MainTance Pages :{" "}
         </h1>
@@ -90,14 +104,11 @@ export default function Header() {
           <Link to="/sort" className="text-2xl font-medium text-yellow-500">
             Sort Page
           </Link>
-          <Link
-            to="/Maintance"
-            className="text-2xl font-medium text-yellow-500"
-          >
+          <Link to="/products" className="text-2xl font-medium text-yellow-500">
             Maintance Page
           </Link>
         </div>
-      </div>
+      </div> */}
       <div className={styles["desktop-w"]}>
         <div className={styles["desktop-c"]}>
           <div className={styles["desk-search-c"]}>
@@ -123,16 +134,47 @@ export default function Header() {
         </div>
 
         <div className={styles["links-c"]}>
-          <span className={styles["link"]}>Plant dots</span>
-          <span className={styles["link"]}>Ceramics</span>
-          <span className={styles["link"]}>Tables</span>
-          <span className={styles["link"]}>Chairs</span>
-          <span className={styles["link"]}>Crockery</span>
-          <span className={styles["link"]}>Tableware</span>
-          <span className={styles["link"]}>Cutlery</span>
+          <Link to="/" className={styles["link"]}>
+            Home
+          </Link>
+          <Link to="/About" className={styles["link"]}>
+            About
+          </Link>
+          <Link to="/sort" className={styles["link"]}>
+            Sort Page
+          </Link>
+          <Link to="/product" className={styles["link"]}>
+            Product-Page-New
+          </Link>
+
+          <Link to="/Products" className={styles["link"]}>
+            Products-Page-Old
+          </Link>
+          <Link to="/listing-page" className={styles["link"]}>
+            Listing Page
+          </Link>
+
+          <Link to="/" className={styles["link"]}>
+            Plants
+          </Link>
+          <Link to="/" className={styles["link"]}>
+            Ceramics
+          </Link>
+          <Link to="/" className={styles["link"]}>
+            Tables
+          </Link>
+          <Link to="/product/chairs" className={styles["link"]}>
+            Chairs
+          </Link>
+          <Link to="/" className={styles["link"]}>
+            Lights
+          </Link>
+          <Link to="/Products" className={styles["link"]}>
+            All Products
+          </Link>
         </div>
       </div>
-      <div className="desktop-new-header my-12 hidden flex-col gap-4 bg-blue-400 p-6 md:flex">
+      {/* <div className="desktop-new-header my-12 hidden flex-col gap-4 bg-blue-400 p-6 md:flex">
         <h1 className="text-center text-3xl font-extrabold text-blue-200">
           Maintance Pages:
         </h1>
@@ -164,14 +206,11 @@ export default function Header() {
           <Link to="/sort" className="text-2xl font-medium text-yellow-500">
             Sort Page
           </Link>
-          <Link
-            to="/Maintance"
-            className="text-2xl font-medium text-yellow-500"
-          >
+          <Link to="/products" className="text-2xl font-medium text-yellow-500">
             Maintance Page
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

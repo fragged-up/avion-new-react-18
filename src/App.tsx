@@ -10,7 +10,6 @@ import NotFoundPage from "./pages/NotFound";
 import SortPage from "@/pages/SortPage";
 import MaintancePage from "@/pages/MaintancePage";
 import ProductPage from "./pages/ProductPage";
-// import { productPr } from "./pages/ProductPage";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -52,7 +51,7 @@ export default function App() {
             }
           />
           <Route
-            path="/about-page"
+            path="/About"
             element={
               <Layout>
                 <AboutPage />
@@ -76,15 +75,15 @@ export default function App() {
             }
           />
           <Route
-            path="/product"
+            path="/:category"
             element={
               <Layout>
-                <MaintancePage category="chairs" />
+                <MaintancePage />
               </Layout>
             }
           />
           <Route
-            path="product/:id"
+            path="/:category/:slug"
             element={
               <Layout>
                 <ProductPage />

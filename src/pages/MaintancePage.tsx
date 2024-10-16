@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 interface Product {
   id: number;
   name: string;
+  slug?: string;
   productImage: string;
   productPrice: number;
 }
@@ -11,23 +12,25 @@ interface MaintancePageProps {
   category: string;
 }
 
-export default function MaintancePage({ category }: MaintancePageProps) {
+export default function MaintancePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState(20);
-
+  const { category } = useParams();
   const navigateToProductId = useNavigate();
   const handleNavigation = (product: Product) => {
-    navigateToProductId(`/product/${product.id}`, { state: { product } });
+    if (product.slug) {
+      navigateToProductId(`/${category}/${product.slug}`, {
+        state: { product },
+      });
+    } else {
+      console.warn("No slug found for product:", product);
+    }
   };
-
   const getProductApi = async () => {
     try {
-      const request = await fetch(
-        `http://localhost:5001/products/${category}`,
-        {
-          method: "GET",
-        },
-      );
+      const request = await fetch(`http://localhost:5001/${category}`, {
+        method: "GET",
+      });
       const response = await request.json();
       setProducts(response.products);
     } catch (err) {
