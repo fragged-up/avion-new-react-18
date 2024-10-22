@@ -1,3 +1,20 @@
+21-22/10/2024
+___________________________________________________________________________________________________________
+
+dont forget to change the structure on the ProductPage.tsx 
+
+it fetches the whole products  while it need to fetch only the product.id or product.slug the user click on ..
+
+Finished
+___________________________________________________________________________________________________________
+ 
+ on filter and sorting i need to that every filter option triggers the action also for the sort  
+
+ and i need to one full component that lets the user to get all the filter and sorting options 
+
+___________________________________________________________________________________________________________
+
+
 WHAT'S LEFT TO FINISH THE ECOMMERCE 
 
 
@@ -6,8 +23,20 @@ WHAT'S LEFT TO FINISH THE ECOMMERCE
 1. **productId Page** :
 one: make algorithem for you may also like these [...products]
 two: fix the height image on the desktop screen that will be exact like the other 50% width div 
+And its Finished ! -- FINISHED ! --AVOID LOOKING  
+
+
+
+
 
 2. **optional** you can make weekly carousells based of the week ..
+
+
+
+
+
+20/10/2024 TODAY TO FINISH : {
+
 
 3.finished the Sorting&Filtering
 filter :  page by product-type/catagory/price/brand 
@@ -19,6 +48,18 @@ this should be with collapsing-left-side-brand
 5. make searching algorithem 
 
 6. menu-bar for mobile 
+
+}
+
+
+
+
+
+
+
+
+
+
 
 7. profile-user-page 
  in the profile user-page should be 

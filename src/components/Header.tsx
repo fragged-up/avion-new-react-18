@@ -47,25 +47,42 @@ export default function Header() {
             </div>
 
             <div className={styles["headline-c"]}>
+              <Link to="/" className={styles["headline"]}>
+                Home
+              </Link>
               <Link to="/About" className={styles["headline"]}>
                 About
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/sort" className={styles["headline"]}>
+                Sort Page
+              </Link>
+
+              <Link to="/old-products" className={styles["headline"]}>
+                Products-Page-Old
+              </Link>
+              <Link to="/listing-page" className={styles["headline"]}>
+                Listing Page
+              </Link>
+
+              <Link to="/plants" className={styles["headline"]}>
                 Plants
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/ceramics" className={styles["headline"]}>
                 Ceramics
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/tables" className={styles["headline"]}>
                 Tables
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/chairs" className={styles["headline"]}>
                 Chairs
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/basket-page" className={styles["headline"]}>
+                Basket
+              </Link>
+              <Link to="/lights" className={styles["headline"]}>
                 Lights
               </Link>
-              <Link to="/" className={styles["headline"]}>
+              <Link to="/products" className={styles["headline"]}>
                 All Products
               </Link>
             </div>
@@ -143,77 +160,37 @@ export default function Header() {
           <Link to="/sort" className={styles["link"]}>
             Sort Page
           </Link>
-          <Link to="/product" className={styles["link"]}>
-            Product-Page-New
-          </Link>
 
-          <Link to="/Products" className={styles["link"]}>
+          <Link to="/old-products" className={styles["link"]}>
             Products-Page-Old
           </Link>
           <Link to="/listing-page" className={styles["link"]}>
             Listing Page
           </Link>
 
-          <Link to="/" className={styles["link"]}>
+          <Link to="/plants" className={styles["link"]}>
             Plants
           </Link>
-          <Link to="/" className={styles["link"]}>
+          <Link to="/ceramics" className={styles["link"]}>
             Ceramics
           </Link>
-          <Link to="/" className={styles["link"]}>
+          <Link to="/tables" className={styles["link"]}>
             Tables
           </Link>
-          <Link to="/product/chairs" className={styles["link"]}>
+          <Link to="/chairs" className={styles["link"]}>
             Chairs
           </Link>
-          <Link to="basket-page" className={styles["link"]}>
+          <Link to="/basket-page" className={styles["link"]}>
             Basket
           </Link>
-          <Link to="/" className={styles["link"]}>
+          <Link to="/lights" className={styles["link"]}>
             Lights
           </Link>
-          <Link to="/Products" className={styles["link"]}>
+          <Link to="/products" className={styles["link"]}>
             All Products
           </Link>
         </div>
       </div>
-      {/* <div className="desktop-new-header my-12 hidden flex-col gap-4 bg-blue-400 p-6 md:flex">
-        <h1 className="text-center text-3xl font-extrabold text-blue-200">
-          Maintance Pages:
-        </h1>
-        <div className="flex items-center justify-center gap-4">
-          <Link to="/" className="text-2xl font-medium text-yellow-500">
-            Home Page
-          </Link>
-          <Link
-            to="/listing-page"
-            className="text-2xl font-medium text-yellow-500"
-          >
-            Listing Page
-          </Link>
-          <Link to="/Products" className="text-2xl font-medium text-yellow-500">
-            Products Page
-          </Link>
-          <Link
-            to="/about-page"
-            className="text-2xl font-medium text-yellow-500"
-          >
-            About Page
-          </Link>
-          <Link
-            to="/basket-page"
-            className="text-2xl font-medium text-yellow-500"
-          >
-            Basket Page
-          </Link>
-          <Link to="/sort" className="text-2xl font-medium text-yellow-500">
-            Sort Page
-          </Link>
-          <Link to="/products" className="text-2xl font-medium text-yellow-500">
-            Maintance Page
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 interface Product {
   id: number;
   name: string;
@@ -10,9 +11,13 @@ interface Product {
 
 export default function MaintancePage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [offset, setOffset] = useState(0); // Offset is initially 0
   const { category } = useParams();
   const navigateToProductId = useNavigate();
+
+  const initialLimit = 20; // Load 20 products initially
+  const loadMoreLimit = 12; // Load 12 more products when the user clicks 'Load More'
+
   const handleNavigation = (product: Product) => {
     if (product.slug) {
       navigateToProductId(`/${category}/${product.slug}`, {
@@ -22,35 +27,51 @@ export default function MaintancePage() {
       console.warn("No slug found for product:", product);
     }
   };
-  const getProductApi = async () => {
+
+  const getProductApi = async (offset: number, limit: number) => {
     try {
-      const request = await fetch(`http://localhost:5001/${category}`, {
+      const url = category
+        ? `http://localhost:5001/${category}?limit=${limit}&offset=${offset}`
+        : `http://localhost:5001/products?limit=${limit}&offset=${offset}`;
+      const request = await fetch(url, {
         method: "GET",
       });
       const response = await request.json();
-      setProducts(response.products);
+      // If offset is 0, we reset the product list (new category or first load)
+      setProducts((prevProducts) =>
+        offset === 0
+          ? response.products
+          : [...prevProducts, ...response.products],
+      );
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    getProductApi();
+    // Every time the category changes, reset the products and offset
+    setProducts([]); // Reset products when category changes
+    setOffset(0); // Reset offset
+    getProductApi(0, initialLimit); // Load first 20 products for the new category
   }, [category]);
 
   const loadMoreProducts = () => {
-    setVisibleCount((prevCount) => prevCount + 12);
+    const newOffset = offset + loadMoreLimit;
+    setOffset(newOffset);
+    getProductApi(newOffset, loadMoreLimit); // Fetch 12 more products
   };
 
   return (
-    <section className="mx-auto w-[90%]">
-      <div className="w-auto">
-        <h1 className="text-center">Sh... Maintaining Here!</h1>
+    <>
+      <div className="flex justify-center">
         <div className="product-container">
-          {products.slice(0, visibleCount).map((prod: Product) => (
-            <div className="product-item" key={prod.id}>
+          {products.map((prod: Product, index) => (
+            <div
+              className="product-item"
+              key={`${category || "products"}-${prod.id}-${index}-${prod.slug || prod.name}`}
+            >
               <div
-                className="product-exc-image flex"
+                className="inline-flex"
                 onClick={() => handleNavigation(prod)}
               >
                 <img
@@ -61,25 +82,27 @@ export default function MaintancePage() {
                 />
               </div>
               <div className="product-details">
-                <h1 className="font-clash text-xl font-light">{prod.name}</h1>
-                <h1 className="font-satoshi text-xl font-extralight">
+                <h1 className="text-wrap font-clash text-xl font-light">
+                  {prod.name}
+                </h1>
+                <h1 className="text-wrap font-satoshi text-xl font-extralight">
                   £{prod.productPrice}
                 </h1>
               </div>
             </div>
           ))}
         </div>
-        {visibleCount < products.length && (
-          <div className="mt-[2.5rem] flex justify-center md:mt-[3rem]">
-            <button
-              onClick={loadMoreProducts}
-              className="rounded-lg bg-[#F9F9F9] px-4 py-2 font-satoshi text-base text-[#2A254B]"
-            >
-              View Collection
-            </button>
-          </div>
-        )}
       </div>
-    </section>
+      {products.length > 0 && (
+        <div className="mt-[2.5rem] flex justify-center py-12 md:mt-[3rem]">
+          <button
+            onClick={loadMoreProducts}
+            className="rounded-lg bg-[#F9F9F9] px-4 py-2 font-satoshi text-base text-[#2A254B]"
+          >
+            View Collection
+          </button>
+        </div>
+      )}
+    </>
   );
 }

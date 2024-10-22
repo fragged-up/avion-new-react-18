@@ -26,13 +26,9 @@
   --font-wght-heavy: 900;
 }
 
-/* html{
-    width: fit-content;
-} */
-
-html {
+/* html {
   overflow-x: hidden;
-}
+} */
 
 html,
 body {
@@ -139,28 +135,28 @@ body {
 
 /* Finish Footer Component Styling */
 
-@media (min-width: 600px) {
+/* @media (min-width: 600px) {
   html,
   body {
     min-height: 100vh;
   }
-}
-
+} */
 .product-container {
   display: grid;
+  grid-template-columns: repeat(2, auto);
   gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+  max-width: 85%;
 }
 
 @media (min-width: 640px) {
   .product-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
   }
 }
 
 @media (min-width: 1024px) {
   .product-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, auto);
   }
 }
 
@@ -168,12 +164,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
+  align-items: start;
   gap: 1.5rem;
+  width: auto !important;
+  box-sizing: border-box;
 }
 
 .product-details {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -182,11 +179,22 @@ body {
 }
 
 .product-exc-image {
+  /* height: 201px; */
   width: 100%;
   aspect-ratio: 0.8;
+  height: 12.56rem;
   object-fit: cover;
 }
 
+@media (min-width: 768px) {
+  .product-exc-image {
+    /* height:375px; */
+    /* on click to filter in desktop the dimension is 3 images columns with 305px width and height 426px */
+    height: 23.43rem;
+    max-width: 19.06rem;
+    max-height: 23.43rem;
+  }
+}
 .dimensions-group {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -207,4 +215,135 @@ body {
   font-size: 0.9em;
   font-family: var(--font-clash-family);
   font-weight: var(--font-wght-regular);
+}
+
+/* the container  */
+.product-id-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+/* the image container */
+.image-id-section {
+  flex: 1;
+  display: flex;
+}
+/* the image */
+.image-id-section img {
+  width: 100%;
+  height: 100%;
+}
+
+/* the text details container */
+.details-id-section {
+  width: calc(100% - 3rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .product-id-container {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .image-id-section,
+  .details-id-section {
+    width: 50%;
+    object-fit: cover;
+    max-height: 590px;
+  }
+  .details-id-wrapper {
+    padding-inline: 2rem;
+  }
+  .details-id-wrapper > :first-child {
+    margin-top: 0;
+  }
+}
+/* replacing Ap-s-bg-c */
+.all-products-hero {
+  background-image: url("/src/assets/images/Ap-image.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 9.125rem;
+}
+
+/* replacing text-logo */
+.all-products-hero-logo {
+  font-size: 2.25em;
+  font-family: var(--font-clash-family);
+  font-weight: var(--font-wght-regular);
+  color: white;
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .all-products-hero {
+    height: 13.06rem;
+  }
+  .all-products-hero-logo {
+    text-align: start;
+    padding-top: 7.6875rem;
+    padding-left: 5rem;
+    padding-bottom: 2.25rem;
+  }
+}
+
+/* replacing option-c */
+.option-c {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
+}
+
+.helaa {
+  border: 2px solid salmon;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main-helaa {
+  border: 5px solid black;
+  background-color: white;
+}
+
+.hela-tl {
+  background-color: #b4b2b2;
+  /* border: 1px solid black; */
+}
+
+/* filter and sorting styling  */
+/* Desktop custom radio checkbox */
+.custom-radio-desktop {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #2a254b;
+  background-color: transparent;
+  position: relative;
+}
+
+/* Desktop checked state */
+input[type="radio"]:checked + .custom-radio-desktop {
+  background-color: #2a254b;
+}
+
+/* Desktop checkmark */
+input[type="radio"]:checked + .custom-radio-desktop::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

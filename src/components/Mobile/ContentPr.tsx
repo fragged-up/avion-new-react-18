@@ -21,7 +21,7 @@ function ContentPr() {
   return (
     <>
       <div className={styles["Ap-s-wrapper"]}>
-        <div className={styles["Ap-s-container"]}>
+        <div>
           <div className={styles["Ap-s-bg-c"]}>
             <p className={styles["text-logo"]}>All products</p>
           </div>

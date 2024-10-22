@@ -4,77 +4,71 @@ import purchaseIcon from "../assets/icons/purchaseIcon.svg";
 import transitDelivery from "../assets/icons/transitDelivery.svg";
 import JoinTheClub from "./JoinTheClub";
 
+const items = [
+  {
+    icon: transitDelivery,
+    alt: "transit-icon",
+    title: "Next day as standard",
+    description:
+      "Handmade crafted goods made with real passion and craftmanship",
+  },
+  {
+    icon: checkMark,
+    alt: "checkmark-icon",
+    title: "Made by true artisans",
+    description:
+      "Handmade crafted goods made with real passion and craftmanship",
+  },
+  {
+    icon: purchaseIcon,
+    alt: "purchase-icon",
+    title: "Unbeatable prices",
+    description:
+      "For our materials and quality you won't find better prices anywhere",
+  },
+  {
+    icon: recycleIcon,
+    alt: "recycle-icon",
+    title: "Recycled packaging",
+    description:
+      "We use 100% recycled packaging to ensure our footprint is manageable",
+  },
+];
+
 export default function WhatsMake() {
   return (
-    <>
-      <div className="w-full bg-white py-16 text-[#2A254B]">
-        <div className="mx-auto w-4/5 pb-[1rem] pt-[3rem]">
-          <h2 className="font-clash text-xl font-normal md:text-center md:text-2xl">
+    <div className="w-full bg-white pt-6 text-[#2A254B]">
+      {/* Updated width for md (84.72%) */}
+      <div className="mx-auto w-[calc(100%-3rem)] md:w-[84.72%]">
+        <div className="pb-[1rem] pt-[1.5rem]">
+          <h2 className="min-w-[17.125rem] font-clash text-xl font-normal tracking-wider md:text-center md:text-2xl">
             What makes our brand <br className="md:hidden" /> different
           </h2>
         </div>
-        <div className="mx-auto flex w-4/5 flex-col gap-[2.25rem] py-4 md:mb-[5.375rem] md:mt-[3.125rem] md:w-[85%] md:flex-row md:gap-[3.625rem]">
-          <div className="flex flex-col gap-4 md:gap-2">
-            <img
-              src={transitDelivery}
-              alt="transit-icon"
-              className="h-6 w-6 md:mt-2"
-            />
 
-            <h3 className="font-clash text-base font-normal md:text-xl lg:text-nowrap">
-              Next day as standard
-            </h3>
-            <p className="font-satoshi text-sm font-normal">
-              Handmade crafted goods made with real passion and craftmanship
-            </p>
-          </div>
-          <div className="flex flex-col gap-4 md:gap-2">
-            <img
-              src={checkMark}
-              alt="checkmark-icon"
-              className="h-6 w-6 md:mt-2"
-            />
+        {/* Adjust the gap between containers and the layout for mobile and desktop */}
+        <div className="mx-auto flex flex-col gap-[2.25rem] py-4 md:mb-[5.375rem] md:mt-[3.125rem] md:flex-row md:gap-[6.32%]">
+          {items.map((item) => (
+            <div className="flex flex-col" key={item.title}>
+              <img
+                src={item.icon}
+                alt={item.alt}
+                className="mb-4 h-6 w-6 md:mb-3" // 16px on mobile, 12px on desktop
+              />
+              <h3 className="font-clash text-base font-normal md:text-xl lg:text-nowrap">
+                {item.title}
+              </h3>
+              <p className="mt-3 font-satoshi text-sm font-normal md:mt-2 md:text-base">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
 
-            <h3 className="font-clash text-base font-normal md:text-xl lg:text-nowrap">
-              Made by true artisans
-            </h3>
-            <p className="font-satoshi text-sm font-normal">
-              Handmade crafted goods made with real passion and craftmanship
-            </p>
-          </div>
-          <div className="flex flex-col gap-4 md:gap-2">
-            <img
-              src={purchaseIcon}
-              alt="purchase-icon"
-              className="h-6 w-6 md:mt-2"
-            />
-            <h3 className="font-clash text-base font-normal md:text-xl lg:text-nowrap">
-              Unbeatable prices
-            </h3>
-            <p className="font-satoshi text-sm font-normal">
-              For our materials and quality you won't find better prices
-              anywhere
-            </p>
-          </div>
-          <div className="flex flex-col gap-4 md:gap-2">
-            <img
-              src={recycleIcon}
-              alt="recylce-icon"
-              className="h-6 w-6 md:mt-2"
-            />
-            <h3 className="font-clash text-base font-normal md:text-xl lg:text-nowrap">
-              Recycled packaging
-            </h3>
-            <p className="font-satoshi text-sm font-normal">
-              We use 100% recycled packaging to ensure our footprint is
-              manageable
-            </p>
-          </div>
+        <div className="pb-9 pt-8">
+          <JoinTheClub />
         </div>
       </div>
-      <div className="div py-8">
-        <JoinTheClub />
-      </div>
-    </>
+    </div>
   );
 }

@@ -9,6 +9,9 @@ const config: Config = {
         satoshi: ['"Satoshi"', "sans-serif"],
         clash: ['"Clash Display"', "sans-serif"],
       },
+      colors: {
+        "main-clr": "#2A254B",
+      },
     },
     plugins: [],
   },
