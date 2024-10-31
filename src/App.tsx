@@ -10,8 +10,9 @@ import NotFoundPage from "./pages/NotFound";
 import SortPage from "@/pages/SortPage";
 import MaintancePage from "@/pages/MaintancePage";
 import ProductPage from "./pages/ProductPage";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Ack from "./pages/ack";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -29,13 +30,21 @@ export default function App() {
       <BrowserRouter>
         <ErrorBoundary>
           <Routes>
-            <Route
+            {/* <Route
               path="/Test"
               element={
                 <Layout>
                   <Test />
                 </Layout>
               }
+            /> */}
+            <Route
+              element={
+                <Layout>
+                  <Ack />
+                </Layout>
+              }
+              path="/ss"
             />
             <Route
               path="/"

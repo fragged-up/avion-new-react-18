@@ -22,6 +22,7 @@ import sofa from "@/assets/images/Large.svg";
 import { ProductListMobile } from "@/components/Mobile/ProductListMobile";
 import { OurPopularM } from "@/components/Mobile/ProductListMobile";
 import { ProductListDesktop } from "@/components/Mobile/ProductListMobile";
+import { Link } from "react-router-dom";
 
 // import { FooterM } from './FooterM';
 // import {
@@ -49,9 +50,11 @@ function ContentM() {
             display things digitally using modern web technologies.
           </p>
 
-          <button className={styles["view-collection-button"]}>
-            View Collection
-          </button>
+          <Link to="/chairs">
+            <button className={styles["view-collection-button"]}>
+              View Collection
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -63,9 +66,11 @@ function ContentM() {
                 The furniture brand for the
                 <br /> future, with timeless designs
               </h1>
-              <button className={styles["desk-view-collection-button"]}>
-                View Collection
-              </button>
+              <Link to="/chairs">
+                <button className={styles["desk-view-collection-button"]}>
+                  View Collection
+                </button>
+              </Link>
               <br />
               <br />
               <br />
@@ -174,9 +179,11 @@ function ContentM() {
             </div>
 
             <div className={styles["desk-ct-2-btn-c"]}>
-              <button className={styles["desk-ct-2-button"]}>
-                View Collection
-              </button>
+              <Link to="/ceramics">
+                <button className={styles["desk-ct-2-button"]}>
+                  View Collection
+                </button>
+              </Link>
             </div>
           </div>
 

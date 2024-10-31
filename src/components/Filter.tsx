@@ -1,88 +1,76 @@
 import { useState } from "react";
+import drsvg from "@/assets/icons/dropdown.svg";
 
-export interface FilterProps {
-  onApplyFilters: (filters: any) => void;
-  onClose: () => void;
-  categories: string[]; // Pass categories
-  brands: string[]; // Pass brands
-}
+type FilterOption = {
+  label: string;
+  value: string;
+};
+type FilterActionReturnType = string | number | boolean | object | any[] | any;
+type FilterProps = {
+  options: FilterOption[];
+  selectedOptions: string[];
+  filterHeader?: string | null;
+  onChange: (updatedOptions: string[]) => void;
+  filterAction?: null | (() => Promise<FilterActionReturnType>);
+};
 
 export default function Filter({
-  onApplyFilters,
-  onClose,
-  categories,
-  brands,
+  options,
+  selectedOptions,
+  filterHeader,
+  onChange,
 }: FilterProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleApply = () => {
-    const filters = {
-      category: selectedCategory,
-      brand: selectedBrand,
-    };
-    onApplyFilters(filters);
-    onClose();
+  const handleCheckboxChange = (value: string) => {
+    const updatedOptions = selectedOptions.includes(value)
+      ? selectedOptions.filter((item) => item !== value)
+      : [...selectedOptions, value];
+    onChange(updatedOptions);
   };
 
   return (
-    <div className="w-full max-w-lg rounded-lg bg-white p-8">
-      <h2 className="mb-4 text-xl font-bold">Filter Options</h2>
-
-      <div className="mb-4">
-        <h3 className="mb-2 font-semibold">Category</h3>
-        <div className="space-y-2">
-          {categories.map((category) => (
-            <label
-              key={category}
-              className="flex cursor-pointer items-center space-x-3"
-            >
-              <input
-                type="radio"
-                name="category"
-                value={category}
-                checked={selectedCategory === category}
-                onChange={() => setSelectedCategory(category)}
-                className="hidden"
-              />
-              <span className="custom-radio-desktop"></span>
-              <span className="text-sm text-gray-700">{category}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <h3 className="mb-2 font-semibold">Brand</h3>
-        <div className="space-y-2">
-          {brands.map((brand) => (
-            <label
-              key={brand}
-              className="flex cursor-pointer items-center space-x-3"
-            >
-              <input
-                type="radio"
-                name="brand"
-                value={brand}
-                checked={selectedBrand === brand}
-                onChange={() => setSelectedBrand(brand)}
-                className="hidden"
-              />
-              <span className="custom-radio-desktop"></span>
-              <span className="text-sm text-gray-700">{brand}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div className="text-right">
-        <button
-          onClick={handleApply}
-          className="rounded bg-blue-500 px-4 py-2 text-white"
+    <div className="flex w-full flex-col">
+      <div
+        className="flex cursor-pointer items-center justify-between px-6 py-3"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <p
+          className="font-satoshi text-base"
+          style={{ textDecoration: isOpen ? "underline black" : "none" }}
         >
-          Apply Filters
-        </button>
+          {filterHeader}
+        </p>
+        <img
+          src={drsvg}
+          alt="drop-down-icon"
+          className={`h-6 w-6 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+        />
       </div>
+      {isOpen && (
+        <ul className="w-full px-6 py-2">
+          {options.map((option, index) => (
+            <li
+              key={index}
+              className="flex w-full items-center justify-between"
+            >
+              <label
+                htmlFor={`filter-${index}`}
+                className="cursor-pointer text-sm"
+              >
+                {option.label}
+              </label>
+              <input
+                type="checkbox"
+                id={`filter-${index}`}
+                checked={selectedOptions.includes(option.value)}
+                onChange={() => handleCheckboxChange(option.value)}
+                className="h-4 w-4"
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

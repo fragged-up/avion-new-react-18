@@ -2,9 +2,9 @@ import { useState } from "react";
 import dropdownIcon from "@/assets/images/cart-down.svg";
 
 interface SelectDropDownProps {
-  options: string[]; // The list of options to display
-  label: string; // Default label for the dropdown
-  onSelect: (selected: string) => void; // Callback function when an option is selected
+  options: string[];
+  label: string;
+  onSelect: (selected: string) => void | Promise<void>;
 }
 
 export default function SelectDropDown({
