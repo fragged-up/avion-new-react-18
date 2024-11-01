@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
-import SelectDropDown from "@/components/SelectDropDown";
 import Filter from "@/components/Filter";
 import Sort from "@/components/Sort";
+
+type FilterOption = "price" | "availability" | "rating" | null;
+type SortOption =
+  | "best-sellers"
+  | "low-to-high"
+  | "high-to-low"
+  | "name"
+  | "height"
+  | "depth"
+  | null;
 export default function Ack() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeClearing, setActiveClearing] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [filterSelectedOptions, setFilterSelectedOptions] =
+    useState<FilterOption>(null);
+  const [sortSelectedOptions, setSortSelectedOptions] =
+    useState<SortOption[]>();
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
 
-  const handleSortAction = async () => {
+  const handleSortAction = async (order: any) => {
     const queryParams = new URLSearchParams({ order: "asc" }).toString();
     try {
       const req = await fetch(`http://localhost:5001/sort?${queryParams}`);
@@ -23,10 +34,29 @@ export default function Ack() {
     }
   };
 
+  const handleFilterAction = async () => {
+    const queryParams = new URLSearchParams();
+    filterOptions.forEach((option: any) => {
+      queryParams.append(option.value, option.order);
+    });
+    try {
+      const req = await fetch(
+        `http://localhost:5001/filter?${queryParams.toString()}`,
+      );
+      const response = req.json();
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  };
+
   const sortOptions = [
-    { label: "Sort by Price", value: "price" },
-    { label: "Sort by Name", value: "Name" },
-    { label: "Sort by Date", value: "date" },
+    { label: "Best Sellers", value: "best-sellers", order: "" },
+    { label: "Sort by Price: Low To High", value: "low-to-high", order: "" },
+    { label: "Sort by Price: High To Low", value: "high-to-low", order: "" },
+    { label: "Name", value: "name", order: "" },
+    { label: "Availablility", value: "availablility", order: "" },
+    { label: "Height", value: "height", order: "" },
+    { label: "Depth", value: "depth", order: "" },
   ];
   const filterOptions = [
     { label: "Option 1", value: "option1" },
@@ -35,13 +65,15 @@ export default function Ack() {
     { label: "Option 4", value: "option4" },
   ];
 
+  const handleZayn = (val: {}[]) => val.sort();
+
   const handleSortChange = (value: string) => {
-    setSelectedOption(value);
+    filterSelectedOptions(value);
     // Any additional sorting logic you want to apply
   };
 
-  const handleFilterChange = (updatedOptions: string[]) => {
-    setSelectedOptions(updatedOptions);
+  const handleFilterChange = (updatedOptions: any) => {
+    sortSelectedOptions(updatedOptions);
   };
 
   useEffect(() => {
