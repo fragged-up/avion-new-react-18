@@ -1,5 +1,5 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap");
-@import url("https://fonts.cdnfonts.com/css/satoshi");
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap');
+@import url('https://fonts.cdnfonts.com/css/satoshi');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,8 +13,8 @@
 }
 
 :root {
-  --font-satoshi-family: "Satoshi", sans-serif;
-  --font-clash-family: "Clash Display", sans-serif;
+  --font-satoshi-family: 'Satoshi', sans-serif;
+  --font-clash-family: 'Clash Display', sans-serif;
   --font-wght-thin: 100;
   --font-wght-ExtraLight: 200;
   --font-wght-light: 300;
@@ -262,7 +262,7 @@ body {
 }
 /* replacing Ap-s-bg-c */
 .all-products-hero {
-  background-image: url("/src/assets/images/Ap-image.svg");
+  background-image: url('/src/assets/images/Ap-image.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -331,13 +331,13 @@ body {
 }
 
 /* Desktop checked state */
-input[type="radio"]:checked + .custom-radio-desktop {
+input[type='radio']:checked + .custom-radio-desktop {
   background-color: #2a254b;
 }
 
 /* Desktop checkmark */
-input[type="radio"]:checked + .custom-radio-desktop::after {
-  content: "";
+input[type='radio']:checked + .custom-radio-desktop::after {
+  content: '';
   position: absolute;
   left: 5px;
   top: 2px;

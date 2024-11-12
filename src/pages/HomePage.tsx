@@ -1,4 +1,4 @@
-import ContentM from "../components/ContentM";
+import ContentM from '../components/ContentM';
 
 export default function HomePage() {
   return (

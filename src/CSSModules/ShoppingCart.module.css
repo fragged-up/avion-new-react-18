@@ -2,56 +2,50 @@
 @import url('https://fonts.cdnfonts.com/css/satoshi');
 
 :root {
-    --font-satoshi-family: 'Satoshi', sans-serif;
-    --font-clash-family: 'Clash Display', sans-serif;
-    --font-wght-thin: 100;
-    --font-wght-ExtraLight: 200;
-    --font-wght-light: 300;
-    --font-wght-regular: 400;
-    --font-wght-medium: 500;
-    --font-wght-semiBold: 600;
-    --font-wght-bold: 700;
-    --font-wght-ExtraBold: 800;
-    --font-wght-heavy: 900;
+  --font-satoshi-family: 'Satoshi', sans-serif;
+  --font-clash-family: 'Clash Display', sans-serif;
+  --font-wght-thin: 100;
+  --font-wght-ExtraLight: 200;
+  --font-wght-light: 300;
+  --font-wght-regular: 400;
+  --font-wght-medium: 500;
+  --font-wght-semiBold: 600;
+  --font-wght-bold: 700;
+  --font-wght-ExtraBold: 800;
+  --font-wght-heavy: 900;
 }
 
-.shopping-header{
-    display: none;
+.shopping-header {
+  display: none;
 }
 
 .shopping-cart-w {
-    display: flex;
-    flex-direction: column;
-    gap:1em;
-    padding-left:1em;
-    padding-block:2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-left: 1em;
+  padding-block: 2em;
 }
 
 .shopping-cart-sb-c {
-    display: flex;
-    justify-content: start;
-    align-items: start;
+  display: flex;
+  justify-content: start;
+  align-items: start;
 }
 
 .shopping-cart-sb {
-    font-size: 1em;
-    font-family: var(--font-clash-family);
-    font-weight: var(--font-wght-regular);
+  font-size: 1em;
+  font-family: var(--font-clash-family);
+  font-weight: var(--font-wght-regular);
 }
 
-.shopping-cart-s{
-    width:auto;
-    
+.shopping-cart-s {
+  width: auto;
 }
 
-@media (min-width:767px) {
-
-    .shopping-cart-w{
-        width:90%;
-        margin: 0 auto;
-    }
-
-    
-   
-
+@media (min-width: 767px) {
+  .shopping-cart-w {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

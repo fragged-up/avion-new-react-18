@@ -12,7 +12,7 @@ import MaintancePage from "@/pages/MaintancePage";
 import ProductPage from "./pages/ProductPage";
 // import Test from "./pages/Test";
 import ErrorBoundary from "./components/ErrorBoundary";
-import Ack from "./pages/ack";
+import Ack from "@/pages/ack";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,17 +27,27 @@ function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
         <ErrorBoundary>
           <Routes>
             {/* <Route
+
               path="/Test"
+
               element={
+
                 <Layout>
+
                   <Test />
+
                 </Layout>
+
               }
+
             /> */}
+
             <Route
               element={
                 <Layout>
@@ -46,6 +56,7 @@ export default function App() {
               }
               path="/ss"
             />
+
             <Route
               path="/"
               element={
@@ -54,6 +65,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/listing-page"
               element={
@@ -62,6 +74,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/old-products"
               element={
@@ -70,6 +83,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/About"
               element={
@@ -78,6 +92,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/basket-page"
               element={
@@ -86,6 +101,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/sort"
               element={
@@ -94,6 +110,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/:category"
               element={
@@ -102,6 +119,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/:category/:slug"
               element={
@@ -110,6 +128,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </ErrorBoundary>

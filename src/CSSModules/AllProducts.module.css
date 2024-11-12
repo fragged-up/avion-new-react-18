@@ -1,349 +1,314 @@
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .desk-ap-w,
 .desk-catalog-cmp {
-    display: none;
+  display: none;
 }
 
 .flex-cl {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.Ap-s-bg-c{
-    background-image: url('/src/assets/images/Ap-image.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position:center ;
-    min-height:146px;
-
+.Ap-s-bg-c {
+  background-image: url('/src/assets/images/Ap-image.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 146px;
 }
 
-.text-logo{
-    font-size: 2em;
-    font-family: var(--font-clash-family);
-    font-weight: var(--font-wght-regular);
-    color:white;
-    text-align: center;
-    padding-top:2.2em;
+.text-logo {
+  font-size: 2em;
+  font-family: var(--font-clash-family);
+  font-weight: var(--font-wght-regular);
+  color: white;
+  text-align: center;
+  padding-top: 2.2em;
 }
-
 
 .option-c {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
 }
 
 .filters-c,
 .srt-c {
-    width: 40%;
+  width: 40%;
 }
 
 .filters-s,
 .srt-s {
-    width: 100%;
-    background-color: #F9F9F9;
-    border: none;
-    cursor: pointer;
-    padding-block: .5em;
-    font-size: .8em;
-    font-family: var(--font-satoshi-family);
-    font-weight: var(--font-wght-regular);
-    text-align: center;
-    color: #2A254B;
-    -webkit-text-fill-color: black;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: none;
+  cursor: pointer;
+  padding-block: 0.5em;
+  font-size: 0.8em;
+  font-family: var(--font-satoshi-family);
+  font-weight: var(--font-wght-regular);
+  text-align: center;
+  color: #2a254b;
+  -webkit-text-fill-color: black;
 }
 
 .dr-ic-c {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
 }
-
-
 
 /* catalog container */
 
-
 .catalog-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
 }
-
 
 .catalog-dt-w {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
-    padding-block: 2em;
-
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  padding-block: 2em;
 }
-
-
-
 
 .catalog-dt-c {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
 }
 
-
 .catalog-dt-w-2 {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    gap: .6em;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
 }
 
 .catalog-dt-c-2 {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
 }
-
 
 .catalog-btn-c {
-    width: 90%;
-    padding-block: 2em;
+  width: 90%;
+  padding-block: 2em;
 }
-
 
 .catalog-button {
-    width: 100%;
-    background-color: #F9F9F9;
-    border: none;
-    cursor: pointer;
-    padding-block: 1em;
-    font-size: .8em;
-    font-family: var(--font-satoshi-family);
-    font-weight: var(--font-wght-regular);
-    text-align: center;
-    color: #2A254B;
-    -webkit-text-fill-color: black;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: none;
+  cursor: pointer;
+  padding-block: 1em;
+  font-size: 0.8em;
+  font-family: var(--font-satoshi-family);
+  font-weight: var(--font-wght-regular);
+  text-align: center;
+  color: #2a254b;
+  -webkit-text-fill-color: black;
 }
-
-
 
 /* CatalogDataContainer cmp */
 
-
 .catalog-cmp {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
 }
 
-
 .catalog-cmp-w {
-    margin: 0 auto;
-    min-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .6em;
-    padding-top: .2em;
-    padding-bottom: 2em;
-
+  margin: 0 auto;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  padding-top: 0.2em;
+  padding-bottom: 2em;
 }
 
 .catalog-cmp-c {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    gap: .6em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  gap: 0.6em;
 }
 
 .ymal-c {
-    display: flex;
-    align-self: start;
-    justify-content: start;
-    align-items: start;
+  display: flex;
+  align-self: start;
+  justify-content: start;
+  align-items: start;
 }
 
 .ymal-head {
-    font-size: 1em;
-    font-family: var(--font-clash-family);
-    font-weight: var(--font-wght-regular);
-    letter-spacing: .1em;
-    padding-block: 1em;
+  font-size: 1em;
+  font-family: var(--font-clash-family);
+  font-weight: var(--font-wght-regular);
+  letter-spacing: 0.1em;
+  padding-block: 1em;
 }
 
 @media (min-width: 453px) {
-    
-    .catalog-cmp-c {
-        justify-content: space-around;
-        align-items: center;
-    }
+  .catalog-cmp-c {
+    justify-content: space-around;
+    align-items: center;
+  }
 
-    .ymal-c {
-        align-items: flex-start;
+  .ymal-c {
+    align-items: flex-start;
+  }
 
-    }
-
-    .ymal-head {
-        text-align: center;
-    }
+  .ymal-head {
+    text-align: center;
+  }
 }
 
 @media (min-width: 767px) {
+  .Ap-s-wrapper {
+    display: none;
+  }
 
+  .desk-ap-w {
+    display: block;
+  }
 
-    .Ap-s-wrapper {
-        display: none;
-    }
+  .desk-dr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+  }
 
-    .desk-ap-w {
-        display: block;
-    }
+  .desk-option-c {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .desk-dr {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1em;
-    }
+  .user-option-bar-left,
+  .user-option-bar-right {
+    display: flex;
+    align-items: center;
+    padding: 2em;
+  }
 
-    .desk-option-c {
-        display: flex;
-        justify-content: space-between;
-    }
+  .product-layout-w {
+    padding: 5rem;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+    gap: 2em;
+  }
 
-    .user-option-bar-left,
-    .user-option-bar-right {
-        display: flex;
-        align-items: center;
-        padding: 2em;
-    }
+  .product-layout {
+    display: flex;
+    gap: 2em;
+  }
 
-    .product-layout-w {
-        padding: 5rem;
-        width:100%;
-        margin:0 auto;
-        display: grid;
-        place-items: center;
-        grid-template-rows: auto;
-        grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
-        gap: 2em;
-    }
+  .desk-view-btn-c {
+    width: 100%;
+    padding-block: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .desk-view-btn {
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    padding-block: 1.2em;
+    padding-inline: 6em;
+    font-size: 0.8em;
+    font-family: var(--font-satoshi-family);
+    font-weight: var(--font-wght-regular);
+    text-align: center;
+    color: #2a254b;
+    -webkit-text-fill-color: black;
+  }
 
-    .product-layout {
-        display: flex;
-        gap: 2em;
-    }
+  /* catalog data container adjustment  */
 
-    .desk-view-btn-c {
-        width: 100%;
-        padding-block: 2em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .catalog-cmp {
+    display: none;
+  }
 
-    .desk-view-btn {
-        background-color: #F9F9F9;
-        border: none;
-        cursor: pointer;
-        padding-block: 1.2em;
-        padding-inline: 6em;
-        font-size: .8em;
-        font-family: var(--font-satoshi-family);
-        font-weight: var(--font-wght-regular);
-        text-align: center;
-        color: #2A254B;
-        -webkit-text-fill-color: black;
-    }
+  .desk-catalog-cmp {
+    width: 100%;
+    margin: 0 auto;
+    padding-block: 5rem;
+    padding-inline: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6em;
+  }
 
+  .desk-ymal-c {
+    width: 85%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+  }
 
-    /* catalog data container adjustment  */
+  .desk-ymal-head {
+    font-size: 1.5em;
+    font-family: var(--font-clash-family);
+    font-weight: 300;
+    padding-block: 1em;
+  }
 
-    .catalog-cmp {
-        display: none;
-    }
+  .desk-catalog-cmp-c {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6em;
+  }
 
+  /* ContentPR Component Desktop */
 
-    .desk-catalog-cmp {
-        width: 100%;
-        margin: 0 auto;
-        padding-block: 5rem;
-        padding-inline: 2em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: .6em;
-    }
+  .Ap-s-bg-c {
+    height: 209px;
+  }
 
-    .desk-ymal-c {
-        width:85%;
-        display: flex;
-        justify-content: start;
-        align-items: start;
-    }
-
-    .desk-ymal-head {
-        font-size: 1.5em;
-        font-family: var(--font-clash-family);
-        font-weight: 300;
-        padding-block: 1em;
-    }
-
-
-    .desk-catalog-cmp-c {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: .6em;
-    }
-
-    
-
-
-    /* ContentPR Component Desktop */
-
-
-    .Ap-s-bg-c{
-        height: 209px; 
-    }
-
-    .text-logo{
-        font-size:2.2em;
-        text-align: start;
-        padding-top:4em;
-        padding-left:2em;
-      
-    }
-   
-    
-
-
+  .text-logo {
+    font-size: 2.2em;
+    text-align: start;
+    padding-top: 4em;
+    padding-left: 2em;
+  }
 }

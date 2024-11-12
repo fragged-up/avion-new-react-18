@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import SearchBox from "./SearchBox";
+import React, { useState } from 'react';
+
+import SearchBox from './SearchBox';
 
 // הגדרת טיפוס הנתונים עבור המותגים
-const data: string[] = ["IKEA", "HOMES", "DecoArt", "GreenLife"];
+const data: string[] = ['IKEA', 'HOMES', 'DecoArt', 'GreenLife'];
 
 const MainComponent: React.FC = () => {
   const [filteredData, setFilteredData] = useState<string[]>(data);
 
   // פונקציית החיפוש שמופעלת מ-SearchBox
   const handleSearch = (term: string) => {
-    const filtered = data.filter((item) =>
-      item.toLowerCase().includes(term.toLowerCase()),
-    );
+    const filtered = data.filter(item => item.toLowerCase().includes(term.toLowerCase()));
+
     setFilteredData(filtered);
   };
 

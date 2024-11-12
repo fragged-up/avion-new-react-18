@@ -18,8 +18,6 @@ ________________________________________________________________________________
 WHAT'S LEFT TO FINISH THE ECOMMERCE 
 
 
-
-
 1. **productId Page** :
 one: make algorithem for you may also like these [...products]
 two: fix the height image on the desktop screen that will be exact like the other 50% width div 

@@ -1,71 +1,68 @@
-import { useState } from "react";
-import drsvg from "@/assets/icons/dropdown.svg";
+import { useState } from 'react';
+
+import drsvg from '@/assets/icons/dropdown.svg';
 
 type FilterOption = {
   label: string;
+
   value: string;
 };
-type FilterActionReturnType = string | number | boolean | object | any[] | any;
+
 type FilterProps = {
   options: FilterOption[];
+
   selectedOptions: string[];
-  filterHeader?: string | null;
+
+  filterHeader?: string;
+
   onChange: (updatedOptions: string[]) => void;
-  filterAction?: null | (() => Promise<FilterActionReturnType>);
 };
 
-export default function Filter({
-  options,
-  selectedOptions,
-  filterHeader,
-  onChange,
-}: FilterProps) {
+export default function Filter({ options, selectedOptions, filterHeader, onChange }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCheckboxChange = (value: string) => {
     const updatedOptions = selectedOptions.includes(value)
-      ? selectedOptions.filter((item) => item !== value)
+      ? selectedOptions.filter(item => item !== value)
       : [...selectedOptions, value];
+
     onChange(updatedOptions);
   };
 
   return (
-    <div className="flex w-full flex-col">
+    <div className='flex w-full flex-col'>
       <div
-        className="flex cursor-pointer items-center justify-between px-6 py-3"
+        className='flex cursor-pointer items-center justify-between px-6 py-3'
         onClick={() => setIsOpen(!isOpen)}
       >
         <p
-          className="font-satoshi text-base"
-          style={{ textDecoration: isOpen ? "underline black" : "none" }}
+          className='font-satoshi text-base'
+          style={{ textDecoration: isOpen ? 'underline black' : 'none' }}
         >
           {filterHeader}
         </p>
+
         <img
           src={drsvg}
-          alt="drop-down-icon"
-          className={`h-6 w-6 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+          alt='drop-down-icon'
+          className={`h-6 w-6 transition-transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
+
       {isOpen && (
-        <ul className="w-full px-6 py-2">
+        <ul className='w-full px-6 py-2'>
           {options.map((option, index) => (
-            <li
-              key={index}
-              className="flex w-full items-center justify-between"
-            >
-              <label
-                htmlFor={`filter-${index}`}
-                className="cursor-pointer text-sm"
-              >
+            <li key={index} className='flex w-full items-center justify-between'>
+              <label htmlFor={`filter-${index}`} className='cursor-pointer text-sm'>
                 {option.label}
               </label>
+
               <input
-                type="checkbox"
+                type='checkbox'
                 id={`filter-${index}`}
                 checked={selectedOptions.includes(option.value)}
                 onChange={() => handleCheckboxChange(option.value)}
-                className="h-4 w-4"
+                className='h-4 w-4'
               />
             </li>
           ))}
