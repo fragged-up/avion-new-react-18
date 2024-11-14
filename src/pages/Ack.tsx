@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
-import Filter from '@/components/Filter';
-import Sort from '@/components/Sort';
+import Sort, { SortOptions } from '@/components/Sort';
+
+// import Filter from '@/components/Filter';
+// const [activeClearing, setActiveClearing] = useState(false);
+// const [filterSelectedOptions, setFilterSelectedOptions] = useState<any>(null);
 
 export default function Ack() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  // const [activeClearing, setActiveClearing] = useState(false);
-  const [filterSelectedOptions, setFilterSelectedOptions] = useState<any>(null);
-  const [sortSelectedOptions, setSortSelectedOptions] = useState<any>('by-rating');
-  const openModal = () => setIsModalVisible(true);
-  const closeModal = () => setIsModalVisible(false);
-
-  const sortOptions = [
+  let activeClearing = undefined;
+  const sortOptions: SortOptions[] = [
     { label: 'Best Sellers', value: 'best-sellers', order: 'by-rating' },
     {
       label: 'Sort by Price: Low To High',
@@ -27,9 +24,27 @@ export default function Ack() {
     { label: 'Height', value: 'height', order: 'by-height' },
     { label: 'Depth', value: 'depth', order: 'by-depth' },
   ];
+  const defaultSortState = sortOptions.find((option) => option.order === 'by-rating') || null;
 
-  const handleSortAction: any = async (order: any) => {
-    const queryParams = new URLSearchParams({ order: sortSelectedOptions }).toString();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [sortSelection, setSortSelection] = useState<SortOptions | null>(defaultSortState);
+
+  const closeModal = () => setIsModalVisible(false);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleSortChange = (value: string) => {
+    const selected = sortOptions.find((option) => option.value === value);
+    if (selected) {
+      setSortSelection(selected);
+    }
+  };
+
+  const handleSortAction = async (option: SortOptions | null): Promise<void> => {
+    if (!option) return;
+    const queryParams = new URLSearchParams({ order: option.order }).toString();
 
     console.log('queryParams : ', queryParams);
 
@@ -38,6 +53,7 @@ export default function Ack() {
       const response = await req.json();
       const data = response.items;
       console.log('data (response.items) : ', data);
+      console.log('data.length', data.length);
     } catch (err: any) {
       console.log(err.message);
     }
@@ -69,15 +85,9 @@ export default function Ack() {
     { label: 'Option 4', value: 'option4' },
   ];
 
-  const handleSortChange = (value: any) => {
-    setFilterSelectedOptions(value);
-
-    // Any additional sorting logic you want to apply
-  };
-
-  const handleFilterChange = (updatedOptions: any) => {
-    setSortSelectedOptions(updatedOptions);
-  };
+  // const handleFilterChange = (updatedOptions: any) => {
+  //   setSortSelectedOptions(updatedOptions);
+  // };
   useEffect(() => {
     document.body.style.overflow = isModalVisible ? 'hidden' : 'auto';
 
@@ -112,25 +122,18 @@ export default function Ack() {
 
             <div className="my-12 flex flex-col gap-12">
               <Sort
-                options={sortOptions}
-                selectedOption={sortSelectedOptions}
-                sortHeader="Sort By"
+                sortLabel="Sort By"
+                sortingOptions={sortOptions}
+                selectedOption={sortSelection}
                 onChange={handleSortChange}
-                // sortAction={handleSortAction(sortSelectedOptions)}
-                onClick={handleSortAction(sortSelectedOptions)}
+                onClick={() => handleSortAction(sortSelection)}
               />
-              <Filter
-                options={filterOptions}
-                selectedOptions={filterSelectedOptions}
-                filterHeader="Categories"
-                onChange={handleFilterChange}
-              />
+
+              {/* <Filter Filteroptions={filterOptions} selectedOptions={filterSelectedOptions} filterHeader="Categories" onChange={handleFilterChange} /> */}
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <button className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white">
-                Show Results []
-              </button>
+              <button className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white">Show Results []</button>
               {/* this how the button and active clearing is supposed to be */}
               {/* <button
                 className={`w-full rounded-xl px-2 py-3 font-satoshi text-base ${activeClearing ? 'bg-black' : 'bg-red-500'}`}
@@ -142,7 +145,7 @@ export default function Ack() {
                  */}
               <button
                 // @ts-ignore
-                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base ${activeClearing !== undefined ? 'bg-black' : 'bg-red-500'}`}
+                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white${activeClearing === undefined ? 'bg-black' : 'bg-red-500'}`}
               >
                 Clear All
               </button>
