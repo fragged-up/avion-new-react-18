@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Sort, { SortOptions } from '@/components/Sort';
-
-// import Filter from '@/components/Filter';
-// const [activeClearing, setActiveClearing] = useState(false);
-// const [filterSelectedOptions, setFilterSelectedOptions] = useState<any>(null);
+import SelectDropDown from '@/components/SelectDropDown';
 
 export default function Ack() {
-  let activeClearing = undefined;
   const sortOptions: SortOptions[] = [
     { label: 'Best Sellers', value: 'best-sellers', order: 'by-rating' },
     {
@@ -24,36 +20,40 @@ export default function Ack() {
     { label: 'Height', value: 'height', order: 'by-height' },
     { label: 'Depth', value: 'depth', order: 'by-depth' },
   ];
+
+  //state Initalizations
+
   const defaultSortState = sortOptions.find((option) => option.order === 'by-rating') || null;
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [sortSelection, setSortSelection] = useState<SortOptions | null>(defaultSortState);
+  const [resultNumbers, setResultNumbers] = useState<null | number | string | any>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  //handleStateFunctions
   const closeModal = () => setIsModalVisible(false);
-
-  const openModal = () => {
-    setIsModalVisible(true);
+  const openModal = () => setIsModalVisible(true);
+  const handleCleanUp = () => {
+    resultNumbers && setResultNumbers(null);
   };
-
   const handleSortChange = (value: string) => {
     const selected = sortOptions.find((option) => option.value === value);
     if (selected) {
       setSortSelection(selected);
     }
   };
+  const handleNumberChange = (value: any) => {
+    const derrivedResult = Array.from(value).length.toString();
+    return derrivedResult;
+  };
 
   const handleSortAction = async (option: SortOptions | null): Promise<void> => {
     if (!option) return;
     const queryParams = new URLSearchParams({ order: option.order }).toString();
-
-    console.log('queryParams : ', queryParams);
-
     try {
       const req = await fetch(`http://localhost:5001/sort?${queryParams}`);
       const response = await req.json();
       const data = response.items;
-      console.log('data (response.items) : ', data);
-      console.log('data.length', data.length);
+      const dataLength = handleNumberChange(data);
+      setResultNumbers(dataLength);
     } catch (err: any) {
       console.log(err.message);
     }
@@ -85,16 +85,13 @@ export default function Ack() {
     { label: 'Option 4', value: 'option4' },
   ];
 
-  // const handleFilterChange = (updatedOptions: any) => {
-  //   setSortSelectedOptions(updatedOptions);
-  // };
   useEffect(() => {
     document.body.style.overflow = isModalVisible ? 'hidden' : 'auto';
 
     return () => {
       document.body.style.overflow = 'auto'; // Reset on unmount
     };
-  }, [isModalVisible]);
+  }, [isModalVisible, resultNumbers]);
 
   return (
     <div className="h-[100dvh] bg-black">
@@ -110,15 +107,7 @@ export default function Ack() {
       {isModalVisible && (
         <div className="fixed inset-0 flex items-end justify-center bg-gray-800 bg-opacity-50" onClick={closeModal}>
           <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8" onClick={(e) => e.stopPropagation()}>
-            {/* <SelectDropDown
-
-              label={"brand"}
-
-              options={["s", "m", "l"]}
-
-              onSelect={closeModal}
-
-            /> */}
+            <SelectDropDown label={'brand'} options={['s', 'm', 'l']} onSelect={closeModal} />
 
             <div className="my-12 flex flex-col gap-12">
               <Sort
@@ -133,19 +122,14 @@ export default function Ack() {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <button className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white">Show Results []</button>
-              {/* this how the button and active clearing is supposed to be */}
-              {/* <button
-                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base ${activeClearing ? 'bg-black' : 'bg-red-500'}`}
-              >
-              Clear All
-              </button> */}
-              {/* for now i changed activeClearing !== null || activeClearing !== undefined
-                but its supposed to be activeClearing ? so bg black : bg-red
-                 */}
+              <button className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white">
+                {`Show Results ${resultNumbers !== null ? resultNumbers : ''}`}
+              </button>
+
               <button
                 // @ts-ignore
-                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white${activeClearing === undefined ? 'bg-black' : 'bg-red-500'}`}
+                onClick={() => handleCleanUp()}
+                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white ${resultNumbers !== null ? 'bg-gray-400' : 'bg-gray-100'}`}
               >
                 Clear All
               </button>
