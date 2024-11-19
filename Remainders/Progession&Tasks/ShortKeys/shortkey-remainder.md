@@ -21,3 +21,5 @@
 # expand selection on text = `ctrl + shift + right arrow` and `undo selection vice versa`
 
 # quit window = `cmd + w`
+
+# darkmode on chrome > short key > shift + option +D

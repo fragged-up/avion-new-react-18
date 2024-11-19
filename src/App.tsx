@@ -1,18 +1,18 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AboutPage from "./pages/AboutPage";
-import HomePage from "./pages/HomePage";
-import ListingPage from "./pages/ListingPage";
-import BasketPage from "./pages/BasketPage";
-import InspectPage from "./pages/InspectPage";
-import NotFoundPage from "./pages/NotFound";
-import SortPage from "@/pages/SortPage";
-import MaintancePage from "@/pages/MaintancePage";
-import ProductPage from "./pages/ProductPage";
-// import Test from "./pages/Test";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Ack from "@/pages/ack";
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AboutPage from './pages/AboutPage';
+import HomePage from './pages/HomePage';
+import ListingPage from './pages/ListingPage';
+import BasketPage from './pages/BasketPage';
+import InspectPage from './pages/InspectPage';
+import NotFoundPage from './pages/NotFound';
+import SortPage from '@/pages/SortPage';
+import CategoryPage from '@/pages/CategoryPage';
+import ProductPage from './pages/ProductPage';
+// import Test from './pages/Test';
+import ErrorBoundary from './components/ErrorBoundary';
+import SFModal from '@/pages/SFModal';
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,39 +23,29 @@ function Layout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ErrorBoundary>
           <Routes>
             {/* <Route
-
               path="/Test"
-
               element={
-
                 <Layout>
-
                   <Test />
-
                 </Layout>
-
               }
-
             /> */}
 
-            <Route
+            {/* <Route
               element={
                 <Layout>
-                  <Ack />
+                  <SFModal openAction={() => ccheck(true)} />
                 </Layout>
               }
               path="/ss"
-            />
+            /> */}
 
             <Route
               path="/"
@@ -115,7 +105,7 @@ export default function App() {
               path="/:category"
               element={
                 <Layout>
-                  <MaintancePage />
+                  <CategoryPage />
                 </Layout>
               }
             />

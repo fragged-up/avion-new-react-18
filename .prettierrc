@@ -1,12 +1,15 @@
 
 {
-  "printWidth": 160,          
+  "printWidth": 120,          
   "tabWidth": 2,             
   "semi": true,              
+  "useTabs": false, 
   "singleQuote": true,       
   "arrowParens": "always",   
   "trailingComma": "all",    
   "bracketSpacing": true,    
   "proseWrap": "preserve",   
-  "endOfLine": "auto"        
+  "endOfLine": "auto",
+  "htmlWhitespaceSensitivity": "css"
+  
 }
