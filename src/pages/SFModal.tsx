@@ -1,66 +1,51 @@
+// import SelectDropDown from '@/components/SelectDropDown';
 import { useEffect, useState } from 'react';
-import Sort, { SortOptions } from '@/components/Sort';
-import SelectDropDown from '@/components/SelectDropDown';
-import Filter, { FilterOptions } from '@/components/Filter';
-import allFS from '@/assets/icons/allFS.svg';
-import outIcon from '@/assets/icons/outIcon.svg';
+import { SortOptions } from '@/types/optionsTypes'; // types import
+import { sortOptions } from '@/constants/sortOptions'; // constants import
+import { filterOptions } from '@/constants/filterOptions'; //constants import
+import Sort from '@/components/Sort'; //components import
+import Filter from '@/components/Filter'; //components import
+import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
+import outIcon from '@/assets/icons/outIcon.svg'; //icons imports
 
-// import TryKafkaRequest from '@/features/KafkaCheck';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsModalOpen } from '@/features/modal/selectors';
+import { openGlobalModal, openFilterFromModal, openSortFromModal } from '@/features/modal/modalSlice';
+
 export type SFModalProps = {
-  // openAction: boolean | any | null | ((openAction: any) => void | any) | (() => void);
   isModalVisible?: null | any;
-  toggleVisibility: (event: null | any) => any | void;
   eventDrill?: null | any;
-  // modalOpen?: null | boolean | any | ((openAction: any) => void);
 };
 
-function SFModal({ isModalVisible, toggleVisibility, eventDrill = null }: SFModalProps) {
-  const sortOptions: SortOptions[] = [
-    { label: 'Best Sellers', value: 'best-sellers', order: 'by-rating' },
-    {
-      label: 'Sort by Price: Low To High',
-      value: 'low-to-high',
-      order: 'by-low',
-    },
-    {
-      label: 'Sort by Price: High To Low',
-      value: 'high-to-low',
-      order: 'by-high',
-    },
-    { label: 'Name', value: 'name', order: 'by-name' },
-    { label: 'Availablility', value: 'availablility', order: 'by-av' },
-    { label: 'Height', value: 'height', order: 'by-height' },
-    { label: 'Depth', value: 'depth', order: 'by-depth' },
-  ];
-  const filterOptions: FilterOptions[] = [
-    { label: 'Brand', value: 'by-brand', order: '' },
-    { label: 'Material', value: 'by-tags', order: '' },
-    { label: 'Colors', value: 'by-material', order: '' },
-    { label: 'Availability', value: 'by-colors', order: '' },
-    { label: 'PriceRange', value: 'by-avail', order: '' },
-  ];
-
-  //state Initalizations
-  // const kafkaRequest = TryKafkaRequest();
+function SFModal({ isModalVisible }: SFModalProps) {
   const defaultSortState = sortOptions.find((option) => option.order === 'by-rating') || null;
   const [sortSelection, setSortSelection] = useState<SortOptions | null>(defaultSortState);
   const [resultNumbers, setResultNumbers] = useState<null | number | string | any>(null);
-  const [isVisible, setIsVisible] = useState(false);
+
+  // the redux function that accessing the state of triggerEvent from the store
+  //state Initalizations
+
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsModalOpen);
+
+  const handleFilterFromModal = () => {
+    dispatch(openFilterFromModal());
+  };
+
+  const handleSortFromModal = () => {
+    dispatch(openSortFromModal());
+  };
+
+  const handleOpenModal = () => {
+    dispatch(openGlobalModal());
+  };
 
   //handleStateFunctionsx
-
-  const openModal = () => {
-    toggleVisibility(true);
-  };
-  const closeIt = () => {
-    toggleVisibility(false);
-  };
 
   const handleCleanUp = () => {
     resultNumbers && setResultNumbers(null);
   };
 
-  const handleEventDrill = (event: any) => (event = null);
   //handleChanges
 
   const handleSortChange = (value: string) => {
@@ -94,43 +79,42 @@ function SFModal({ isModalVisible, toggleVisibility, eventDrill = null }: SFModa
 
   useEffect(() => {
     document.body.style.overflow = isModalVisible ? 'hidden' : 'auto';
-
     return () => {
       document.body.style.overflow = 'auto'; // Reset on unmount
     };
-  }, [isModalVisible, resultNumbers]);
+  }, [isOpen, resultNumbers]);
 
   return (
     <div className="w-full">
       <div className="flex justify-between items-start">
         <div className="inline-flex justify-start items-center">
           <button
-            onClick={openModal}
+            onClick={handleOpenModal}
             className="bg-slate-100 px-3 flex justify-start items-center font-satoshi text-lg text-nowrap py-3"
           >
             All Filters
-            <img src={allFS} alt="all-filters" className="w-6 h-6 mx-4" />
+            <img src={fsIcon} alt="all-filters" className="w-6 h-6 mx-4" />
           </button>
         </div>
 
         <div className="flex justify-end items-end w-full gap-4">
-          <button className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
+          <button onClick={handleSortFromModal} className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
             <p>Sort By</p>
           </button>
-          <button className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
-            <p>Category</p>
+          <button onClick={handleFilterFromModal} className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
+            <p>Filter By</p>
           </button>
         </div>
       </div>
 
-      {isModalVisible && (
+      {isOpen && (
         <div className="fixed inset-0 flex items-end justify-center bg-gray-800 bg-opacity-50">
           <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8">
             {/* <SelectDropDown label={'brand'} options={['s', 'm', 'l']} onSelect={closeModal} /> */}
 
             <div className="my-12 flex flex-col gap-12">
               <Sort sortingOptions={sortOptions} currSelection={sortSelection} onChange={handleSortChange} />
-              <Filter filterOptions={filterOptions} actionListener={handleEventDrill} />
+              <Filter filterOptions={filterOptions} />
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
@@ -149,7 +133,7 @@ function SFModal({ isModalVisible, toggleVisibility, eventDrill = null }: SFModa
           </div>
 
           <div className="absolute left-[86%] mb-24 border-2 border-green-500">
-            <img onClick={() => closeIt()} src={outIcon} className="w-12 h-12" />
+            <img src={outIcon} onClick={handleOpenModal} className="w-12 h-12" />
           </div>
         </div>
       )}

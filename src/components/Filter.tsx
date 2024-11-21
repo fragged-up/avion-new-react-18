@@ -1,27 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
+import { FilterOptions } from '@/types/optionsTypes';
+import { useSelector, useDispatch } from 'react-redux';
 
-export type FilterOptions = {
-  label: string;
-  value: string;
-  order: string;
-};
+import { selectIsModalOpen, selectIsSortOpen, selectIsFilterOpen } from '@/features/modal/selectors';
+import { openFilter, openSort } from '@/features/modal/modalSlice';
 
 interface FilterProps {
   filterOptions: FilterOptions[];
   cat?: string;
-  actionListener?: (event: any | null) => any | void;
+  // actionListener?: (event: any | null) => any | void;
 }
 
-const Filter: React.FC<FilterProps> = ({ filterOptions, actionListener }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
+  const isOpen = useSelector(selectIsFilterOpen);
   const [currentChecked, setCurrentChecked] = useState<string[]>([]);
+  const dispatch = useDispatch();
+  // const handleActionListener = (event: any) => {
+  //   event && actionListener?.(setIsOpen(true));
+  // };
 
-  const handleActionListener = (event: any) => {
-    event && actionListener?.(setIsOpen(true));
+  const handleFilterOpen = () => {
+    dispatch(openFilter());
   };
-
   const handleCheckChange = (value: string, isChecked: boolean) => {
     setCurrentChecked((prev) => {
       if (isChecked) {
@@ -66,7 +68,10 @@ const Filter: React.FC<FilterProps> = ({ filterOptions, actionListener }) => {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="flex cursor-pointer items-center justify-between px-6 py-3" onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className="flex cursor-pointer items-center justify-between px-6 py-3 transition-all duration-200 ease-in-out"
+        onClick={handleFilterOpen}
+      >
         <p className="font-satoshi text-base" style={{ textDecoration: isOpen ? 'underline black' : 'none' }}>
           Filter By
         </p>
@@ -77,7 +82,6 @@ const Filter: React.FC<FilterProps> = ({ filterOptions, actionListener }) => {
           className={`h-6 w-6 transition-transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
-      <div onClick={handleActionListener} className="h-32 w-32 bg-red-500"></div>
 
       {isOpen && (
         <ul className="w-full px-6 py-2">

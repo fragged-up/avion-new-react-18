@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
+import { SortOptions } from '@/types/optionsTypes';
+import { useSelector, useDispatch } from 'react-redux';
 
-export type SortOptions = {
-  label: string;
-  value: string;
-  order: string;
-};
+import { selectIsSortOpen } from '@/features/modal/selectors';
+import { openSort } from '@/features/modal/modalSlice';
+
 export interface SortProps {
   sortLabel?: string | null;
   sortingOptions: SortOptions[];
@@ -16,7 +16,11 @@ export interface SortProps {
 }
 
 const Sort: React.FC<SortProps> = ({ sortingOptions, currSelection, sortLabel = 'Sort By', onChange, onClick }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsSortOpen);
+  const handleSortOpen = () => {
+    dispatch(openSort());
+  };
 
   const handleOnChange = (value: string) => {
     onChange(value);
@@ -28,7 +32,7 @@ const Sort: React.FC<SortProps> = ({ sortingOptions, currSelection, sortLabel = 
 
   return (
     <div className="flex w-full flex-col">
-      <div className="flex cursor-pointer items-center justify-between px-6 py-3 " onClick={() => setIsOpen(!isOpen)}>
+      <div className="flex cursor-pointer items-center justify-between px-6 py-3 " onClick={handleSortOpen}>
         <p className="font-satoshi text-base" style={{ textDecoration: isOpen ? 'underline black' : 'none' }}>
           {sortLabel}
         </p>
