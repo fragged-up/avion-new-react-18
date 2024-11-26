@@ -347,3 +347,33 @@ input[type='radio']:checked + .custom-radio-desktop::after {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+/* Slide-up animation modal */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+/* Slide-right animation modal */
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-animation {
+  animation: slideUp 0.3s ease-in-out forwards;
+}
+
+@media (min-width: 1024px) {
+  .slide-animation {
+    transform: translateX(-100%); /* Initial transform for the starting point */
+    animation: slideRight 0.3s ease-in-out forwards;
+  }
+}

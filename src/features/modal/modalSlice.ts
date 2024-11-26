@@ -4,12 +4,14 @@ interface TriggerState {
   isOpen: boolean;
   sortOpen: null | boolean;
   filterOpen: null | boolean;
+  resultsNumber: null | number;
 }
 
 const initialState: TriggerState = {
   isOpen: false,
   sortOpen: null,
   filterOpen: null,
+  resultsNumber: 0,
 };
 
 const modalSlice = createSlice({
@@ -19,7 +21,6 @@ const modalSlice = createSlice({
     openGlobalModal: (state) => {
       state.isOpen = !state.isOpen;
     },
-
     openSort: (state) => {
       state.sortOpen = !state.sortOpen;
     },
@@ -34,8 +35,16 @@ const modalSlice = createSlice({
       state.isOpen = true;
       state.filterOpen = true;
     },
+
+    showResultsCalc: (state) => {},
   },
 });
 
-export const { openGlobalModal, openSort, openFilter, openSortFromModal, openFilterFromModal } = modalSlice.actions;
+export const {
+  openGlobalModal,
+  openSort,
+  openFilter,
+  openSortFromModal,
+  openFilterFromModal,
+} = modalSlice.actions;
 export default modalSlice.reducer;

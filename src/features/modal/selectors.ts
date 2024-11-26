@@ -1,5 +1,6 @@
 import { RootState } from '@/features/store';
-export const selectIsModalOpen = (state: RootState): boolean => state.modal.isOpen;
+export const selectIsModalOpen = (state: RootState): boolean =>
+  state.modal.isOpen;
 
 export const selectModalState = (state: RootState): any => state.modal;
 

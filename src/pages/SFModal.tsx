@@ -10,7 +10,11 @@ import outIcon from '@/assets/icons/outIcon.svg'; //icons imports
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsModalOpen } from '@/features/modal/selectors';
-import { openGlobalModal, openFilterFromModal, openSortFromModal } from '@/features/modal/modalSlice';
+import {
+  openGlobalModal,
+  openFilterFromModal,
+  openSortFromModal,
+} from '@/features/modal/modalSlice';
 
 export type SFModalProps = {
   isModalVisible?: null | any;
@@ -18,13 +22,16 @@ export type SFModalProps = {
 };
 
 function SFModal({ isModalVisible }: SFModalProps) {
-  const defaultSortState = sortOptions.find((option) => option.order === 'by-rating') || null;
-  const [sortSelection, setSortSelection] = useState<SortOptions | null>(defaultSortState);
-  const [resultNumbers, setResultNumbers] = useState<null | number | string | any>(null);
-
+  const defaultSortState =
+    sortOptions.find((option) => option.order === 'by-rating') || null;
+  const [sortSelection, setSortSelection] = useState<SortOptions | null>(
+    defaultSortState,
+  );
+  const [resultNumbers, setResultNumbers] = useState<
+    null | number | string | any
+  >(null);
   // the redux function that accessing the state of triggerEvent from the store
   //state Initalizations
-
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsModalOpen);
 
@@ -63,7 +70,9 @@ function SFModal({ isModalVisible }: SFModalProps) {
 
   //handleRequests
 
-  const handleSortAction = async (option: SortOptions | null): Promise<void> => {
+  const handleSortAction = async (
+    option: SortOptions | null,
+  ): Promise<void> => {
     if (!option) return;
     const queryParams = new URLSearchParams({ order: option.order }).toString();
     try {
@@ -98,22 +107,32 @@ function SFModal({ isModalVisible }: SFModalProps) {
         </div>
 
         <div className="flex justify-end items-end w-full gap-4">
-          <button onClick={handleSortFromModal} className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
+          <button
+            onClick={handleSortFromModal}
+            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap"
+          >
             <p>Sort By</p>
           </button>
-          <button onClick={handleFilterFromModal} className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
+          <button
+            onClick={handleFilterFromModal}
+            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap"
+          >
             <p>Filter By</p>
           </button>
         </div>
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 flex items-end justify-center bg-gray-800 bg-opacity-50">
-          <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8">
+        <div className="fixed inset-0 flex items-end justify-center bg-gray-800 lg:bg-white bg-opacity-50 lg:right-auto lg:w-[45%]">
+          <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8 slide-animation lg:h-full lg:rounded-none ">
             {/* <SelectDropDown label={'brand'} options={['s', 'm', 'l']} onSelect={closeModal} /> */}
 
             <div className="my-12 flex flex-col gap-12">
-              <Sort sortingOptions={sortOptions} currSelection={sortSelection} onChange={handleSortChange} />
+              <Sort
+                sortingOptions={sortOptions}
+                currSelection={sortSelection}
+                onChange={handleSortChange}
+              />
               <Filter filterOptions={filterOptions} />
             </div>
 
@@ -133,7 +152,11 @@ function SFModal({ isModalVisible }: SFModalProps) {
           </div>
 
           <div className="absolute left-[86%] mb-24 border-2 border-green-500">
-            <img src={outIcon} onClick={handleOpenModal} className="w-12 h-12" />
+            <img
+              src={outIcon}
+              onClick={handleOpenModal}
+              className="w-12 h-12"
+            />
           </div>
         </div>
       )}

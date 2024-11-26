@@ -17,3 +17,13 @@ export const sortOptions: SortOptions[] = [
   { label: 'Height', value: 'height', order: 'by-height' },
   { label: 'Depth', value: 'depth', order: 'by-depth' },
 ];
+
+export const optionsCheck: string[] = [
+  'Best Sellers',
+  'Availability',
+  'Height',
+  'Depth',
+  'Name',
+  'HighPrice',
+  'LowPrice',
+];

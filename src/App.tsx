@@ -13,6 +13,9 @@ import ProductPage from './pages/ProductPage';
 // import Test from './pages/Test';
 import ErrorBoundary from './components/ErrorBoundary';
 import SFModal from '@/pages/SFModal';
+import ApiCheck from './Temp/Checks/ApiCheck';
+import Stacy from './Temp/Checks/Stacy';
+// import KafkaRoute from './Temp/Checks/KafkaRoute';
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,26 +29,28 @@ function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <BrowserRouter
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
         <ErrorBoundary>
           <Routes>
-            {/* <Route
-              path="/Test"
+            <Route
+              path="/ac"
               element={
                 <Layout>
-                  <Test />
+                  <ApiCheck />
                 </Layout>
               }
-            /> */}
+            />
 
-            {/* <Route
+            <Route
+              path="/ca"
               element={
                 <Layout>
-                  <SFModal openAction={() => ccheck(true)} />
+                  <Stacy />
                 </Layout>
               }
-              path="/ss"
-            /> */}
+            />
 
             <Route
               path="/"

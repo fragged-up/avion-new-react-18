@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import modalReducer from '@/features/modal/modalSlice';
+import filterReducer from '@/features/filters/filtersSlice';
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  filters: filterReducer,
 });
 
 export default rootReducer;

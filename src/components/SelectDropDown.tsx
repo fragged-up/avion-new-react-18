@@ -4,13 +4,15 @@ import dropdownIcon from '@/assets/images/cart-down.svg';
 
 interface SelectDropDownProps {
   options: string[];
-
   label: string;
-
   onSelect: (selected: string) => void | Promise<void>;
 }
 
-export default function SelectDropDown({ options, label, onSelect }: SelectDropDownProps) {
+export default function SelectDropDown({
+  options,
+  label,
+  onSelect,
+}: SelectDropDownProps) {
   //state intializations
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(label);
@@ -24,7 +26,7 @@ export default function SelectDropDown({ options, label, onSelect }: SelectDropD
   };
 
   return (
-    <div className="relative w-full md:w-auto">
+    <div className="w-full md:w-auto">
       <ul className="w-full rounded-md bg-[#f9f9f9] shadow-sm transition-all duration-200">
         {/* Dropdown Trigger */}
 
@@ -34,7 +36,11 @@ export default function SelectDropDown({ options, label, onSelect }: SelectDropD
         >
           <span>{selectedOption}</span>
 
-          <img src={dropdownIcon} alt="Dropdown Icon" className="ml-2 h-4 w-4" />
+          <img
+            src={dropdownIcon}
+            alt="Dropdown Icon"
+            className="ml-2 h-4 w-4"
+          />
         </li>
 
         {/* Dropdown Options */}
