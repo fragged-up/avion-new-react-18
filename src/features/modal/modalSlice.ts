@@ -2,15 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface TriggerState {
   isOpen: boolean;
-  sortOpen: null | boolean;
-  filterOpen: null | boolean;
+  isSortOpen: boolean;
+  isFilterOpen: null | boolean;
   resultsNumber: null | number;
 }
 
 const initialState: TriggerState = {
   isOpen: false,
-  sortOpen: null,
-  filterOpen: null,
+  isSortOpen: false,
+  isFilterOpen: null,
   resultsNumber: 0,
 };
 
@@ -18,22 +18,22 @@ const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openGlobalModal: (state) => {
-      state.isOpen = !state.isOpen;
+    openGlobalModal: (state: TriggerState, action) => {
+      state.isOpen = action.payload;
     },
-    openSort: (state) => {
-      state.sortOpen = !state.sortOpen;
+    toggleSort: (state: TriggerState, action) => {
+      state.isSortOpen = action.payload;
     },
-    openFilter: (state) => {
-      state.filterOpen = !state.filterOpen;
+    toggleFilter: (state) => {
+      state.isFilterOpen = !state.isFilterOpen;
     },
     openSortFromModal: (state) => {
       state.isOpen = true;
-      state.sortOpen = true;
+      state.isSortOpen = true;
     },
     openFilterFromModal: (state) => {
       state.isOpen = true;
-      state.filterOpen = true;
+      state.isFilterOpen = true;
     },
 
     showResultsCalc: (state) => {},
@@ -42,8 +42,8 @@ const modalSlice = createSlice({
 
 export const {
   openGlobalModal,
-  openSort,
-  openFilter,
+  toggleSort,
+  toggleFilter,
   openSortFromModal,
   openFilterFromModal,
 } = modalSlice.actions;

@@ -3,6 +3,7 @@
 # error hovering navigation = `go to the error red line and then press cmd + k and cmd + i`
 
 # trigger ai commands and actions = `cmd + i`
+# trigger ai chat = `shift + cmd + a`
 
 # fold selection = `option + cmd + [`
 
@@ -36,7 +37,16 @@
 # Open the all emoji's = `control + command + space` 
 
 
-# Lists, Bullets, and Separators : 
+# Favorite Night VS-CODE Theme Name : Darker Than One Pro
+
+# Navigate Between Focus Monitors (MAC) : 
+
+# Navigate To Top Monitor = `ALT + SHIFT + ` ` `
+# Navigate To Middle Monitor = ` CMD + SHIFT ` + ` `
+# TAKE The Whole Window to Next Monitor = `CMD + OPTION + FN + LEFT OR RIGHT ARROW KEY`
+
+
+# Lists, Bullets, and Separators (MAC) : 
 
 # bullet circle • on mac short cut =`option + 8`
 # square bullet · on mac short cut = `shift + option + 9`

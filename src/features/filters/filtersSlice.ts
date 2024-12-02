@@ -47,17 +47,11 @@ const filterSlice = createSlice({
   name: 'filtrSlice',
   initialState,
   reducers: {
-    // setSelected: (state: FilterState, action: PayloadAction<any>) => {
-    // const option = action.payload;
-
-    // state.selectedFilters = state.selectedFilters.includes(option)
-    //   ? state.selectedFilters.filter((item: any) => item !== option)
-    //   : [...state.selectedFilters, option];
-
-    // },
-
-    setSelected(state, action: PayloadAction<string[]>) {
+    setSelected: (state, action: PayloadAction<string[]>) => {
       state.selectedFilters = action.payload;
+    },
+    clearFilters: (state) => {
+      state.selectedFilters = [];
     },
   },
   extraReducers(builder) {
@@ -76,5 +70,5 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setSelected } = filterSlice.actions;
+export const { setSelected, clearFilters } = filterSlice.actions;
 export default filterSlice.reducer;

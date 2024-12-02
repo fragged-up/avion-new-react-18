@@ -55,18 +55,23 @@ export default function Footer() {
 
           <div className={styles['desk-footer-join-c']}>
             <input
-              type='email'
+              type="email"
+              name="mail-list-mobile"
               className={styles['desk-footer-join-in']}
-              placeholder='your@email.com'
+              placeholder="your@email.com"
             />
 
-            <button className={styles['desk-footer-join-button']}>Sign Up</button>
+            <button className={styles['desk-footer-join-button']}>
+              Sign Up
+            </button>
           </div>
         </div>
       </div>
 
       <div className={styles['desk-copyright-c']}>
-        <h2 className={styles['desk-copyright-sb']}>Copyright 2022 Avion LTD</h2>
+        <h2 className={styles['desk-copyright-sb']}>
+          Copyright 2022 Avion LTD
+        </h2>
       </div>
 
       <div className={styles['footerM-container']}>
@@ -119,7 +124,12 @@ export default function Footer() {
         <h1 className={styles['footer-mail']}>Join our mailing list</h1>
 
         <div className={styles['footer-join-c']}>
-          <input type='email' className={styles['footer-join-in']} placeholder='your@email.com' />
+          <input
+            type="email"
+            name="mail-list"
+            className={styles['footer-join-in']}
+            placeholder="your@email.com"
+          />
 
           <button className={styles['footer-join-button']}>Sign Up</button>
         </div>

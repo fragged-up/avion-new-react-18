@@ -9,5 +9,7 @@ export type FilterOptions = {
   label: string;
   value: string;
   order: string;
+  filterKind?: null | string;
   inStock?: null | number | string;
+  isAvailable?: null | boolean;
 };

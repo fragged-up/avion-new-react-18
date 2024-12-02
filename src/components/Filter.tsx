@@ -3,9 +3,8 @@ import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
 import { FilterOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { selectIsModalOpen, selectIsSortOpen, selectIsFilterOpen } from '@/features/modal/selectors';
-import { openFilter, openSort } from '@/features/modal/modalSlice';
+import { RootState } from '@/features/store';
+import { toggleFilter, toggleSort } from '@/features/modal/modalSlice';
 
 interface FilterProps {
   filterOptions: FilterOptions[];
@@ -14,7 +13,7 @@ interface FilterProps {
 }
 
 const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
-  const isOpen = useSelector(selectIsFilterOpen);
+  const { isFilterOpen } = useSelector((state: RootState) => state.modal);
   const [currentChecked, setCurrentChecked] = useState<string[]>([]);
   const dispatch = useDispatch();
   // const handleActionListener = (event: any) => {
@@ -22,7 +21,7 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
   // };
 
   const handleFilterOpen = () => {
-    dispatch(openFilter());
+    dispatch(toggleFilter());
   };
   const handleCheckChange = (value: string, isChecked: boolean) => {
     setCurrentChecked((prev) => {
@@ -72,22 +71,31 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
         className="flex cursor-pointer items-center justify-between px-6 py-3 transition-all duration-200 ease-in-out"
         onClick={handleFilterOpen}
       >
-        <p className="font-satoshi text-base" style={{ textDecoration: isOpen ? 'underline black' : 'none' }}>
+        <p
+          className="font-satoshi text-base"
+          style={{ textDecoration: isFilterOpen ? 'underline black' : 'none' }}
+        >
           Filter By
         </p>
 
         <img
           src={drsvg}
           alt="drop-down-icon"
-          className={`h-6 w-6 transition-transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+          className={`h-6 w-6 transition-transform ${isFilterOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
 
-      {isOpen && (
+      {isFilterOpen && (
         <ul className="w-full px-6 py-2">
           {filterOptions.map((option: any, index) => (
-            <li key={index} className="flex w-full items-center justify-between">
-              <label htmlFor={`filter-${index}`} className="cursor-pointer text-sm">
+            <li
+              key={index}
+              className="flex w-full items-center justify-between"
+            >
+              <label
+                htmlFor={`filter-${index}`}
+                className="cursor-pointer text-sm"
+              >
                 {option.label}
               </label>
 

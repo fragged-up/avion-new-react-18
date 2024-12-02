@@ -1,25 +1,27 @@
-import apImage from '@/assets/deskProduct/Ap-image.svg';
-import { useState } from 'react';
-import FiSelect from '@/nukes/FiSelect';
+import FiSelect from '@/nukes/FilterSelect';
 import { filterPriceOptions, filterOptions } from '@/constants';
 import { RootState } from '@/features/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelected } from '@/features/filters/filtersSlice';
+import { toggleSelection } from '@/utils/updateFilter';
+import { clearFilters } from '@/features/filters/filtersSlice';
+import closeIcon from '@/assets/icons/close-icon.svg';
+import { FilterOptions } from '@/types/optionsTypes';
 
 const Stacy = () => {
   const dispatch = useDispatch();
+
+  const apis = [filterPriceOptions, filterOptions, filterOptions];
+
   const { selectedFilters } = useSelector((state: RootState) => state.filters);
-  console.log('selectedFilters : ', selectedFilters);
-
-  const handleRemoved = (filter: string) => {
-    // Toggle logic: Remove if exists, or add otherwise
-    const updatedFilters = selectedFilters.includes(filter)
-      ? selectedFilters.filter((item) => item !== filter) // Remove
-      : [...selectedFilters, filter]; // Add
-
-    dispatch(setSelected(updatedFilters)); // Update Redux state
+  const handleRemoved = (option: string) => {
+    const updatedSelection = toggleSelection(selectedFilters, option);
+    dispatch(setSelected(updatedSelection));
   };
-  // console.log('selectedValues from stacy :', selectedValues);
+  const clearSelection = () => {
+    dispatch(clearFilters());
+  };
+
   return (
     <div className="h-screen bg-gray-700 w-full">
       <div className="py-12">
@@ -30,21 +32,37 @@ const Stacy = () => {
           Modal
         </p>
       </div>
-      {selectedFilters &&
-        selectedFilters.map((value: string, index: number) => (
-          <div key={index}>
-            <p onClick={() => handleRemoved(value)}>value :{value}</p>
+      <div className="present-filter-selections flex overflow-x-auto">
+        {selectedFilters &&
+          selectedFilters.map((value: string, index: number) => (
+            <div
+              key={index}
+              className="px-4 py-3 bg-gray-200 flex selected-filter-border items-center"
+            >
+              <p
+                className="font-medium text-sm"
+                onClick={() => handleRemoved(value)}
+              >
+                {value}
+              </p>
+              <img className="w-4 h-4 ml-2" src={closeIcon} alt="close-icon" />
+            </div>
+          ))}
+        {selectedFilters.length > 1 && (
+          <div
+            onClick={clearSelection}
+            className="ml-4 bg-gray-100 px-4 py-3 selected-filter-border !border-none "
+          >
+            Clear All
+          </div>
+        )}
+      </div>
+      <div>
+        {apis.map((filtersGroups, index) => (
+          <div key={index} className="bg-white py-12 w-full">
+            <FiSelect filterOptions={filtersGroups} />
           </div>
         ))}
-
-      <div className="bg-white py-12 w-full">
-        <FiSelect filterOptions={filterPriceOptions} />
-      </div>
-      <div className="bg-white  py-12 w-full">
-        <FiSelect filterOptions={filterOptions} />
-      </div>
-      <div className="bg-white  py-12 w-full">
-        <FiSelect filterOptions={filterOptions} />
       </div>
     </div>
   );

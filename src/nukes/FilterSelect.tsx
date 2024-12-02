@@ -4,37 +4,22 @@ import { FilterOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelected } from '@/features/filters/filtersSlice';
 import { RootState } from '@/features/store';
+import { toggleSelection } from '@/utils/updateFilter';
 
 interface FilterProps {
   filterOptions: FilterOptions[];
   cat?: string;
 }
 
-const FiSelect: React.FC<FilterProps> = ({ filterOptions }) => {
+const FilterSelect: React.FC<FilterProps> = ({ filterOptions }) => {
   const dispatch = useDispatch();
-  const { selectedFilters } = useSelector((state: RootState) => state.filters);
   const [isOpened, setIsOpened] = useState<boolean>(false);
-  const [selected, setSelect] = useState<string[]>([]);
 
-  const setOps = (op: any) => {
-    dispatch(setSelected(op));
-    handleSelected(op);
-  };
+  const { selectedFilters } = useSelector((state: RootState) => state.filters);
 
-  const result = selectedFilters.filter((item) => item === selected);
-  const handleSelected = (option: any) => {
-    setSelect((prev) => {
-      const updatedSelection = prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option];
-
-      return updatedSelection;
-    });
-  };
   const groupedSelections = filterOptions.reduce(
     (acc, option) => {
       if (selectedFilters.includes(option.label)) {
-        // Explicit initialization for groupId
         if (!acc[option.groupId]) {
           acc[option.groupId] = [];
         }
@@ -46,12 +31,11 @@ const FiSelect: React.FC<FilterProps> = ({ filterOptions }) => {
   );
 
   const toggleOption = (option: string) => {
-    const updatedSelection = selectedFilters.includes(option)
-      ? selectedFilters.filter((item) => item !== option)
-      : [...selectedFilters, option];
-
+    const updatedSelection = toggleSelection(selectedFilters, option);
     dispatch(setSelected(updatedSelection));
   };
+
+  const FilterKindName = filterOptions[0]?.filterKind;
   return (
     <div className="flex w-full flex-col">
       <div
@@ -63,13 +47,11 @@ const FiSelect: React.FC<FilterProps> = ({ filterOptions }) => {
             className="font-satoshi text-base"
             style={{ textDecoration: isOpened ? 'underline black' : 'none' }}
           >
-            Filter By
+            {FilterKindName}
           </p>
 
           {Object.entries(groupedSelections).map(([groupId, labels]) => (
-            <p key={groupId}>
-              <strong>Group {groupId}:</strong> {labels.join(', ')}
-            </p>
+            <p key={groupId}>{labels.join(', ')}</p>
           ))}
         </div>
         <img
@@ -78,29 +60,28 @@ const FiSelect: React.FC<FilterProps> = ({ filterOptions }) => {
           className={`h-6 w-6 transition-transform ${isOpened ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
-
       {isOpened && (
         <ul className="w-full px-6 py-2">
-          {filterOptions.map((option: any, index) => (
+          {filterOptions.map((option, index) => (
             <li
               key={index}
               className="flex w-full items-center justify-between"
             >
               <label
-                htmlFor={`filter-${index}`}
+                htmlFor={`filter-${option.groupId}-${option.value}`}
                 className="cursor-pointer text-sm"
               >
                 {option.label}
               </label>
-
               <div className="flex">
-                <p className="mr-4">{option?.inStock}</p>
+                {option.inStock && <p className="mr-4">{option.inStock}</p>}
                 <input
                   type="checkbox"
-                  id={`filter-${index}`}
+                  id={`filter-${option.groupId}-${option.value}`}
+                  name={option.value}
                   checked={selectedFilters.includes(option.label)}
                   onChange={() => toggleOption(option.label)}
-                  className="h-4 w-4 hover:border-4 accent-black "
+                  className="h-4 w-4 hover:border-4 accent-black"
                 />
               </div>
             </li>
@@ -110,4 +91,4 @@ const FiSelect: React.FC<FilterProps> = ({ filterOptions }) => {
     </div>
   );
 };
-export default FiSelect;
+export default FilterSelect;

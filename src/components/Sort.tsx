@@ -3,27 +3,33 @@ import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
 import { SortOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@/features/store';
 
-import { selectIsSortOpen } from '@/features/modal/selectors';
-import { openSort } from '@/features/modal/modalSlice';
+import { toggleSort } from '@/features/modal/modalSlice';
 
 export interface SortProps {
   sortLabel?: string | null;
   sortingOptions: SortOptions[];
   currSelection?: SortOptions | null;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   onClick?: (action: any) => Promise<void> | Promise<any> | any;
 }
 
-const Sort: React.FC<SortProps> = ({ sortingOptions, currSelection, sortLabel = 'Sort By', onChange, onClick }) => {
+const Sort: React.FC<SortProps> = ({
+  sortingOptions,
+  currSelection,
+  sortLabel = 'Sort By',
+  onChange,
+  onClick,
+}) => {
   const dispatch = useDispatch();
-  const isOpen = useSelector(selectIsSortOpen);
+  const { isSortOpen } = useSelector((state: RootState) => state.modal);
   const handleSortOpen = () => {
-    dispatch(openSort());
+    dispatch(toggleSort(!isSortOpen));
   };
 
   const handleOnChange = (value: string) => {
-    onChange(value);
+    onChange?.(value);
   };
 
   const handleSortAction = async (action: any) => {
@@ -32,22 +38,34 @@ const Sort: React.FC<SortProps> = ({ sortingOptions, currSelection, sortLabel = 
 
   return (
     <div className="flex w-full flex-col">
-      <div className="flex cursor-pointer items-center justify-between px-6 py-3 " onClick={handleSortOpen}>
-        <p className="font-satoshi text-base" style={{ textDecoration: isOpen ? 'underline black' : 'none' }}>
+      <div
+        className="flex cursor-pointer items-center justify-between px-6 py-3 "
+        onClick={handleSortOpen}
+      >
+        <p
+          className="font-satoshi text-base"
+          style={{ textDecoration: isSortOpen ? 'underline black' : 'none' }}
+        >
           {sortLabel}
         </p>
         <img
           src={drsvg}
           alt="drop-down-icon"
-          className={`h-6 w-6 transition-transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+          className={`h-6 w-6 transition-transform ${isSortOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </div>
 
-      {isOpen && (
+      {isSortOpen && (
         <ul className="w-full space-y-2 px-6 py-2">
           {sortingOptions.map((option, index: number) => (
-            <li key={index} className="flex w-full items-center justify-between space-x-3">
-              <label htmlFor={`sort-${index}`} className="cursor-pointer text-sm">
+            <li
+              key={index}
+              className="flex w-full items-center justify-between space-x-3"
+            >
+              <label
+                htmlFor={`sort-${index}`}
+                className="cursor-pointer text-sm"
+              >
                 {option.label}
               </label>
 

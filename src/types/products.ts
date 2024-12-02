@@ -35,3 +35,11 @@ export type Product = {
     depth?: string;
   };
 };
+
+export interface ProductCardTypes {
+  id: number;
+  name: string;
+  slug?: string;
+  productImage: string;
+  productPrice: number;
+}

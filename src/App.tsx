@@ -8,13 +8,14 @@ import BasketPage from './pages/BasketPage';
 import InspectPage from './pages/InspectPage';
 import NotFoundPage from './pages/NotFound';
 import SortPage from '@/pages/SortPage';
-import CategoryPage from '@/pages/CategoryPage';
+// import CategoryPage from '@/pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 // import Test from './pages/Test';
 import ErrorBoundary from './components/ErrorBoundary';
-import SFModal from '@/pages/SFModal';
+// import OldModal from '@/pages/OldModal';
+import SFModal from './components/modals/SFModal';
 import ApiCheck from './Temp/Checks/ApiCheck';
-import Stacy from './Temp/Checks/Stacy';
+import Finit from './pages/Finit';
 // import KafkaRoute from './Temp/Checks/KafkaRoute';
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -44,10 +45,10 @@ export default function App() {
             />
 
             <Route
-              path="/ca"
+              path="/nm"
               element={
                 <Layout>
-                  <Stacy />
+                  <SFModal />
                 </Layout>
               }
             />
@@ -87,6 +88,14 @@ export default function App() {
                 </Layout>
               }
             />
+            {/* <Route
+              path="/old-sf"
+              element={
+                <Layout>
+                  <OldModal />
+                </Layout>
+              }
+            /> */}
 
             <Route
               path="/basket-page"
@@ -105,24 +114,31 @@ export default function App() {
                 </Layout>
               }
             />
-
             <Route
+              path="/exhale"
+              element={
+                <Layout>
+                  <Finit />
+                </Layout>
+              }
+            />
+            {/* <Route
               path="/:category"
               element={
                 <Layout>
                   <CategoryPage />
                 </Layout>
               }
-            />
+            /> */}
 
-            <Route
+            {/* <Route
               path="/:category/:slug"
               element={
                 <Layout>
                   <ProductPage />
                 </Layout>
               }
-            />
+            /> */}
 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

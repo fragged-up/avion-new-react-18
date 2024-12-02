@@ -1,40 +1,70 @@
-// import SelectDropDown from '@/components/SelectDropDown';
-import { useEffect, useState } from 'react';
+import FilterSelect from '@/nukes/FilterSelect';
 import { SortOptions } from '@/types/optionsTypes'; // types import
-import { sortOptions } from '@/constants/sortOptions'; // constants import
-import { filterOptions } from '@/constants/filterOptions'; //constants import
-import Sort from '@/components/Sort'; //components import
-import Filter from '@/components/Filter'; //components import
+import { sortOptions } from '@/constants/sortOptions';
+import { filterPriceOptions, filterOptions } from '@/constants';
+import Sort from '@/components/Sort';
+import { RootState } from '@/features/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelected } from '@/features/filters/filtersSlice';
+import { useEffect, useState } from 'react';
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
-import outIcon from '@/assets/icons/outIcon.svg'; //icons imports
-
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsModalOpen } from '@/features/modal/selectors';
+import outIcon from '@/assets/icons/outIcon.svg';
+import { toggleSelection } from '@/utils/updateFilter';
+import { clearFilters } from '@/features/filters/filtersSlice';
+import closeIcon from '@/assets/icons/close-icon.svg';
+import { FilterOptions } from '@/types/optionsTypes';
+// import { selectIsModalOpen } from '@/features/modal/selectors';
 import {
   openGlobalModal,
   openFilterFromModal,
   openSortFromModal,
 } from '@/features/modal/modalSlice';
 
-export type SFModalProps = {
-  isModalVisible?: null | any;
-  eventDrill?: null | any;
-};
+// const selectModalState = (state: RootState): any => state.modal;
 
-function SFModal({ isModalVisible }: SFModalProps) {
+// const selectIsFilterOpen = (state: RootState) => state.modal.filterOpen;
+
+// const selectIsSortOpen = (state: RootState) => state.modal.sortOpen;
+
+// const selectOpenSortFromModal = (state: RootState) => {
+//   state.modal.isOpen;
+//   state.modal.sortOpen;
+// };
+
+// const selectOpenFilterFromModal = (state: RootState) => {
+//   state.modal.isOpen;
+//   state.modal.filterOpen;
+// };
+
+const SFModal = () => {
+  const dispatch = useDispatch();
+
+  const apis = [filterPriceOptions, filterOptions, filterOptions];
+
+  const [resultNumbers, setResultNumbers] = useState<
+    null | number | string | any
+  >(0);
   const defaultSortState =
     sortOptions.find((option) => option.order === 'by-rating') || null;
   const [sortSelection, setSortSelection] = useState<SortOptions | null>(
     defaultSortState,
   );
-  const [resultNumbers, setResultNumbers] = useState<
-    null | number | string | any
-  >(null);
-  // the redux function that accessing the state of triggerEvent from the store
-  //state Initalizations
-  const dispatch = useDispatch();
-  const isOpen = useSelector(selectIsModalOpen);
 
+  //selectors
+  const { isOpen } = useSelector((state: RootState) => state.modal);
+
+  const { selectedFilters } = useSelector((state: RootState) => state.filters);
+
+  const handleRemoved = (option: string) => {
+    const updatedSelection = toggleSelection(selectedFilters, option);
+    dispatch(setSelected(updatedSelection));
+  };
+  const clearSelection = () => {
+    dispatch(clearFilters());
+  };
+  const handleOpenModal = () => {
+    dispatch(openGlobalModal(!isOpen));
+  };
   const handleFilterFromModal = () => {
     dispatch(openFilterFromModal());
   };
@@ -42,18 +72,6 @@ function SFModal({ isModalVisible }: SFModalProps) {
   const handleSortFromModal = () => {
     dispatch(openSortFromModal());
   };
-
-  const handleOpenModal = () => {
-    dispatch(openGlobalModal());
-  };
-
-  //handleStateFunctionsx
-
-  const handleCleanUp = () => {
-    resultNumbers && setResultNumbers(null);
-  };
-
-  //handleChanges
 
   const handleSortChange = (value: string) => {
     const selected = sortOptions.find((option) => option.value === value);
@@ -67,9 +85,6 @@ function SFModal({ isModalVisible }: SFModalProps) {
     const derrivedResult = Array.from(value).length.toString();
     return derrivedResult;
   };
-
-  //handleRequests
-
   const handleSortAction = async (
     option: SortOptions | null,
   ): Promise<void> => {
@@ -87,14 +102,14 @@ function SFModal({ isModalVisible }: SFModalProps) {
   };
 
   useEffect(() => {
-    document.body.style.overflow = isModalVisible ? 'hidden' : 'auto';
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto'; // Reset on unmount
     };
   }, [isOpen, resultNumbers]);
 
   return (
-    <div className="w-full">
+    <div className=" bg-white w-full">
       <div className="flex justify-between items-start">
         <div className="inline-flex justify-start items-center">
           <button
@@ -121,7 +136,27 @@ function SFModal({ isModalVisible }: SFModalProps) {
           </button>
         </div>
       </div>
-
+      <div className="present-filter-selections flex overflow-x-auto">
+        {selectedFilters &&
+          selectedFilters.map((value: string, index: number) => (
+            <div
+              key={index}
+              onClick={() => handleRemoved(value)}
+              className="px-4 py-3 bg-gray-200 flex selected-filter-border items-center"
+            >
+              <p className="font-medium text-sm">{value}</p>
+              <img className="w-4 h-4 ml-2" src={closeIcon} alt="close-icon" />
+            </div>
+          ))}
+        {selectedFilters.length > 0 && (
+          <div
+            onClick={clearSelection}
+            className="ml-4 bg-gray-100 px-4 py-3 selected-filter-border !border-none "
+          >
+            Clear All
+          </div>
+        )}
+      </div>
       {isOpen && (
         <div className="fixed inset-0 flex items-end justify-center bg-gray-800 lg:bg-white bg-opacity-50 lg:right-auto lg:w-[45%]">
           <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8 slide-animation lg:h-full lg:rounded-none ">
@@ -133,17 +168,24 @@ function SFModal({ isModalVisible }: SFModalProps) {
                 currSelection={sortSelection}
                 onChange={handleSortChange}
               />
-              <Filter filterOptions={filterOptions} />
+              {apis.map((filtersGroups, index) => (
+                <div key={index} className="bg-white py-12 w-full">
+                  <FilterSelect filterOptions={filtersGroups} />
+                </div>
+              ))}
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <button className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white">
+              <button
+                onClick={handleOpenModal}
+                className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white"
+              >
                 {`Show Results ${resultNumbers !== null ? resultNumbers : ''}`}
               </button>
 
               <button
                 // @ts-ignore
-                onClick={() => handleCleanUp()}
+                // this option currently not exist .. onClick={() => handleCleanUp()}
                 className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white ${resultNumbers !== null ? 'bg-gray-400' : 'bg-gray-100'}`}
               >
                 Clear All
@@ -162,6 +204,6 @@ function SFModal({ isModalVisible }: SFModalProps) {
       )}
     </div>
   );
-}
+};
 
 export default SFModal;
