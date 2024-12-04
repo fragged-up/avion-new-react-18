@@ -18,11 +18,24 @@ export const filterProductsBy = async (caType: string, filters: string) => {
     console.log('err in request productApi', err);
   }
 };
-// headers: {
-//   'Accept-Encoding': 'gzip, deflate, br', // Requests compression
-// },
 
-// headers: {
-//   'x-no-compression': 'true', // Custom header to signal no compression
-//   // Note: The browser might still include 'Accept-Encoding' automatically
-// },
+export type Pagination = {
+  category: string;
+  limit: number | string;
+  offset: number | string;
+};
+
+export const getProducts = async (pagination: Pagination) => {
+  const { limit, offset } = pagination;
+  try {
+    const res = await fetch(
+      `http://localhost:5001/products?&limit=${limit.toString()}&offset=${offset.toString()}`,
+    );
+    if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
+    const response = await res.json();
+    return response.data;
+  } catch (err: any) {
+    console.log('err fetching init products err : ', err);
+    return [];
+  }
+};

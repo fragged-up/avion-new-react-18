@@ -9,10 +9,10 @@ const ProductCard = ({ products }: ProductProps) => {
     <div className="w-full">
       <div className="flex justify-center">
         <div className="product-container">
-          {products.map((prod: Product | any) => (
+          {products.map((prod: Product[] | any, index: number) => (
             <div
               className="product-item"
-              key={`${prod.category || 'product'}-${prod.id}-${prod.slug || prod.name}`}
+              key={`${prod.category || 'product'}-${prod.id}-${index}-${prod.slug || prod.name}`}
             >
               <div
                 className="inline-flex"

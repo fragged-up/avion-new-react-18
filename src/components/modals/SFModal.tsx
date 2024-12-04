@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelected } from '@/features/filters/filtersSlice';
 import { useEffect, useState } from 'react';
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
-import outIcon from '@/assets/icons/outIcon.svg';
+// import outIcon from '@/assets/icons/outIcon.svg';
+import chevronLeft from '@/assets/icons/chevronLeft.svg';
 import { toggleSelection } from '@/utils/updateFilter';
 import { clearFilters } from '@/features/filters/filtersSlice';
 import closeIcon from '@/assets/icons/close-icon.svg';
@@ -19,22 +20,6 @@ import {
   openFilterFromModal,
   openSortFromModal,
 } from '@/features/modal/modalSlice';
-
-// const selectModalState = (state: RootState): any => state.modal;
-
-// const selectIsFilterOpen = (state: RootState) => state.modal.filterOpen;
-
-// const selectIsSortOpen = (state: RootState) => state.modal.sortOpen;
-
-// const selectOpenSortFromModal = (state: RootState) => {
-//   state.modal.isOpen;
-//   state.modal.sortOpen;
-// };
-
-// const selectOpenFilterFromModal = (state: RootState) => {
-//   state.modal.isOpen;
-//   state.modal.filterOpen;
-// };
 
 const SFModal = () => {
   const dispatch = useDispatch();
@@ -52,7 +37,6 @@ const SFModal = () => {
 
   //selectors
   const { isOpen } = useSelector((state: RootState) => state.modal);
-
   const { selectedFilters } = useSelector((state: RootState) => state.filters);
 
   const handleRemoved = (option: string) => {
@@ -109,8 +93,8 @@ const SFModal = () => {
   }, [isOpen, resultNumbers]);
 
   return (
-    <div className=" bg-white w-full">
-      <div className="flex justify-between items-start">
+    <div className="bg-white w-full">
+      <div className="flex justify-between items-start max-w-[95%] mx-auto">
         <div className="inline-flex justify-start items-center">
           <button
             onClick={handleOpenModal}
@@ -162,7 +146,7 @@ const SFModal = () => {
           <div className="h-[90%] w-full overflow-auto rounded-t-2xl bg-white p-8 slide-animation lg:h-full lg:rounded-none ">
             {/* <SelectDropDown label={'brand'} options={['s', 'm', 'l']} onSelect={closeModal} /> */}
 
-            <div className="my-12 flex flex-col gap-12">
+            <div className="my-12 flex flex-col gap-6">
               <Sort
                 sortingOptions={sortOptions}
                 currSelection={sortSelection}
@@ -193,11 +177,11 @@ const SFModal = () => {
             </div>
           </div>
 
-          <div className="absolute left-[86%] mb-24 border-2 border-green-500">
+          <div className="absolute left-[5%] top-[2%] mb-24 border-2 border-green-500">
             <img
-              src={outIcon}
+              src={chevronLeft}
               onClick={handleOpenModal}
-              className="w-12 h-12"
+              className="w-10 h-10"
             />
           </div>
         </div>

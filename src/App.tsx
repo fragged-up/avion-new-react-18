@@ -15,7 +15,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 // import OldModal from '@/pages/OldModal';
 import SFModal from './components/modals/SFModal';
 import ApiCheck from './Temp/Checks/ApiCheck';
-import Finit from './pages/Finit';
+import RealPage from './pages/RealPage';
+import ModalCheck from './components/FiltersGroups/ModalCheck';
 // import KafkaRoute from './Temp/Checks/KafkaRoute';
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -45,10 +46,10 @@ export default function App() {
             />
 
             <Route
-              path="/nm"
+              path="/filters"
               element={
                 <Layout>
-                  <SFModal />
+                  <ModalCheck />
                 </Layout>
               }
             />
@@ -118,7 +119,7 @@ export default function App() {
               path="/exhale"
               element={
                 <Layout>
-                  <Finit />
+                  <RealPage />
                 </Layout>
               }
             />

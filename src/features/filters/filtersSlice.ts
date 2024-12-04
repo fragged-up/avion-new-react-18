@@ -3,26 +3,12 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import filterThunk from './thunk';
 // import { FilterOptions } from '@/types/optionsTypes';
 
-type Filtering = {
-  category: string;
-  filterType: string;
-  items: any[];
-};
-
-type FFOptions = {
-  label: string;
-  value: string;
-  order: string;
-  inStock?: null | number | string;
-};
-
 interface FilterState {
   data: any | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null | any;
   category: string;
   filterBy?: null | any[] | [];
-  options: FFOptions[];
   selectedFilters: any[];
   filterOps: any[];
 }
@@ -32,14 +18,7 @@ const initialState: FilterState = {
   error: null,
   category: '',
   filterBy: [],
-  options: [
-    {
-      label: '',
-      value: '',
-      order: '',
-      inStock: null,
-    },
-  ],
+
   selectedFilters: [],
   filterOps: [],
 };

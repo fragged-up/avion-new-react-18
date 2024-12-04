@@ -29,13 +29,6 @@ export const filterOptions: FilterOptions[] = [
     groupId: 2,
     filterKind: 'All',
   },
-  {
-    label: 'PriceRange',
-    value: 'by-PriceRange',
-    order: '',
-    groupId: 2,
-    filterKind: 'All',
-  },
 ];
 
 export const filterPriceOptions: FilterOptions[] = [
