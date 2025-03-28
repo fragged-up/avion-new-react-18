@@ -22,3 +22,12 @@ THE SOFTWARE.
 
 
 
+ Under License CC BY 4.0
+
+ 
+ ## UI Design Credit
+
+UI Design based on “[Figube](https://www.figma.com/community/file/1113372221049615805/e-commerce-website-interface-kit-design-system-completely-free)”  
+by [justux](https://www.figma.com/@justux), used under  
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).  
+Changes were made.
