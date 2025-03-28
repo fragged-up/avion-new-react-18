@@ -8,7 +8,7 @@ export const filterProductsBy = async (caType: string, filters: string) => {
         headers: {
           'Content-Type': 'Application/json',
         },
-      },
+      }
     );
 
     if (!response.ok) throw new Error('err sending reqeust from productApi');
@@ -19,17 +19,19 @@ export const filterProductsBy = async (caType: string, filters: string) => {
   }
 };
 
-export type Pagination = {
-  category: string;
-  limit: number | string;
-  offset: number | string;
+export type QueryOptions = {
+  category?: string;
+  limit?: number | string;
+  offset?: number | string;
+  sortBy?: number | string;
+  filterBy?: number | string;
 };
 
-export const getProducts = async (pagination: Pagination) => {
-  const { limit, offset } = pagination;
+export const getProducts = async (queryOptions: QueryOptions) => {
+  const { category, limit, offset, sortBy, filterBy } = queryOptions;
   try {
     const res = await fetch(
-      `http://localhost:5001/products?&limit=${limit.toString()}&offset=${offset.toString()}`,
+      `http://localhost:5001/products?${queryOptions.toString()}`
     );
     if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
     const response = await res.json();

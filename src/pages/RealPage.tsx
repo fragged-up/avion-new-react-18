@@ -4,15 +4,16 @@ import ProductCard from '@/components/ProductCard';
 import { Product } from '@/types/products';
 import Loading from '@/components/Loading';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProductsThunk } from '@/features/products/thunks';
+import { fetchProductsThunk } from '@/features/products/productSlice';
 import { loadMoreProducts } from '@/features/products/productSlice';
 import { AppDispatch, RootState } from '@/features/store';
+import { Error } from '@/components/Error';
 
 const RealPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const { pagination } = useSelector((state: RootState) => state.product);
   const { isFetching, status, data, error } = useSelector(
-    (state: RootState) => state.product.thunkStatus,
+    (state: RootState) => state.product.thunkStatus
   );
   const handleLoadMore = () => {
     if (pagination.limit === 284) return;
@@ -23,8 +24,8 @@ const RealPage = () => {
     dispatch(fetchProductsThunk(pagination));
   }, [dispatch, pagination]);
 
-  if (error === 'error') {
-    return <div>Error Fetching Data... {JSON.stringify(error)}</div>;
+  if (error) {
+    return <Error message={JSON.stringify(error)} />;
   }
   return (
     <div className="w-full">

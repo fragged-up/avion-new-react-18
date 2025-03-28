@@ -1,4 +1,4 @@
-import { filterProductsBy } from '@/services/api/productApi';
+import { filterProductsBy } from '@/services/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const filterThunk = createAsyncThunk('filters/productFilter', async () => {

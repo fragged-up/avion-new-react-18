@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-// import { filterProductsBy } from '@/services/api/productApi';
+import { filterProductsBy } from '@/services/api';
 import filterThunk from './thunk';
 // import { FilterOptions } from '@/types/optionsTypes';
 

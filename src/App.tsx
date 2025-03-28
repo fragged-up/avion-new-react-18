@@ -8,15 +8,12 @@ import BasketPage from './pages/BasketPage';
 import InspectPage from './pages/InspectPage';
 import NotFoundPage from './pages/NotFound';
 import SortPage from '@/pages/SortPage';
-// import CategoryPage from '@/pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
-// import Test from './pages/Test';
-import ErrorBoundary from './components/ErrorBoundary';
-// import OldModal from '@/pages/OldModal';
 import SFModal from './components/modals/SFModal';
 import ApiCheck from './Temp/Checks/ApiCheck';
 import RealPage from './pages/RealPage';
 import ModalCheck from './components/FiltersGroups/ModalCheck';
+import Cc from './components/FiltersGroups/Cc';
 // import KafkaRoute from './Temp/Checks/KafkaRoute';
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -34,62 +31,61 @@ export default function App() {
       <BrowserRouter
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
-        <ErrorBoundary>
-          <Routes>
-            <Route
-              path="/ac"
-              element={
-                <Layout>
-                  <ApiCheck />
-                </Layout>
-              }
-            />
+        <Routes>
+          <Route
+            path="/ac"
+            element={
+              <Layout>
+                <Cc />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/filters"
-              element={
-                <Layout>
-                  <ModalCheck />
-                </Layout>
-              }
-            />
+          <Route
+            path="/filters"
+            element={
+              <Layout>
+                <ModalCheck />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/"
-              element={
-                <Layout>
-                  <HomePage />
-                </Layout>
-              }
-            />
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/listing-page"
-              element={
-                <Layout>
-                  <ListingPage />
-                </Layout>
-              }
-            />
+          <Route
+            path="/listing-page"
+            element={
+              <Layout>
+                <ListingPage />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/old-products"
-              element={
-                <Layout>
-                  <InspectPage />
-                </Layout>
-              }
-            />
+          <Route
+            path="/old-products"
+            element={
+              <Layout>
+                <InspectPage />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/About"
-              element={
-                <Layout>
-                  <AboutPage />
-                </Layout>
-              }
-            />
-            {/* <Route
+          <Route
+            path="/About"
+            element={
+              <Layout>
+                <AboutPage />
+              </Layout>
+            }
+          />
+          {/* <Route
               path="/old-sf"
               element={
                 <Layout>
@@ -98,32 +94,32 @@ export default function App() {
               }
             /> */}
 
-            <Route
-              path="/basket-page"
-              element={
-                <Layout>
-                  <BasketPage />
-                </Layout>
-              }
-            />
+          <Route
+            path="/basket-page"
+            element={
+              <Layout>
+                <BasketPage />
+              </Layout>
+            }
+          />
 
-            <Route
-              path="/sort"
-              element={
-                <Layout>
-                  <SortPage />
-                </Layout>
-              }
-            />
-            <Route
-              path="/exhale"
-              element={
-                <Layout>
-                  <RealPage />
-                </Layout>
-              }
-            />
-            {/* <Route
+          <Route
+            path="/sort"
+            element={
+              <Layout>
+                <SortPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/exhale"
+            element={
+              <Layout>
+                <RealPage />
+              </Layout>
+            }
+          />
+          {/* <Route
               path="/:category"
               element={
                 <Layout>
@@ -132,7 +128,7 @@ export default function App() {
               }
             /> */}
 
-            {/* <Route
+          {/* <Route
               path="/:category/:slug"
               element={
                 <Layout>
@@ -141,9 +137,8 @@ export default function App() {
               }
             /> */}
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </ErrorBoundary>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

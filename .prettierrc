@@ -3,13 +3,12 @@
   "printWidth": 80,          
   "tabWidth": 2,             
   "semi": true,              
-  "useTabs": false, 
+  "useTabs": false,          
   "singleQuote": true,       
   "arrowParens": "always",   
-  "trailingComma": "all",    
+  "trailingComma": "es5",    
   "bracketSpacing": true,    
   "proseWrap": "preserve",   
-  "endOfLine": "auto",
-  "htmlWhitespaceSensitivity": "css"
-  
+  "endOfLine": "lf",         
+  "htmlWhitespaceSensitivity": "strict" 
 }

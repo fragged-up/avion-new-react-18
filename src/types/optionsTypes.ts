@@ -5,11 +5,17 @@ export type SortOptions = {
 };
 
 export type FilterOptions = {
-  groupId: number;
   label: string;
   value: string;
-  order: string;
-  filterKind?: null | string;
   inStock?: null | number | string;
-  isAvailable?: null | boolean;
+  relatedOptions: FilterOptions[];
+};
+
+export type Filters = {
+  filterByCategory?: FilterOptions[];
+  filterByColor?: FilterOptions[];
+  filterByMaterial?: FilterOptions[];
+  filterByPrice?: FilterOptions[];
+  filterByAvailability?: FilterOptions[];
+  [key: string]: FilterOptions[] | undefined;
 };

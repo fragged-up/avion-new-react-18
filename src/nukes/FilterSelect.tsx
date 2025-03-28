@@ -27,7 +27,7 @@ const FilterSelect: React.FC<FilterProps> = ({ filterOptions }) => {
       }
       return acc;
     },
-    {} as Record<number, string[]>,
+    {} as Record<number, string[]>
   );
 
   const toggleOption = (option: string) => {

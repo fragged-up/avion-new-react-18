@@ -1,4 +1,4 @@
-import { FilterOptions } from '@/types/optionsTypes';
+import { FilterOptions } from '@/types';
 
 export const filterOptions: FilterOptions[] = [
   {
@@ -70,3 +70,13 @@ export const filterPriceOptions: FilterOptions[] = [
 // [{
 
 // }]
+
+// const fops = {
+
+// }
+
+// ceramics : colors,tags,material,brand,price
+// chairs : tags,material,brand,price
+// lights : tags,material,brand,price
+// plants : tags,material,brand,price
+// tables : tags,material,brand,price

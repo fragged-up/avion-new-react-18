@@ -19,7 +19,7 @@ const Cc = () => {
 
         if (!response.ok) {
           console.error(
-            `HTTP Error: ${response.status} ${response.statusText}`,
+            `HTTP Error: ${response.status} ${response.statusText}`
           );
           return;
         }

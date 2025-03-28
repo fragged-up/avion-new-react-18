@@ -1,4 +1,6 @@
 import styles from '@/CSSModules/HomeM.module.css';
+import UICredit from './UICredit';
+import "@/styles/global.css"
 
 export default function Footer() {
   return (
@@ -72,6 +74,9 @@ export default function Footer() {
         <h2 className={styles['desk-copyright-sb']}>
           Copyright 2022 Avion LTD
         </h2>
+        <div className="w-full">
+            <UICredit />
+          </div>
       </div>
 
       <div className={styles['footerM-container']}>
@@ -136,6 +141,9 @@ export default function Footer() {
 
         <div className={styles['copyright-c']}>
           <h2 className={styles['copyright-sb']}>Copyright 2022 Avion LTD</h2>
+          <div className="w-full">
+            <UICredit />
+          </div>
         </div>
       </div>
     </div>

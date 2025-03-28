@@ -1,5 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProductsThunk } from './thunks';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getProducts } from '@/services/api';
+type Pagination = {
+  offset: number | string;
+  limit: number | string;
+};
+
+export const fetchProductsThunk = createAsyncThunk(
+  'products/fetchProducts',
+  async (pagination: Pagination) => {
+    // 1.5 second delay for loading indicator purpose
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const result = await getProducts(pagination);
+      return result;
+    } catch (err: any) {
+      return console.log('err from productSlice ', err);
+    }
+  }
+);
 
 const initialState = {
   pagination: {

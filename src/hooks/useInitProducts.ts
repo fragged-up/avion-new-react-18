@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/features/store';
 import { loadMoreProducts } from '@/features/products/productSlice';
-import { Pagination } from '@/services/api/productApi';
+import { Pagination } from '@/services/api';
 
 const getProducts = async (pagination: Pagination) => {
   try {
     const res = await fetch(
-      `http://localhost:5001/products?limit=${pagination.limit.toString()}&offset=${pagination.offset.toString()}`,
+      `http://localhost:5001/products?limit=${pagination.limit.toString()}&offset=${pagination.offset.toString()}`
     );
     if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
     const response = await res.json();

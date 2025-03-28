@@ -12,5 +12,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['/Remainders/**'],
     },
+
+    sourcemap: true,
   },
 });
