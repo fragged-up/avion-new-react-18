@@ -2,7 +2,6 @@ export const filterProductsBy = async (caType: string, filters: string) => {
   try {
     const response = await fetch(
       `http://localhost:5001/cat/${caType}/${filters}`,
-
       {
         method: 'GET',
         headers: {
@@ -28,11 +27,9 @@ export type QueryOptions = {
 };
 
 export const getProducts = async (queryOptions: QueryOptions) => {
-  const { category, limit, offset, sortBy, filterBy } = queryOptions;
+  const {category, limit, offset, sortBy, filterBy} = queryOptions;
   try {
-    const res = await fetch(
-      `http://localhost:5001/products?${queryOptions.toString()}`
-    );
+    const res = await fetch(`http://localhost:5001/products?${queryOptions.toString()}`);
     if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
     const response = await res.json();
     return response.data;

@@ -26,9 +26,8 @@ export default function CategoryPage() {
   const getProductApi = async (offset: number, limit: number) => {
     try {
       const url = category
-        ? `http://localhost:5001/products?${category}?limit=${limit}&offset=${offset}`
-        : `http://localhost:5001/?limit=${limit}&offset=${offset}`;
-      // `http://localhost:5001/products/?limit=${limit}&offset=${offset}`;
+        ? `http://localhost:5001/products?${category}limit=${limit}&offset=${offset}`
+        : `http://localhost:5001/products`;
       const request = await fetch(url, {
         method: 'GET',
         headers: {
@@ -72,7 +71,7 @@ export default function CategoryPage() {
                 key={`${category || 'product'}-${prod.id}-${index}-${prod.slug || prod.name}`}
               >
                 <div className="inline-flex" onClick={() => handleNavigation(prod)}>
-                  <img className="product-exc-image" src={prod.productImage} alt={prod.name} loading="lazy" />
+                  <img className="product-exc-image" src={`${prod.productImage}`} alt={prod.name} loading="lazy" />
                 </div>
 
                 <div className="product-details">
