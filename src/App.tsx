@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import HomePage from './pages/HomePage';
 import ListingPage from './pages/ListingPage';
@@ -14,9 +14,10 @@ import ApiCheck from './Temp/Checks/ApiCheck';
 import RealPage from './pages/RealPage';
 import ModalCheck from './components/FiltersGroups/ModalCheck';
 import Cc from './components/FiltersGroups/Cc';
+import CategoryPage from './pages/CategoryPage';
 // import KafkaRoute from './Temp/Checks/KafkaRoute';
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({children}: {children: React.ReactNode}) {
   return (
     <div className="w-full">
       <Header />
@@ -25,13 +26,20 @@ function Layout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
+      <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
         <Routes>
+          <Route
+            path="/products"
+            element={
+              <Layout>
+                <ProductPage />
+              </Layout>
+            }
+          />
           <Route
             path="/ac"
             element={
@@ -112,21 +120,21 @@ export default function App() {
             }
           />
           <Route
-            path="/exhale"
+            path="/real"
             element={
               <Layout>
                 <RealPage />
               </Layout>
             }
           />
-          {/* <Route
-              path="/:category"
-              element={
-                <Layout>
-                  <CategoryPage />
-                </Layout>
-              }
-            /> */}
+          <Route
+            path="/:category"
+            element={
+              <Layout>
+                <CategoryPage />
+              </Layout>
+            }
+          />
 
           {/* <Route
               path="/:category/:slug"

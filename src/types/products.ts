@@ -43,3 +43,21 @@ export interface ProductCardTypes {
   productImage: string;
   productPrice: number;
 }
+export type ProductIdProps = {
+  id: number;
+  name?: string;
+  productImage?: string;
+  productTitle: string;
+  productPrice: number;
+  productDescription?: {
+    main?: string;
+    descOne?: string;
+    descTwo?: string;
+    descThree?: string;
+  };
+  productDimensions?: {
+    height?: string;
+    weight?: string;
+    depth?: string;
+  };
+};

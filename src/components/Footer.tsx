@@ -1,6 +1,6 @@
 import styles from '@/CSSModules/HomeM.module.css';
 import UICredit from './UICredit';
-import "@/styles/global.css"
+import '@/styles/global.css';
 
 export default function Footer() {
   return (
@@ -63,20 +63,16 @@ export default function Footer() {
               placeholder="your@email.com"
             />
 
-            <button className={styles['desk-footer-join-button']}>
-              Sign Up
-            </button>
+            <button className={styles['desk-footer-join-button']}>Sign Up</button>
           </div>
         </div>
       </div>
 
       <div className={styles['desk-copyright-c']}>
-        <h2 className={styles['desk-copyright-sb']}>
-          Copyright 2022 Avion LTD
-        </h2>
+        <h2 className={styles['desk-copyright-sb']}></h2>
         <div className="w-full">
-            <UICredit />
-          </div>
+          <UICredit />
+        </div>
       </div>
 
       <div className={styles['footerM-container']}>
@@ -129,18 +125,12 @@ export default function Footer() {
         <h1 className={styles['footer-mail']}>Join our mailing list</h1>
 
         <div className={styles['footer-join-c']}>
-          <input
-            type="email"
-            name="mail-list"
-            className={styles['footer-join-in']}
-            placeholder="your@email.com"
-          />
+          <input type="email" name="mail-list" className={styles['footer-join-in']} placeholder="your@email.com" />
 
           <button className={styles['footer-join-button']}>Sign Up</button>
         </div>
 
         <div className={styles['copyright-c']}>
-          <h2 className={styles['copyright-sb']}>Copyright 2022 Avion LTD</h2>
           <div className="w-full">
             <UICredit />
           </div>
