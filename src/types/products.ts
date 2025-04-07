@@ -61,3 +61,12 @@ export type ProductIdProps = {
     depth?: string;
   };
 };
+
+
+export interface ProductCard {
+  id: number;
+  name: string;
+  slug?: string;
+  productImage: string;
+  productPrice: number;
+}

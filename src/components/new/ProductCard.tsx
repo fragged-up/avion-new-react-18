@@ -1,0 +1,30 @@
+import type { ProductCard as Product } from "@/types/products";
+
+type ProductCardProps = {
+  product: Product;
+};
+
+export default function ProductCard({ product }: ProductCardProps) {
+  return (
+    <div className="product-container">
+      <div className="product-item">
+        <div className="inline-flex">
+          <img
+            className="product-exc-image"
+            src={product.productImage}
+            alt={product.name}
+            loading="lazy"
+          />
+        </div>
+        <div className="product-details">
+          <h1 className="text-wrap font-clash text-xl font-light">
+            {product.name}
+          </h1>
+          <h1 className="text-wrap font-satoshi text-xl font-extralight">
+            £{product.productPrice}
+          </h1>
+        </div>
+      </div>
+    </div>
+  );
+}

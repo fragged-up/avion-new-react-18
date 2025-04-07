@@ -1,3 +1,4 @@
+const BASE_URL = `http://localhost:5001`
 export const filterProductsBy = async (caType: string, filters: string) => {
   try {
     const response = await fetch(
@@ -33,6 +34,24 @@ export const getProducts = async (queryOptions: QueryOptions) => {
     if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
     const response = await res.json();
     return response.data;
+  } catch (err: any) {
+    console.log('err fetching init products err : ', err);
+    return [];
+  }
+};
+
+
+export const fetchProducts = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/products`,{
+      method:'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    if (!res.ok) throw new Error('HTTP Err ! fetching products ..');
+    const response = await res.json();
+    return response;
   } catch (err: any) {
     console.log('err fetching init products err : ', err);
     return [];

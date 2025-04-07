@@ -15,13 +15,14 @@ import RealPage from './pages/RealPage';
 import ModalCheck from './components/FiltersGroups/ModalCheck';
 import Cc from './components/FiltersGroups/Cc';
 import CategoryPage from './pages/CategoryPage';
+import TestPage from './pages/TestPage';
 // import KafkaRoute from './Temp/Checks/KafkaRoute';
 
 function Layout({children}: {children: React.ReactNode}) {
   return (
     <div className="w-full">
       <Header />
-      <main className="flex flex-col">{children}</main>
+      <main className="flex flex-col bg-black min-h-screen">{children}</main>
       <Footer />
     </div>
   );
@@ -32,6 +33,14 @@ export default function App() {
     <div className="App">
       <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
         <Routes>
+        <Route
+            path="/test"
+            element={
+              <Layout>
+                <TestPage />
+              </Layout>
+            }
+          />
           <Route
             path="/products"
             element={
