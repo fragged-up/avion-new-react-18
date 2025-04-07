@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import allFS from '@/assets/icons/allFS.svg';
 import {useNavigate, useParams} from 'react-router-dom';
 import SelectDropDown from '@/components/SelectDropDown';
 import SFModal from '@/components/modals/SFModal';

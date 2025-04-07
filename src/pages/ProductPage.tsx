@@ -9,7 +9,6 @@ export default function ProductPage() {
   const url = `http://localhost:5001/products`;
   const location = useLocation();
   const loca = location.pathname;
-  console.log(' ProductPage ~ loca:', loca);
   const product = location.state?.product as ProductIdProps;
   const [allProducts, setAllProducts] = useState<ProductIdProps[]>([]);
 
@@ -27,7 +26,7 @@ export default function ProductPage() {
     fetchProducts();
   }, []);
 
-  if (!product) {
+  if (!allProducts) {
     return <p>Product not found.</p>;
   }
 
