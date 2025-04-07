@@ -1,71 +1,90 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getProducts } from '@/services/api';
-type Pagination = {
-  offset: number | string;
-  limit: number | string;
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export type Product = {
+  id: string;
+  name: string;
+  productPrice: number;
+  brand: string;
+  colors?: string[];
+  material?: string;
+  ratings?: number;
+  isAvailable?: boolean;
+  stock?: number;
 };
 
-export const fetchProductsThunk = createAsyncThunk(
-  'products/fetchProducts',
-  async (pagination: Pagination) => {
-    // 1.5 second delay for loading indicator purpose
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+type QueryParams = {
+  category?: string;
+  sort?: string;
+  priceRanges?: string[];
+};
+
+type FilterMetaEntry = { key: string; count: number };
+type PriceRangeMeta = { range: string; count: number };
+
+type FiltersMeta = {
+  priceRanges: PriceRangeMeta[];
+  colors: FilterMetaEntry[];
+  brands: FilterMetaEntry[];
+  materials: FilterMetaEntry[];
+};
+
+type ProductsState = {
+  products: Product[];
+  filtersMeta: FiltersMeta | null;
+  loading: boolean;
+  error: string | null;
+};
+
+const initialState: ProductsState = {
+  products: [],
+  filtersMeta: null,
+  loading: false,
+  error: null,
+};
+
+export const fetchFilteredProducts = createAsyncThunk(
+  "products/fetchFilteredProducts",
+  async (params: QueryParams, thunkAPI) => {
     try {
-      const result = await getProducts(pagination);
-      return result;
+      const query = new URLSearchParams();
+      if (params.category) query.append("category", params.category);
+      if (params.sort) query.append("sort", params.sort);
+      if (params.priceRanges) {
+        params.priceRanges.forEach((range) => query.append("priceRanges", range));
+      }
+
+      const res = await axios.get(`http://localhost:5001/products?${query.toString()}`);
+      return res.data;
     } catch (err: any) {
-      return console.log('err from productSlice ', err);
+      return thunkAPI.rejectWithValue(err.response?.data || "Fetch error");
     }
   }
 );
-
-const initialState = {
-  pagination: {
-    offset: 0,
-    limit: 20,
-  },
-  thunkStatus: {
-    data: [] as any[],
-    status: 'idle',
-    error: null as string | null,
-    isFetching: false,
-  },
-};
-
-const productSlice = createSlice({
-  name: 'product',
+export const productsSlice = createSlice({
+  name: "products",
   initialState,
-  reducers: {
-    loadMoreProducts: (state, action) => {
-      state.pagination.offset = state.pagination.limit;
-      state.pagination.limit = state.pagination.limit + 12;
-      if (state.pagination.limit >= 284) {
-        state.pagination.offset = 272;
-        state.pagination.limit = 284;
-      }
-    },
-  },
-  extraReducers(builder) {
-    builder.addCase(fetchProductsThunk.pending, (state, action) => {
-      state.thunkStatus.status = 'loading';
-      state.thunkStatus.isFetching = true;
-    });
-    builder.addCase(fetchProductsThunk.fulfilled, (state, action) => {
-      state.thunkStatus.status = 'succeeded';
-      state.thunkStatus.isFetching = false;
-      state.thunkStatus.data = [
-        ...state.thunkStatus.data,
-        ...(action.payload ?? []),
-      ];
-    });
-    builder.addCase(fetchProductsThunk.rejected, (state, action) => {
-      state.thunkStatus.error = action.error.message ?? null;
-      state.thunkStatus.status = 'failed';
-    });
+  reducers: {},
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchFilteredProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        fetchFilteredProducts.fulfilled,
+        (state, action: PayloadAction<{ products: Product[]; filtersMeta: FiltersMeta }>) => {
+          state.loading = false;
+          state.products = action.payload.products;
+          state.filtersMeta = action.payload.filtersMeta;
+        }
+      )
+      .addCase(fetchFilteredProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 
-export const { loadMoreProducts } = productSlice.actions;
-
-export default productSlice.reducer;
+export default productsSlice.reducer;

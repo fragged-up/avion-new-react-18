@@ -1,3 +1,30 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+type QueryParams = {
+  category?: string;
+  sort?: string;
+  priceRanges?: string[];
+};
+
+export const fetchFilteredProducts = createAsyncThunk(
+  "products/fetchFilteredProducts",
+  async (params: QueryParams, thunkAPI) => {
+    try {
+      const query = new URLSearchParams();
+      if (params.category) query.append("category", params.category);
+      if (params.sort) query.append("sort", params.sort);
+      if (params.priceRanges) {
+        params.priceRanges.forEach((range) => query.append("priceRanges", range));
+      }
+
+      const res = await axios.get(`/api/products?${query.toString()}`);
+      return res.data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.response?.data || "Fetch error");
+    }
+  }
+);
 const BASE_URL = `http://localhost:5001`
 export const filterProductsBy = async (caType: string, filters: string) => {
   try {

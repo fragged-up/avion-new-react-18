@@ -11,7 +11,7 @@ import SortPage from '@/pages/SortPage';
 import ProductPage from './pages/ProductPage';
 import SFModal from './components/modals/SFModal';
 import ApiCheck from './Temp/Checks/ApiCheck';
-import RealPage from './pages/RealPage';
+// import RealPage from './pages/RealPage';
 import ModalCheck from './components/FiltersGroups/ModalCheck';
 import Cc from './components/FiltersGroups/Cc';
 import CategoryPage from './pages/CategoryPage';
@@ -128,14 +128,14 @@ export default function App() {
               </Layout>
             }
           />
-          <Route
+          {/* <Route
             path="/real"
             element={
               <Layout>
                 <RealPage />
               </Layout>
             }
-          />
+          /> */}
           <Route
             path="/:category"
             element={
