@@ -3,7 +3,7 @@ import ProductCard from "@/components/new/ProductCard";
 import { fetchFilteredProducts } from "@/features/products/productSlice";
 import { useAppDispatch } from "@/features/store/hooks";
 
-export default function TestPage() {
+export default function Test() {
   const dispatch = useAppDispatch();
   const [products, setProducts] = useState<any[]>([]);
   const [filtersMeta, setFiltersMeta] = useState<any>(null);

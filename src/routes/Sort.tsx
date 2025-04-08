@@ -1,6 +1,6 @@
 import ContentPr from '@/components/Mobile/ContentPr';
 
-export default function SortPage() {
+export default function Sort() {
   return (
     <div className=''>
       <ContentPr />

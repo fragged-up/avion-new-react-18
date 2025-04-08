@@ -1,18 +1,19 @@
-import React from 'react';
+import { CSSProperties } from 'react';
 
-const NotFPage = {
+const NotFPage:CSSProperties = {
   paddingTop: '20rem',
   color: 'red',
   textAlign: 'center',
 };
 
-const containerStyle = {
+const containerStyle:CSSProperties = {
   width: '500px',
   height: '500px',
   margin: '0 auto',
 };
 
-function NotFoundPage() {
+
+export default function NotFound() {
   return (
     <div style={containerStyle}>
       <h1 style={NotFPage}>Page Not Found </h1>
@@ -20,4 +21,3 @@ function NotFoundPage() {
   );
 }
 
-export default NotFoundPage;

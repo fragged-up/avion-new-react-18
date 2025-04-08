@@ -23,7 +23,7 @@ export type OldModalProps = {
   eventDrill?: null | any;
 };
 
-function OldModal({ isModalVisible }: OldModalProps) {
+export default function OldModal({ isModalVisible }: OldModalProps) {
   const { isOpen } = useSelector((state: RootState) => state.modal);
   const defaultSortState =
     sortOptions.find((option) => option.order === 'by-rating') || null;
@@ -178,7 +178,6 @@ function OldModal({ isModalVisible }: OldModalProps) {
   );
 }
 
-export default OldModal;
 
 // const OldModal = () => {
 //   const dispatch = useDispatch();

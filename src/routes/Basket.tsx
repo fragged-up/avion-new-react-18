@@ -1,6 +1,6 @@
 import ShoppingCart from '../components/ShoppingCart';
 
-export default function BasketPage() {
+export default function Basket() {
   return (
     <div>
       <ShoppingCart />

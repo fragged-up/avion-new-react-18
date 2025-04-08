@@ -9,7 +9,7 @@
 // import { AppDispatch, RootState } from '@/features/store';
 // import { Error } from '@/components/Error';
 
-// const RealPage = () => {
+// const Real = () => {
 //   const dispatch: AppDispatch = useDispatch();
 //   const { pagination } = useSelector((state: RootState) => state.product);
 //   const { isFetching, status, data, error } = useSelector(
@@ -61,7 +61,7 @@
 //   );
 // };
 
-// export default RealPage;
+// export default Real;
 
 // // className="px-2 py-1 text-white hover:bg-slate-500"
 

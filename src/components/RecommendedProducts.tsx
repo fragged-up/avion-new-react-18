@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ProductIdProps } from '@/pages/ProductPage';
+import { ProductIdProps } from '@/routes/Product';
 
 interface Props {
   currentProduct: ProductIdProps;

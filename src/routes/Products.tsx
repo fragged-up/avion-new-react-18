@@ -5,7 +5,7 @@ import WhatsMake from '@/components/WhatsMake';
 import ProductIdDetails from '@/components/ProductIdDetails';
 import RecommendedProducts from '@/components/RecommendedProducts';
 
-export default function ProductPage() {
+export default function Products() {
   const url = `http://localhost:5001/products`;
   const location = useLocation();
   const loca = location.pathname;

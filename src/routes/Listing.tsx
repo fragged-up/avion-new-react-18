@@ -1,6 +1,6 @@
 import ContentPr from '../components/Mobile/ContentPr';
 
-export default function ListingPage() {
+export default function Listing() {
   return (
     <div>
       <ContentPr />

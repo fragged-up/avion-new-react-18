@@ -4,7 +4,7 @@ import SelectDropDown from '@/components/SelectDropDown';
 import SFModal from '@/components/modals/SFModal';
 import {ProductCardTypes} from '@/types/products';
 
-export default function CategoryPage() {
+export default function Category() {
   const [products, setProducts] = useState<ProductCardTypes[]>([]);
   const [offset, setOffset] = useState(0);
   const {category} = useParams();
