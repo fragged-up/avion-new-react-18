@@ -1,51 +1,35 @@
 import checkMark from '../assets/icons/checkMark.svg';
-
 import recycleIcon from '../assets/icons/recycleIcon.svg';
-
 import purchaseIcon from '../assets/icons/purchaseIcon.svg';
-
 import transitDelivery from '../assets/icons/transitDelivery.svg';
-
 import JoinTheClub from './JoinTheClub';
 
 const items = [
   {
     icon: transitDelivery,
-
     alt: 'transit-icon',
-
     title: 'Next day as standard',
-
     description: 'Handmade crafted goods made with real passion and craftmanship',
   },
 
   {
     icon: checkMark,
-
     alt: 'checkmark-icon',
-
     title: 'Made by true artisans',
-
     description: 'Handmade crafted goods made with real passion and craftmanship',
   },
 
   {
     icon: purchaseIcon,
-
     alt: 'purchase-icon',
-
     title: 'Unbeatable prices',
-
     description: "For our materials and quality you won't find better prices anywhere",
   },
 
   {
     icon: recycleIcon,
-
     alt: 'recycle-icon',
-
     title: 'Recycled packaging',
-
     description: 'We use 100% recycled packaging to ensure our footprint is manageable',
   },
 ];

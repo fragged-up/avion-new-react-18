@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
 import { FilterOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/features/store';
-import { toggleFilter, toggleSort } from '@/features/modal/modalSlice';
+import { RootState } from '@/stores';
+import { toggleFilter, toggleSort } from '@/stores/modal/slice';
 
 interface FilterProps {
   filterOptions: FilterOptions[];

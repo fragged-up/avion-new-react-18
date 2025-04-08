@@ -1,48 +1,29 @@
 import styles from '../CSSModules/Inspect.module.css';
-
 import inspectImage from '../assets/images/Inspect-image.svg';
-
 import CatalogDataContainer from './CatalogData';
-
 import Unique from './Unique';
 
 type ProductInformationProps = {
   dcTitle: string;
-
   dcPrice: string;
-
   dcT: string;
-
   dcG1: string;
-
   dcG2: string;
-
   dcG3: string;
-
   dcHeight: string;
-
   dcWidth: string;
-
   dcDepth: string;
 };
 
 function DcText({
   dcTitle,
-
   dcPrice,
-
   dcT,
-
   dcG1,
-
   dcG2,
-
   dcG3,
-
   dcHeight,
-
   dcWidth,
-
   dcDepth,
 }: ProductInformationProps) {
   return (
@@ -128,7 +109,7 @@ function Inspect() {
     <>
       <div className={styles['inspect-w']}>
         <div className={styles['inspect-c']}>
-          <img src={inspectImage} alt='' className={styles['inspect-img']} />
+          <img src={inspectImage} alt="" className={styles['inspect-img']} />
         </div>
 
         <DcText
@@ -185,7 +166,7 @@ function Inspect() {
             </div>
 
             <div className={styles['desk-join-in-c']}>
-              <input type='text' className={styles['desk-join-in']} placeholder='your@email.com' />
+              <input type="text" className={styles['desk-join-in']} placeholder="your@email.com" />
 
               <button className={styles['desk-join-button']}>Sign Up</button>
             </div>

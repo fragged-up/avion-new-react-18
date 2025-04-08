@@ -1,13 +1,7 @@
 import styles from '@/CSSModules/Content-m.module.css';
-
-// /Users/odedsamuel/Desktop/MainFolders/ec-new/avion-new/src/CSSModules/Content-m.module.css
-
 import checkMark from '../assets/icons/checkMark.svg';
-
 import recycleIcon from '../assets/icons/recycleIcon.svg';
-
 import purchaseIcon from '../assets/icons/purchaseIcon.svg';
-
 import transitDelivery from '../assets/icons/transitDelivery.svg';
 
 export default function Unique() {
@@ -22,7 +16,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={transitDelivery} alt='' className={styles['ct-1-ic']} />
+            <img src={transitDelivery} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Next day as standard</h2>
 
@@ -32,7 +26,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={checkMark} alt='' className={styles['ct-1-ic']} />
+            <img src={checkMark} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Made by true artisans</h2>
 
@@ -42,7 +36,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={purchaseIcon} alt='' className={styles['ct-1-ic']} />
+            <img src={purchaseIcon} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Unbeatable prices</h2>
 
@@ -52,7 +46,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={recycleIcon} alt='' className={styles['ct-1-ic']} />
+            <img src={recycleIcon} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Recycled packaging</h2>
 
@@ -75,9 +69,9 @@ export default function Unique() {
           <div className={styles['unique-join-in-c']}>
             <span className={styles['unique-span']}>
               <input
-                type='text'
+                type="text"
                 className={styles['unique-join-in']}
-                placeholder='your@email.com'
+                placeholder="your@email.com"
               />
 
               <button className={styles['unique-join-button']}>Sign Up</button>
@@ -93,7 +87,7 @@ export default function Unique() {
 
         <div className={styles['desk-ct-w']}>
           <div className={styles['desk-unique-ct-1']}>
-            <img src={transitDelivery} alt='' className={styles['desk-ct-1-ic']} />
+            <img src={transitDelivery} alt="" className={styles['desk-ct-1-ic']} />
 
             <h2 className={styles['desk-ct-1-sb']}>Next day as standard</h2>
 
@@ -103,7 +97,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['desk-unique-ct-1']}>
-            <img src={checkMark} alt='' className={styles['desk-ct-1-ic']} />
+            <img src={checkMark} alt="" className={styles['desk-ct-1-ic']} />
 
             <h2 className={styles['desk-ct-1-sb']}>Made by true artisans</h2>
 
@@ -113,7 +107,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['desk-unique-ct-1']}>
-            <img src={purchaseIcon} alt='' className={styles['desk-ct-1-ic']} />
+            <img src={purchaseIcon} alt="" className={styles['desk-ct-1-ic']} />
 
             <h2 className={styles['desk-ct-1-sb']}>Unbeatable prices</h2>
 
@@ -123,7 +117,7 @@ export default function Unique() {
           </div>
 
           <div className={styles['desk-unique-ct-1']}>
-            <img src={recycleIcon} alt='' className={styles['desk-ct-1-ic']} />
+            <img src={recycleIcon} alt="" className={styles['desk-ct-1-ic']} />
 
             <h2 className={styles['desk-ct-1-sb']}>Recycled packaging</h2>
 
@@ -145,7 +139,7 @@ export default function Unique() {
             </div>
 
             <div className={styles['desk-join-in-c']}>
-              <input type='text' className={styles['desk-join-in']} placeholder='your@email.com' />
+              <input type="text" className={styles['desk-join-in']} placeholder="your@email.com" />
 
               <button className={styles['desk-join-button']}>Sign Up</button>
             </div>

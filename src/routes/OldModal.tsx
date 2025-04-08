@@ -4,19 +4,19 @@ import { SortOptions } from '@/types/optionsTypes'; // types import
 import { sortOptions } from '@/constants/sortOptions'; // constants import
 import { filterOptions, filterPriceOptions } from '@/constants/filterOptions'; //constants import
 import Sort from '@/components/Sort'; //components import
-import { RootState } from '@/features/store';
+import { RootState } from '@/stores';
 import Filter from '@/components/Filter'; //components import
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
 import outIcon from '@/assets/icons/outIcon.svg'; //icons imports
-import { setSelected } from '@/features/filters/filtersSlice';
+import { setSelected } from '@/stores/filters/slice';
 import { toggleSelection } from '@/utils/updateFilter';
-import { clearFilters } from '@/features/filters/filtersSlice';
+import { clearFilters } from '@/stores/filters/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   openGlobalModal,
   openFilterFromModal,
   openSortFromModal,
-} from '@/features/modal/modalSlice';
+} from '@/stores/modal/slice';
 
 export type OldModalProps = {
   isModalVisible?: null | any;

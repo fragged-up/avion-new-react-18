@@ -1,21 +1,12 @@
 import styles from '@/CSSModules/AllProducts.module.css';
-
 import { ProductCatalog } from '@/components/Mobile/ProductListMobile';
-
 import rusticCatalog from '@/assets/images/rustic-catalog.svg';
-
 import silkyCatalog from '@/assets/images/silky-catalog.svg';
-
 import lucyCatalog from '@/assets/images/lucy-catalog.svg';
-
 import dandyCatalog from '@/assets/images/dandy-catalog.svg';
-
 import dRustic from '@/assets/deskProduct/RUSTIC.svg';
-
 import dSilky from '@/assets/deskProduct/SILKY.svg';
-
 import dLucy from '@/assets/deskProduct/LUCY.svg';
-
 import dDandy from '@/assets/deskProduct/DANDY.svg';
 
 function CatalogDataContainer() {

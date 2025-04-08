@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import '@/styles/global.css';
-import { store } from './features/store/index.ts';
+import { store } from '@/stores/core/store.ts';
 import App from './App.tsx';
 
 const container = document.getElementById('root') as HTMLElement;
@@ -12,5 +12,5 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
-  </StrictMode>
+  </StrictMode>,
 );

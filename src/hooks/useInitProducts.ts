@@ -1,8 +1,8 @@
 import { Product } from '@/types/products';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/features/store';
-import { loadMoreProducts } from '@/features/products/productSlice';
+import { RootState } from '@/stores';
+import { loadMoreProducts } from '@/stores/products/slice';
 import { Pagination } from '@/services/api';
 
 const getProducts = async (pagination: Pagination) => {

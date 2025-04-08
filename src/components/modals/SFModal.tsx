@@ -1,17 +1,17 @@
-import FilterSelect from '@/nukes/FilterSelect';
+import FilterSelect from '@/components/new/FilterSelect';
 import { SortOptions } from '@/types/optionsTypes'; // types import
 import { sortOptions } from '@/constants/sortOptions';
 import { filterPriceOptions, filterOptions } from '@/constants';
 import Sort from '@/components/Sort';
-import { RootState } from '@/features/store';
+import { RootState } from '@/stores';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelected } from '@/features/filters/filtersSlice';
+import { setSelected } from '@/stores/filters/slice';
 import { useEffect, useState } from 'react';
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
 // import outIcon from '@/assets/icons/outIcon.svg';
 import chevronLeft from '@/assets/icons/chevronLeft.svg';
 import { toggleSelection } from '@/utils/updateFilter';
-import { clearFilters } from '@/features/filters/filtersSlice';
+import { clearFilters } from '@/stores/filters/slice';
 import closeIcon from '@/assets/icons/close-icon.svg';
 import { FilterOptions } from '@/types/optionsTypes';
 // import { selectIsModalOpen } from '@/features/modal/selectors';
@@ -19,7 +19,7 @@ import {
   openGlobalModal,
   openFilterFromModal,
   openSortFromModal,
-} from '@/features/modal/modalSlice';
+} from '@/stores/modal/slice';
 
 const SFModal = () => {
   const dispatch = useDispatch();

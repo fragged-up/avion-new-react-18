@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { ProductIdProps } from '@/routes/Product';
+import type { ProductDetails } from '@/types/products';
 
 interface Props {
-  currentProduct: ProductIdProps;
-  allProducts: ProductIdProps[];
+  currentProduct: ProductDetails;
+  allProducts: ProductDetails[];
 }
 
 export default function RecommendedProducts({ currentProduct, allProducts }: Props) {
@@ -11,7 +11,8 @@ export default function RecommendedProducts({ currentProduct, allProducts }: Pro
     // Filter products by id proximity and exclude current product
 
     const filteredProducts = allProducts.filter(
-      (product) => Math.abs(product.id - currentProduct.id) <= 3 && product.id !== currentProduct.id
+      (product) =>
+        Math.abs(product.id - currentProduct.id) <= 3 && product.id !== currentProduct.id,
     );
 
     // Limit to 4 products
@@ -31,7 +32,11 @@ export default function RecommendedProducts({ currentProduct, allProducts }: Pro
             {/* Render image only if it exists in the backend data */}
 
             {product.productImage && (
-              <img src={product.productImage} alt={product.name || 'Product'} className="h-60 w-full object-cover" />
+              <img
+                src={product.productImage}
+                alt={product.name || 'Product'}
+                className="h-60 w-full object-cover"
+              />
             )}
 
             <h3 className="mt-4 font-clash text-lg">{product.name}</h3>

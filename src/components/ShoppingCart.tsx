@@ -1,44 +1,25 @@
 // import styles from "/@/ShoppingCart.module.css";
-
 import styles from '@/CSSModules/ShoppingCart.module.css';
-
 import pr1 from '@/assets/images/shop-image-1.svg';
-
 import pr2 from '@/assets/images/shop-image2.svg';
 
-// import {
-
-//   ProductCart,
-
-//   CheckOutM,
-
-// } from "../ProductList/mobile/ProductListMobile";
-
+// import { ProductCart, CheckOutM,} from "../ProductList/mobile/ProductListMobile";
 // import { useContext } from "react";
-
 // import { ProductDetails } from "./ContentM";
-
 import { ProductCart, CheckOutM } from '@/components/Mobile/ProductListMobile';
 
 // type productCard = {
-
 //   prImg: string;
-
 //   prTitle: string;
-
 //   prDesc: any;
-
 //   prprice: string;
-
 // };
 
 function ShoppingCart() {
   // const theData = useContext(ProductDetails);
-
   // console.log(theData);
 
   const desc1 = `A timeless ceramic vase with a tri color grey glaze.`;
-
   const desc2 = `Beautiful and simple this is one for the classics`;
 
   return (

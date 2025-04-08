@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
 import { SortOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/features/store';
+import { RootState } from '@/stores';
 
-import { toggleSort } from '@/features/modal/modalSlice';
+import { toggleSort } from '@/stores/modal/slice';
 
 export interface SortProps {
   sortLabel?: string | null;

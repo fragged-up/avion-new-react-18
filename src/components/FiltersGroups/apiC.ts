@@ -1,5 +1,4 @@
 import { Product } from '@/types/products';
-
 export const plants: Product[] = [
   {
     id: 1,

@@ -1,47 +1,26 @@
-import styles from '@/CSSModules/Content-m.module.css';
-
-import checkMark from '@/assets/icons/checkMark.svg';
-
-import recycleIcon from '@/assets/icons/recycleIcon.svg';
-
-import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
-
-import transitDelivery from '@/assets/icons/transitDelivery.svg';
-
-import Rastic from '@/assets/images/RasticVasset.svg';
-
-import LucyLamp from '@/assets/images/LucyLamp.svg';
-
-import dandy from '@/assets/images/DandyChair.svg';
-
-import silkyVase from '@/assets/images/SilkyVase.svg';
-
-import popularRastic from '@/assets/images/popular-rustic.svg';
-
-import popularLucy from '@/assets/images/popular-lucylamp.svg';
-
-import spa from '@/assets/images/spa-image.svg';
-// import heroChair from "../assets/images/hero-chair.svg";
-
-import dandyDesktop from '@/assets/images/dandy-desktop.svg';
-
-import lucyDesktop from '@/assets/images/lucy-desktop.svg';
-
-import rusticDesktop from '@/assets/images/rustic-desktop.svg';
-
-import silkyDesktop from '@/assets/images/silky-desktop.svg';
-
-import darkDandy from '@/assets/images/darkDandy.svg';
-
-import sofa from '@/assets/images/Large.svg';
-
 import { ProductListMobile } from '@/components/Mobile/ProductListMobile';
-
 import { OurPopularM } from '@/components/Mobile/ProductListMobile';
-
 import { ProductListDesktop } from '@/components/Mobile/ProductListMobile';
-
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from '@/CSSModules/Content-m.module.css';
+import checkMark from '@/assets/icons/checkMark.svg';
+import recycleIcon from '@/assets/icons/recycleIcon.svg';
+import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
+import transitDelivery from '@/assets/icons/transitDelivery.svg';
+import Rastic from '@/assets/images/RasticVasset.svg';
+import LucyLamp from '@/assets/images/LucyLamp.svg';
+import dandy from '@/assets/images/DandyChair.svg';
+import silkyVase from '@/assets/images/SilkyVase.svg';
+import popularRastic from '@/assets/images/popular-rustic.svg';
+import popularLucy from '@/assets/images/popular-lucylamp.svg';
+import spa from '@/assets/images/spa-image.svg';
+import dandyDesktop from '@/assets/images/dandy-desktop.svg';
+import lucyDesktop from '@/assets/images/lucy-desktop.svg';
+import rusticDesktop from '@/assets/images/rustic-desktop.svg';
+import silkyDesktop from '@/assets/images/silky-desktop.svg';
+import darkDandy from '@/assets/images/darkDandy.svg';
+import sofa from '@/assets/images/Large.svg';
+// import heroChair from "../assets/images/hero-chair.svg";
 
 // import { FooterM } from './FooterM';
 
@@ -55,7 +34,7 @@ import { Link } from 'react-router-dom';
 
 // } from "../features/ProductList/mobile/ProductListMobile";
 
-// import { Link } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 function ContentM() {
   return (
@@ -74,9 +53,9 @@ function ContentM() {
             web technologies.
           </p>
 
-          <Link to='/chairs'>
+          <NavLink to="/chairs">
             <button className={styles['view-collection-button']}>View Collection</button>
-          </Link>
+          </NavLink>
         </div>
       </div>
 
@@ -89,23 +68,18 @@ function ContentM() {
                 <br /> future, with timeless designs
               </h1>
 
-              <Link to='/chairs'>
+              <NavLink to="/chairs">
                 <button className={styles['desk-view-collection-button']}>View Collection</button>
-              </Link>
-
+              </NavLink>
               <br />
-
               <br />
-
               <br />
-
               <p className={styles['desk-para-top']}>
                 A new era in eco friendly furniture with Avelon, the French luxury retail brand with
                 nice fonts, tasteful colors and a beautiful way to display things digitally using
                 modern web technologies.
               </p>
             </div>
-
             <div className={styles['desk-r-part']}></div>
           </div>
         </div>
@@ -118,7 +92,7 @@ function ContentM() {
 
             <div className={styles['desk-ct-w']}>
               <div className={styles['desk-ct-1']}>
-                <img src={transitDelivery} alt='' className={styles['desk-ct-1-ic']} />
+                <img src={transitDelivery} alt="" className={styles['desk-ct-1-ic']} />
 
                 <h2 className={styles['desk-ct-1-sb']}>Next day as standard</h2>
 
@@ -128,7 +102,7 @@ function ContentM() {
               </div>
 
               <div className={styles['desk-ct-1']}>
-                <img src={checkMark} alt='' className={styles['desk-ct-1-ic']} />
+                <img src={checkMark} alt="" className={styles['desk-ct-1-ic']} />
 
                 <h2 className={styles['desk-ct-1-sb']}>Made by true artisans</h2>
 
@@ -138,7 +112,7 @@ function ContentM() {
               </div>
 
               <div className={styles['desk-ct-1']}>
-                <img src={purchaseIcon} alt='' className={styles['desk-ct-1-ic']} />
+                <img src={purchaseIcon} alt="" className={styles['desk-ct-1-ic']} />
 
                 <h2 className={styles['desk-ct-1-sb']}>Unbeatable prices</h2>
 
@@ -148,7 +122,7 @@ function ContentM() {
               </div>
 
               <div className={styles['desk-ct-1']}>
-                <img src={recycleIcon} alt='' className={styles['desk-ct-1-ic']} />
+                <img src={recycleIcon} alt="" className={styles['desk-ct-1-ic']} />
 
                 <h2 className={styles['desk-ct-1-sb']}>Recycled packaging</h2>
 
@@ -193,9 +167,9 @@ function ContentM() {
             </div>
 
             <div className={styles['desk-ct-2-btn-c']}>
-              <Link to='/ceramics'>
+              <NavLink to="/ceramics">
                 <button className={styles['desk-ct-2-button']}>View Collection</button>
-              </Link>
+              </NavLink>
             </div>
           </div>
 
@@ -236,9 +210,9 @@ function ContentM() {
 
               <div className={styles['desk-join-in-c']}>
                 <input
-                  type='text'
+                  type="text"
                   className={styles['desk-join-in']}
-                  placeholder='your@email.com'
+                  placeholder="your@email.com"
                 />
 
                 <button className={styles['desk-join-button']}>Sign Up</button>
@@ -290,7 +264,7 @@ function ContentM() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={transitDelivery} alt='' className={styles['ct-1-ic']} />
+            <img src={transitDelivery} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Next day as standard</h2>
 
@@ -300,7 +274,7 @@ function ContentM() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={checkMark} alt='' className={styles['ct-1-ic']} />
+            <img src={checkMark} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Made by true artisans</h2>
 
@@ -310,7 +284,7 @@ function ContentM() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={purchaseIcon} alt='' className={styles['ct-1-ic']} />
+            <img src={purchaseIcon} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Unbeatable prices</h2>
 
@@ -320,7 +294,7 @@ function ContentM() {
           </div>
 
           <div className={styles['ct-1']}>
-            <img src={recycleIcon} alt='' className={styles['ct-1-ic']} />
+            <img src={recycleIcon} alt="" className={styles['ct-1-ic']} />
 
             <h2 className={styles['ct-1-sb']}>Recycled packaging</h2>
 
@@ -362,59 +336,32 @@ function ContentM() {
           <div className={styles['our-popular-products-c']}>
             <div className={styles['ct-3-products-sx']}>
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
               <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-
               <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
             </div>
           </div>
@@ -435,7 +382,7 @@ function ContentM() {
           </div>
 
           <div className={styles['join-in-c']}>
-            <input type='text' className={styles['join-in']} placeholder='your@email.com' />
+            <input type="text" className={styles['join-in']} placeholder="your@email.com" />
 
             <button className={styles['join-button']}>Sign Up</button>
           </div>
@@ -466,7 +413,7 @@ function ContentM() {
       </div>
 
       <div className={styles['spa-c']}>
-        <img src={spa} alt='' className={styles['spa-img']} />
+        <img src={spa} alt="" className={styles['spa-img']} />
       </div>
     </div>
   );

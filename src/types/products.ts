@@ -43,7 +43,7 @@ export interface ProductCardTypes {
   productImage: string;
   productPrice: number;
 }
-export type ProductIdProps = {
+export type ProductDetails = {
   id: number;
   name?: string;
   productImage?: string;
@@ -62,11 +62,36 @@ export type ProductIdProps = {
   };
 };
 
-
 export interface ProductCard {
+  productDescription: any;
+  productDimensions: any;
   id: number;
   name: string;
   slug?: string;
   productImage: string;
   productPrice: number;
 }
+
+export type QueryParams = {
+  category?: string;
+  sort?: string;
+  priceRanges?: string[];
+};
+
+export type FilterMetaEntry = { key: string; count: number };
+export type PriceRangeMeta = { range: string; count: number };
+
+export type FiltersMeta = {
+  priceRanges: PriceRangeMeta[];
+  colors: FilterMetaEntry[];
+  brands: FilterMetaEntry[];
+  materials: FilterMetaEntry[];
+};
+
+export type ProductsState = {
+  items: any[];
+  products: Product[];
+  filtersMeta: FiltersMeta | null;
+  loading: boolean;
+  error: string | null;
+};
