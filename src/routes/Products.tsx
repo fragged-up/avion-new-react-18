@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import type { ProductIdProps } from '@/types';
+import type { ProductDetails as ProductIdProps } from '@/types';
 import WhatsMake from '@/components/WhatsMake';
 import ProductDetails from '@/routes/ProductDetails';
 import RecommendedProducts from '@/components/RecommendedProducts';
@@ -33,7 +33,7 @@ export default function Products() {
   return (
     <div className="w-full bg-white">
       <div className="w-full">
-        <ProductDetails product={product} />
+        <ProductDetails  />
       </div>
 
       {allProducts.length > 0 && (

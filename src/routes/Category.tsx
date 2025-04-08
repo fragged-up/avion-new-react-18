@@ -3,15 +3,18 @@ import {useNavigate, useParams} from 'react-router-dom';
 import SelectDropDown from '@/components/SelectDropDown';
 import SFModal from '@/components/modals/SFModal';
 import {ProductCardTypes} from '@/types/products';
+import { RootState } from '@/stores/core/store';
+import { useSelector } from 'react-redux';
 
 export default function Category() {
-  const [products, setProducts] = useState<ProductCardTypes[]>([]);
+  const [prs, setProducts] = useState<ProductCardTypes[]>([]);
   const [offset, setOffset] = useState(0);
   const {category} = useParams();
   const navigateToProductId = useNavigate();
   const initialLimit = 20;
   const loadMoreLimit = 12;
-
+  const products = useSelector((state: RootState) => state.products.products);
+ console.log("selectProducts :",products);
   const handleNavigation = (product: ProductCardTypes) => {
     if (product.slug) {
       navigateToProductId(`/${category}/${product.slug}`, {
@@ -35,7 +38,7 @@ export default function Category() {
       });
       const response = await request.json();
       const productList = response.products || response;
-      setProducts((prev) => (offset === 0 ? productList : [...prev, ...productList]));
+      setProducts((prev) => (offset === 0 ? products : [...prev, ...productList]));
       // setProducts((prevProducts) => (offset === 0 ? response.products : [...prevProducts, ...response.products]));
     } catch (err) {
       console.error(err);

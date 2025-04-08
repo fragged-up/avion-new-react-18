@@ -17,21 +17,26 @@ export default function Header() {
 
   function closeMenu() {
     setMenu(!isMenu);
-
     console.log(isMenu);
   }
+  const handleCloseMenu = () => {
+    closeMenu();
+  };
 
   return (
     <div className={styles['wrapper']}>
       <div className={styles['container']}>
         <div className={styles['logo-container']}>
-          <h1 className={styles['logo']}>Avion</h1>
+          <Link to="/">
+            {' '}
+            <h1 className={styles['logo']}>Avion</h1>
+          </Link>
         </div>
 
         <div className={styles['icons-container']}>
-          <img src={searchIcon} alt='' className={styles['search-icon']} />
+          <img src={searchIcon} alt="" className={styles['search-icon']} />
 
-          <img src={menuIcon} alt='' className={styles['menu-icon']} onClick={() => openMenu()} />
+          <img src={menuIcon} alt="" className={styles['menu-icon']} onClick={() => openMenu()} />
         </div>
 
         <div className={`${styles['opened-menu-c']} ${isMenu ? styles.menuVisible : ''}`}>
@@ -43,196 +48,81 @@ export default function Header() {
             </div>
 
             <div className={styles['headline-c']}>
-              <Link to='/' className={styles['headline']}>
+              <Link to="/" className={styles['headline']} onClick={handleCloseMenu}>
                 Home
               </Link>
 
-              <Link to='/About' className={styles['headline']}>
+              <Link to="/About" className={styles['headline']} onClick={handleCloseMenu}>
                 About
               </Link>
 
-              <Link to='/sort' className={styles['headline']}>
-                Sort Page
+              <Link to="/all" className={styles['headline']} onClick={handleCloseMenu}>
+                All
               </Link>
 
-              <Link to='/old-products' className={styles['headline']}>
-                Products-Page-Old
+              <Link to="/old-products" className={styles['headline']} onClick={handleCloseMenu}>
+                Product-Id
               </Link>
 
-              <Link to='/listing-page' className={styles['headline']}>
-                Listing Page
+              <Link to="/old" className={styles['headline']} onClick={handleCloseMenu}>
+                Old
               </Link>
-
-              <Link to='/plants' className={styles['headline']}>
-                Plants
-              </Link>
-
-              <Link to='/ceramics' className={styles['headline']}>
-                Ceramics
-              </Link>
-
-              <Link to='/tables' className={styles['headline']}>
-                Tables
-              </Link>
-
-              <Link to='/chairs' className={styles['headline']}>
-                Chairs
-              </Link>
-
-              <Link to='/basket-page' className={styles['headline']}>
+              <Link to="/basket" className={styles['headline']} onClick={handleCloseMenu}>
                 Basket
               </Link>
-
-              <Link to='/lights' className={styles['headline']}>
-                Lights
-              </Link>
-
-              <Link to='/products' className={styles['headline']}>
-                All Products
+              <Link to="/test" className={styles['headline']} onClick={handleCloseMenu}>
+                Test
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* <div className="mobile-new-header block bg-blue-400 p-4 md:hidden">
 
-        <h1 className="text-center text-3xl font-extrabold text-blue-200">
-
-          MainTance Pages :{" "}
-
-        </h1>
-
-        <div className="flex flex-col items-center justify-center gap-4">
-
-          <Link to="/" className="text-2xl font-medium text-yellow-500">
-
-            Home Page
-
-          </Link>
-
-          <Link
-
-            to="/listing-page"
-
-            className="text-2xl font-medium text-yellow-500"
-
-          >
-
-            Listing Page
-
-          </Link>
-
-          <Link to="/Products" className="text-2xl font-medium text-yellow-500">
-
-            Products Page
-
-          </Link>
-
-          <Link
-
-            to="/about-page"
-
-            className="text-2xl font-medium text-yellow-500"
-
-          >
-
-            About Page
-
-          </Link>
-
-          <Link
-
-            to="/basket-page"
-
-            className="text-2xl font-medium text-yellow-500"
-
-          >
-
-            Basket Page
-
-          </Link>
-
-          <Link to="/sort" className="text-2xl font-medium text-yellow-500">
-
-            Sort Page
-
-          </Link>
-
-          <Link to="/products" className="text-2xl font-medium text-yellow-500">
-
-            Maintance Page
-
-          </Link>
-
-        </div>
-
-      </div> */}
 
       <div className={styles['desktop-w']}>
         <div className={styles['desktop-c']}>
           <div className={styles['desk-search-c']}>
-            <img src={searchIcon} alt='' className={styles['desk-search-icon']} />
+            <img src={searchIcon} alt="" className={styles['desk-search-icon']} />
           </div>
 
           <div className={styles['desk-logo-c']}>
-            <h1 className={styles['desk-logo']}>Avion</h1>
+           <Link to="/"> <h1 className={styles['desk-logo']}>Avion</h1></Link>
           </div>
 
           <div className={styles['desk-rest-icon-c']}>
-            <img src={userCart} alt='' className={styles['desk-user-icon']} />
+            <img src={userCart} alt="" className={styles['desk-user-icon']} />
 
-            <img src={userAvatar} alt='' className={styles['desk-avatar-icon']} />
+            <img src={userAvatar} alt="" className={styles['desk-avatar-icon']} />
           </div>
         </div>
 
         <div className={styles['links-c']}>
-          <Link to='/' className={styles['link']}>
+          <Link to="/" className={styles['link']} onClick={handleCloseMenu}>
             Home
           </Link>
 
-          <Link to='/About' className={styles['link']}>
+          <Link to="/About" className={styles['link']} onClick={handleCloseMenu}>
             About
           </Link>
 
-          <Link to='/sort' className={styles['link']}>
-            Sort Page
+          <Link to="/all" className={styles['link']} onClick={handleCloseMenu}>
+            All
           </Link>
 
-          <Link to='/old-products' className={styles['link']}>
-            Products-Page-Old
+          <Link to="/old-products" className={styles['link']} onClick={handleCloseMenu}>
+            Product-Id
           </Link>
 
-          <Link to='/listing-page' className={styles['link']}>
-            Listing Page
+          <Link to="/old" className={styles['link']} onClick={handleCloseMenu}>
+            Old
+          </Link>
+          <Link to="/basket" className={styles['link']} onClick={handleCloseMenu}>
+          Basket
           </Link>
 
-          <Link to='/plants' className={styles['link']}>
-            Plants
-          </Link>
-
-          <Link to='/ceramics' className={styles['link']}>
-            Ceramics
-          </Link>
-
-          <Link to='/tables' className={styles['link']}>
-            Tables
-          </Link>
-
-          <Link to='/chairs' className={styles['link']}>
-            Chairs
-          </Link>
-
-          <Link to='/basket-page' className={styles['link']}>
-            Basket
-          </Link>
-
-          <Link to='/lights' className={styles['link']}>
-            Lights
-          </Link>
-
-          <Link to='/products' className={styles['link']}>
-            All Products
+          <Link to="/test" className={styles['link']} onClick={handleCloseMenu}>
+            Test
           </Link>
         </div>
       </div>
@@ -264,15 +154,15 @@ export function InHeader() {
           </div>
 
           <div className={styles['icons-container']}>
-            <img src={searchIcon} alt='' className={styles['search-icon']} />
+            <img src={searchIcon} alt="" className={styles['search-icon']} />
 
-            <img src={userCart} alt='' className={styles['user-cart']} />
+            <img src={userCart} alt="" className={styles['user-cart']} />
 
-            <img src={userAvatar} alt='' className={styles['user-avatar']} />
+            <img src={userAvatar} alt="" className={styles['user-avatar']} />
 
             <img
               src={menuIcon}
-              alt=''
+              alt=""
               className={styles['menu-icon']}
               onClick={() => openMenuIn()}
             />
@@ -311,7 +201,7 @@ export function InHeader() {
           <div className={styles['desktop-w']}>
             <div className={styles['desktop-c']}>
               <div className={styles['desk-search-c']}>
-                <img src={searchIcon} alt='' className={styles['desk-search-icon']} />
+                <img src={searchIcon} alt="" className={styles['desk-search-icon']} />
               </div>
 
               <div className={styles['desk-logo-c']}>
@@ -319,9 +209,9 @@ export function InHeader() {
               </div>
 
               <div className={styles['desk-rest-icon-c']}>
-                <img src={userCart} alt='' className={styles['desk-user-icon']} />
+                <img src={userCart} alt="" className={styles['desk-user-icon']} />
 
-                <img src={userAvatar} alt='' className={styles['desk-avatar-icon']} />
+                <img src={userAvatar} alt="" className={styles['desk-avatar-icon']} />
               </div>
             </div>
 
@@ -373,7 +263,7 @@ export function AbHeader() {
           <div className={styles['icons-container-ab']}>
             <img
               src={menuIcon}
-              alt=''
+              alt=""
               className={styles['menu-icon']}
               onClick={() => openMenuAb()}
             />
@@ -423,11 +313,11 @@ export function AbHeader() {
             </div>
 
             <div className={styles['desktop-ab-icon-c']}>
-              <img src={searchIcon} alt='' className={styles['search-icon']} />
+              <img src={searchIcon} alt="" className={styles['search-icon']} />
 
-              <img src={userCart} alt='' className={styles['user-cart']} />
+              <img src={userCart} alt="" className={styles['user-cart']} />
 
-              <img src={userAvatar} alt='' className={styles['user-avatar']} />
+              <img src={userAvatar} alt="" className={styles['user-avatar']} />
             </div>
           </div>
         </div>

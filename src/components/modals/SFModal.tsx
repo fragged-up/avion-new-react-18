@@ -1,9 +1,10 @@
 import FilterSelect from '@/components/new/FilterSelect';
 import { SortOptions } from '@/types/optionsTypes'; // types import
 import { sortOptions } from '@/constants/sortOptions';
-import { filterPriceOptions, filterOptions } from '@/constants';
 import Sort from '@/components/Sort';
-import { RootState } from '@/stores';
+import { filterPriceOptions } from '@/constants/filterOptions';
+import { filterOptions } from '@/constants/filterOptions';
+import { RootState } from '@/stores/core/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelected } from '@/stores/filters/slice';
 import { useEffect, useState } from 'react';

@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import { fetchProductById } from '@/stores/products';
 import type { ProductCard as Product } from '@/types';
+import { RootState } from '@/stores/core/store';
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
-  const cachedProduct = useAppSelector((state) =>
-    state.product.items.find((p: any) => p.id === id),
+  const cachedProduct = useAppSelector((state:RootState) => state.products.items.find((p: any) => p.id === id),
+
   );
 
   const [product, setProduct] = useState<Product | null>(cachedProduct ?? null);

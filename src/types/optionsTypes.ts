@@ -1,3 +1,4 @@
+
 export type SortOptions = {
   label: string;
   value: string;
@@ -8,7 +9,10 @@ export type FilterOptions = {
   label: string;
   value: string;
   inStock?: null | number | string;
-  relatedOptions: FilterOptions[];
+  relatedOptions?: FilterOptions[];
+  order?:string;
+  filterKind?:string;
+  groupId?:number
 };
 
 export type Filters = {

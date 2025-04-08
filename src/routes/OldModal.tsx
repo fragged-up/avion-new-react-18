@@ -4,7 +4,7 @@ import { SortOptions } from '@/types/optionsTypes'; // types import
 import { sortOptions } from '@/constants/sortOptions'; // constants import
 import { filterOptions, filterPriceOptions } from '@/constants/filterOptions'; //constants import
 import Sort from '@/components/Sort'; //components import
-import { RootState } from '@/stores';
+import { RootState } from '@/stores/core/store';
 import Filter from '@/components/Filter'; //components import
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
 import outIcon from '@/assets/icons/outIcon.svg'; //icons imports

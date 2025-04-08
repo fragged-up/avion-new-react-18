@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import drsvg from '@/assets/icons/dropdown.svg';
 import { SortOptions } from '@/types/optionsTypes';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/stores';
+import { RootState } from '@/stores/core/store';
 
 import { toggleSort } from '@/stores/modal/slice';
 

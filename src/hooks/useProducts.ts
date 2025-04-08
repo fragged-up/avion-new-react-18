@@ -4,8 +4,11 @@ import { fetchFilteredProducts } from '@/stores/products/thunks';
 
 type Params = {
   category: string;
-  sort: string;
-  priceRanges: string[];
+  sort?: string;
+  priceRanges?: string[];
+  limit?:number |string
+  offset?:number | string;
+
 };
 
 export function useFilteredProducts() {

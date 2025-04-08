@@ -1,80 +1,53 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FilterOption, SortOption } from '@/types/filter';
-import { fetchFilters } from './thunks';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { filterProductsBy } from '@/services/api';
+import filterThunk from './thunks';
+// import { FilterOptions } from '@/types/optionsTypes';
 
 interface FilterState {
-  data: FilterOption[] | null;
+  data: any | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
+  error: string | null | any;
   category: string;
-  filterBy: FilterOption[];
-  selectedFilters: string[];
-  filterOps: FilterOption[];
-  sort: {
-    field: string;
-    order: 'asc' | 'desc';
-  };
+  filterBy?: null | any[] | [];
+  selectedFilters: any[];
+  filterOps: any[];
 }
-
 const initialState: FilterState = {
   data: null,
   status: 'idle',
   error: null,
   category: '',
   filterBy: [],
+
   selectedFilters: [],
   filterOps: [],
-  sort: {
-    field: 'createdAt',
-    order: 'desc',
-  },
 };
-
 const filterSlice = createSlice({
-  name: 'filters',
+  name: 'filtrSlice',
   initialState,
   reducers: {
-    setSelectedFilters: (state, action: PayloadAction<string[]>) => {
+    setSelected: (state, action: PayloadAction<string[]>) => {
       state.selectedFilters = action.payload;
     },
-    clearSelectedFilters: (state) => {
+    clearFilters: (state) => {
       state.selectedFilters = [];
     },
-    setCategory: (state, action: PayloadAction<string>) => {
-      state.category = action.payload;
-    },
-    setFilterBy: (state, action: PayloadAction<FilterOption[]>) => {
-      state.filterBy = action.payload;
-    },
-    setFilterOps: (state, action: PayloadAction<FilterOption[]>) => {
-      state.filterOps = action.payload;
-    },
-    setSort: (state, action: PayloadAction<{ field: string; order: 'asc' | 'desc' }>) => {
-      state.sort = action.payload;
-    },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchFilters.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchFilters.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.data = action.payload;
-        state.error = null;
-      })
-      .addCase(fetchFilters.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message ?? 'Unknown error';
-      });
+  extraReducers(builder) {
+    builder.addCase(filterThunk.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(filterThunk.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.data = action.payload;
+      state.error = null;
+    });
+    builder.addCase(filterThunk.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.status = 'failed';
+    });
   },
 });
 
-export const {
-  setSelectedFilters,
-  clearSelectedFilters,
-  setCategory,
-  setFilterBy,
-  setFilterOps,
-  setSort,
-} = filterSlice.actions;
+export const { setSelected, clearFilters } = filterSlice.actions;
+export default filterSlice.reducer;
