@@ -5,6 +5,8 @@ import menuIcon from '@/assets/icons/menuIcon.svg';
 import searchIcon from '@/assets/icons/searchIcon.svg';
 import userCart from '@/assets/icons/user-cart.svg';
 import userAvatar from '@/assets/icons/user-avatar.svg';
+import MobileHeader from './MobileHeader';
+import DesktopHeader from './DesktopHeader';
 
 export default function Header() {
   const [isMenu, setMenu] = useState(false);
@@ -24,111 +26,20 @@ export default function Header() {
   };
 
   return (
-    <div className={styles['wrapper']}>
-      <div className={styles['container']}>
-        <div className={styles['logo-container']}>
-          <Link to="/">
-            {' '}
-            <h1 className={styles['logo']}>Avion</h1>
-          </Link>
-        </div>
-
-        <div className={styles['icons-container']}>
-          <img src={searchIcon} alt="" className={styles['search-icon']} />
-
-          <img src={menuIcon} alt="" className={styles['menu-icon']} onClick={() => openMenu()} />
-        </div>
-
-        <div className={`${styles['opened-menu-c']} ${isMenu ? styles.menuVisible : ''}`}>
-          <div className={styles['opened-menu']}>
-            <div className={styles['x-c']} onClick={() => closeMenu()}>
-              <span className={styles['x-s']}>|</span>
-
-              <span className={styles['x-s']}>|</span>
-            </div>
-
-            <div className={styles['headline-c']}>
-              <Link to="/" className={styles['headline']} onClick={handleCloseMenu}>
-                Home
-              </Link>
-
-              <Link to="/About" className={styles['headline']} onClick={handleCloseMenu}>
-                About
-              </Link>
-
-              <Link to="/all" className={styles['headline']} onClick={handleCloseMenu}>
-                All
-              </Link>
-
-              <Link to="/old-products" className={styles['headline']} onClick={handleCloseMenu}>
-                Product-Id
-              </Link>
-
-              <Link to="/old" className={styles['headline']} onClick={handleCloseMenu}>
-                Old
-              </Link>
-              <Link to="/basket" className={styles['headline']} onClick={handleCloseMenu}>
-                Basket
-              </Link>
-              <Link to="/test" className={styles['headline']} onClick={handleCloseMenu}>
-                Test
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div className={styles['desktop-w']}>
-        <div className={styles['desktop-c']}>
-          <div className={styles['desk-search-c']}>
-            <img src={searchIcon} alt="" className={styles['desk-search-icon']} />
-          </div>
-
-          <div className={styles['desk-logo-c']}>
-           <Link to="/"> <h1 className={styles['desk-logo']}>Avion</h1></Link>
-          </div>
-
-          <div className={styles['desk-rest-icon-c']}>
-            <img src={userCart} alt="" className={styles['desk-user-icon']} />
-
-            <img src={userAvatar} alt="" className={styles['desk-avatar-icon']} />
-          </div>
-        </div>
-
-        <div className={styles['links-c']}>
-          <Link to="/" className={styles['link']} onClick={handleCloseMenu}>
-            Home
-          </Link>
-
-          <Link to="/About" className={styles['link']} onClick={handleCloseMenu}>
-            About
-          </Link>
-
-          <Link to="/all" className={styles['link']} onClick={handleCloseMenu}>
-            All
-          </Link>
-
-          <Link to="/old-products" className={styles['link']} onClick={handleCloseMenu}>
-            Product-Id
-          </Link>
-
-          <Link to="/old" className={styles['link']} onClick={handleCloseMenu}>
-            Old
-          </Link>
-          <Link to="/basket" className={styles['link']} onClick={handleCloseMenu}>
-          Basket
-          </Link>
-
-          <Link to="/test" className={styles['link']} onClick={handleCloseMenu}>
-            Test
-          </Link>
-        </div>
-      </div>
+    <div className="w-full bg-white">
+      <MobileHeader />
+      <DesktopHeader />
     </div>
   );
 }
+
+
+
+
+
+
+
+
 
 export function InHeader() {
   const [isMenu, setMenu] = useState(false);
