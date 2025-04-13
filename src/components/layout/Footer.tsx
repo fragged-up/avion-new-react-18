@@ -1,6 +1,6 @@
 import styles from '@/styles/css/HomeM.module.css';
-import UICredit from '@/sections/UICredit';
 import '@/styles/global.css';
+import UICredit from '@/sections/UICredit';
 
 export default function Footer() {
   return (

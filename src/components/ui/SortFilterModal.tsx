@@ -1,22 +1,22 @@
-import FilterSelect from '@/features/filters/FilterSelectNew';
 import { SortOptions } from '@/types/optionsTypes'; // types import
-import { sortOptions } from '@/constants/sortOptions';
-import Sort from '@/features/filters/Sort';
-import { filterPriceOptions } from '@/constants/filterOptions';
-import { filterOptions } from '@/constants/filterOptions';
+import { sortOptions } from '@/config/sortOptions';
+import { filterPriceOptions } from '@/config/filterOptions';
+import { filterOptions } from '@/config/filterOptions';
 import { RootState } from '@/stores/core/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelected } from '@/stores/filters/slice';
 import { useEffect, useState } from 'react';
-import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
-// import outIcon from '@/assets/icons/outIcon.svg';
-import chevronLeft from '@/assets/icons/chevronLeft.svg';
 import { toggleSelection } from '@/utils/updateFilter';
 import { clearFilters } from '@/stores/filters/slice';
-import closeIcon from '@/assets/icons/close-icon.svg';
 import { FilterOptions } from '@/types/optionsTypes';
-// import { selectIsModalOpen } from '@/features/modal/selectors';
+import FilterSelect from '@/features/filters/FilterSelectNew';
 import { openGlobalModal,openFilterFromModal,openSortFromModal} from '@/stores/modal/slice';
+import Sort from '@/features/filters/Sort';
+import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
+import chevronLeft from '@/assets/icons/chevronLeft.svg';
+import closeIcon from '@/assets/icons/close-icon.svg';
+// import outIcon from '@/assets/icons/outIcon.svg';
+// import { selectIsModalOpen } from '@/features/modal/selectors';
 
 
 
