@@ -1,9 +1,9 @@
-import ContentM from '../components/ContentM';
+import HomeSection from '@/sections/HomeSection';
 
 export default function Home() {
   return (
     <div>
-      <ContentM />
+      <HomeSection />
     </div>
   );
 }

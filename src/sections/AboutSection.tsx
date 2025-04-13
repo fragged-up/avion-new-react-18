@@ -1,8 +1,8 @@
-import styles from '../CSSModules/AboutSc.module.css';
-import imageSc from '../assets/images/Image-sc.svg';
-import srImage from '../assets/images/sr-image.svg';
+import styles from '@/CSSModules/AboutSc.module.css';
+import imageSc from '@/assets/images/Image-sc.svg';
+import srImage from '@/assets/images/sr-image.svg';
 
-function AboutSc() {
+export default function AboutSection() {
   return (
     <>
       <div className={styles['about-wrapper']}>
@@ -29,14 +29,14 @@ function AboutSc() {
             </div>
 
             <div className={styles['block-c']}>
-              <img src={imageSc} alt='' className={styles['sc-img']} />
+              <img src={imageSc} alt="" className={styles['sc-img']} />
             </div>
           </div>
 
           <div className={styles['semi-b-w']}>
             <div className={styles['semi-b-c']}>
               <div className={styles['sr-c']}>
-                <img src={srImage} alt='' className={styles['sr-img']} />
+                <img src={srImage} alt="" className={styles['sr-img']} />
               </div>
 
               <div className={styles['our-sr-c']}>
@@ -65,5 +65,3 @@ function AboutSc() {
     </>
   );
 }
-
-export default AboutSc;

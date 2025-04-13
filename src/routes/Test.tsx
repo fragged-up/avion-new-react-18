@@ -1,5 +1,5 @@
 import { useFilteredProducts } from "@/hooks/useProducts";
-import ProductCard from "@/components/new/ProductCard";
+import ProductCard from "@/features/products/ProductCard";
 
 export default function Test() {
   const { products, filtersMeta, fetch, loading } = useFilteredProducts();

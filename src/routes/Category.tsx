@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import SelectDropDown from '@/components/SelectDropDown';
-import SFModal from '@/components/modals/SFModal';
+import SelectDropDown from '@/components/ui/SelectDropDown';
+import SortFilterModal from '@/components/ui/SortFilterModal';
 import {ProductCardTypes} from '@/types/products';
 import { RootState } from '@/stores/core/store';
 import { useSelector } from 'react-redux';
@@ -61,7 +61,7 @@ export default function Category() {
     <>
       <div className="sort-and-filter-section w-full">
         <div className="w-[85%] flex items-center mx-auto gap-4 py-12">
-          <SFModal />
+          <SortFilterModal />
         </div>
       </div>
       <div className="flex justify-center">

@@ -1,20 +1,15 @@
 // import { useState } from "react";
 
-import styles from '@/CSSModules/ProductListMobile.module.css';
+import styles from '@/design/ProductListMobile.module.css';
 
 // Define the interface for product properties
 
 interface ProductProps {
   prImg: string;
-
   prTitle: string;
-
   prPrice: string | number;
-
   popularClass?: string;
-
   prDesc?: string;
-
   total?: number;
 }
 

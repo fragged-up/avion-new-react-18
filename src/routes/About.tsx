@@ -1,10 +1,10 @@
-import { AbHeader } from '../components/Header';
-import AboutSc from '../components/AboutSc';
+import { AbHeader } from '../components/layout/Header';
+import AboutSection from '@/sections/AboutSection';
 
 export default function About() {
   return (
     <div>
-      <AboutSc />
+      <AboutSection />
     </div>
   );
 }

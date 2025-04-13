@@ -36,7 +36,7 @@ import sofa from '@/assets/images/Large.svg';
 
 // import { NavLink } from "react-router-dom";
 
-function ContentM() {
+export default function HomeSection() {
   return (
     <div className={styles['wrapper-mobile']}>
       <div className={styles['container']}>
@@ -419,7 +419,6 @@ function ContentM() {
   );
 }
 
-export default ContentM;
 
 // import React, { useEffect, useState } from 'react';
 

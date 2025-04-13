@@ -1,4 +1,4 @@
-import { ProductCatalog, DeskCatalog } from "./ProductListMobile";
+import { ProductCatalog, DeskCatalog } from "../components/Mobile/ProductListMobile";
 import styles from "@/CSSModules/AllProducts.module.css";
 import dr from "@/assets/images/cart-down.svg";
 import lucyCatalog from "@/assets/images/lucy-catalog.svg";
@@ -14,7 +14,7 @@ import dVase from "@/assets/deskProduct/VASE.svg";
 import dSm from "@/assets/deskProduct/SMALLCHR.svg";
 import dOrangeLucy from "@/assets/deskProduct/ORANGELUCY.svg";
 
-function ContentPr() {
+export default function MainSection() {
   return (
     <>
       <div className={styles["Ap-s-wrapper"]}>
@@ -169,4 +169,3 @@ function ContentPr() {
   );
 }
 
-export default ContentPr;

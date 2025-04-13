@@ -1,9 +1,9 @@
-import ContentPr from '@/components/Mobile/ContentPr';
+import MainSection from '@/sections/MainSection';
 
 export default function Sort() {
   return (
     <div className=''>
-      <ContentPr />
+      <MainSection />
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import styles from '@/CSSModules/HomeM.module.css';
-import UICredit from './UICredit';
+import styles from '@/design/HomeM.module.css';
+import UICredit from '@/sections/UICredit';
 import '@/styles/global.css';
 
 export default function Footer() {

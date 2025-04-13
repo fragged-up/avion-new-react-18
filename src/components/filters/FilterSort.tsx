@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SelectDropDown from '@/components/SelectDropDown';
+import SelectDropDown from '@/components/ui/SelectDropDown';
 
 export interface FilterSortProps {
   onApplyFiltersAndSort: (filters: any) => void;

@@ -1,9 +1,9 @@
-import ContentPr from '../components/Mobile/ContentPr';
+import MainSection from '../sections/MainSection';
 
 export default function Listing() {
   return (
     <div>
-      <ContentPr />
+      <MainSection />
     </div>
   );
 }

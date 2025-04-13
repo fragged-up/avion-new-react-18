@@ -16,13 +16,13 @@ import { clearFilters } from '@/stores/filters/slice';
 import closeIcon from '@/assets/icons/close-icon.svg';
 import { FilterOptions } from '@/types/optionsTypes';
 // import { selectIsModalOpen } from '@/features/modal/selectors';
-import {
-  openGlobalModal,
-  openFilterFromModal,
-  openSortFromModal,
-} from '@/stores/modal/slice';
+import { openGlobalModal,openFilterFromModal,openSortFromModal} from '@/stores/modal/slice';
 
-const SFModal = () => {
+
+
+
+
+const SortFilterModal = () => {
   const dispatch = useDispatch();
 
   const apis = [filterPriceOptions, filterOptions, filterOptions];
@@ -99,8 +99,7 @@ const SFModal = () => {
         <div className="inline-flex justify-start items-center">
           <button
             onClick={handleOpenModal}
-            className="bg-slate-100 px-3 flex justify-start items-center font-satoshi text-lg text-nowrap py-3"
-          >
+            className="bg-slate-100 px-3 flex justify-start items-center font-satoshi text-lg text-nowrap py-3">
             All Filters
             <img src={fsIcon} alt="all-filters" className="w-6 h-6 mx-4" />
           </button>
@@ -109,14 +108,12 @@ const SFModal = () => {
         <div className="flex justify-end items-end w-full gap-4">
           <button
             onClick={handleSortFromModal}
-            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap"
-          >
+            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
             <p>Sort By</p>
           </button>
           <button
             onClick={handleFilterFromModal}
-            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap"
-          >
+            className="p-3 bg-slate-100 font-satoshi text-lg text-nowrap">
             <p>Filter By</p>
           </button>
         </div>
@@ -127,8 +124,8 @@ const SFModal = () => {
             <div
               key={index}
               onClick={() => handleRemoved(value)}
-              className="px-4 py-3 bg-gray-200 flex selected-filter-border items-center"
-            >
+              className="px-4 py-3 bg-gray-200 flex selected-filter-border items-center">
+
               <p className="font-medium text-sm">{value}</p>
               <img className="w-4 h-4 ml-2" src={closeIcon} alt="close-icon" />
             </div>
@@ -136,8 +133,7 @@ const SFModal = () => {
         {selectedFilters.length > 0 && (
           <div
             onClick={clearSelection}
-            className="ml-4 bg-gray-100 px-4 py-3 selected-filter-border !border-none "
-          >
+            className="ml-4 bg-gray-100 px-4 py-3 selected-filter-border !border-none">
             Clear All
           </div>
         )}
@@ -151,8 +147,8 @@ const SFModal = () => {
               <Sort
                 sortingOptions={sortOptions}
                 currSelection={sortSelection}
-                onChange={handleSortChange}
-              />
+                onChange={handleSortChange} />
+
               {apis.map((filtersGroups, index) => (
                 <div key={index} className="bg-white py-12 w-full">
                   <FilterSelect filterOptions={filtersGroups} />
@@ -163,16 +159,15 @@ const SFModal = () => {
             <div className="flex flex-col items-center justify-center gap-4">
               <button
                 onClick={handleOpenModal}
-                className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white"
-              >
+                className="w-full rounded-xl bg-black px-2 py-3 font-satoshi text-base text-white" >
+
                 {`Show Results ${resultNumbers !== null ? resultNumbers : ''}`}
               </button>
 
               <button
                 // @ts-ignore
                 // this option currently not exist .. onClick={() => handleCleanUp()}
-                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white ${resultNumbers !== null ? 'bg-gray-400' : 'bg-gray-100'}`}
-              >
+                className={`w-full rounded-xl px-2 py-3 font-satoshi text-base text-white ${resultNumbers !== null ? 'bg-gray-400' : 'bg-gray-100'}`}>
                 Clear All
               </button>
             </div>
@@ -191,4 +186,4 @@ const SFModal = () => {
   );
 };
 
-export default SFModal;
+export default SortFilterModal;

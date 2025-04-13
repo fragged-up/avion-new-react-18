@@ -5,7 +5,7 @@ import { sortOptions } from '@/constants/sortOptions'; // constants import
 import { filterOptions, filterPriceOptions } from '@/constants/filterOptions'; //constants import
 import Sort from '@/components/Sort'; //components import
 import { RootState } from '@/stores/core/store';
-import Filter from '@/components/Filter'; //components import
+import Filter from '@/components/filters/Filter'; //components import
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
 import outIcon from '@/assets/icons/outIcon.svg'; //icons imports
 import { setSelected } from '@/stores/filters/slice';

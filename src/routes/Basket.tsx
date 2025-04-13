@@ -1,4 +1,4 @@
-import ShoppingCart from '../components/ShoppingCart';
+import ShoppingCart from '../features/cart/ShoppingCart';
 
 export default function Basket() {
   return (

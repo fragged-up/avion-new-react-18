@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { ProductDetails as ProductIdProps } from '@/types';
-import WhatsMake from '@/components/WhatsMake';
+import WhatsMake from '@/sections/WhatsMake';
 import ProductDetails from '@/routes/ProductDetails';
-import RecommendedProducts from '@/components/RecommendedProducts';
+import RecommendedProducts from '@/features/products/RecommendedProducts';
 
 export default function Products() {
   const url = `http://localhost:5001/products`;
