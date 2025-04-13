@@ -25,7 +25,7 @@
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*", "src/.eslintrc.ts"],
+  "include": ["src/**/*", "src/.eslintrc.ts", "pfr/unkown/NF-uk.tsx", "pfr/unkown/SelectNF-uk.tsx"],
   "exclude": ["node_modules", "Remainders/**", "node:sqlite"]
 }
 

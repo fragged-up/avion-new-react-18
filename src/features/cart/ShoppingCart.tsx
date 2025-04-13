@@ -6,7 +6,7 @@ import pr2 from '@/assets/images/shop-image2.svg';
 // import { ProductCart, CheckOutM,} from "../ProductList/mobile/ProductListMobile";
 // import { useContext } from "react";
 // import { ProductDetails } from "./ContentM";
-import { ProductCart, CheckOutM } from '@/components/Mobile/ProductListMobile';
+import { ProductCart, CheckOutM } from '@/features/products/ProductListMobile';
 
 // type productCard = {
 //   prImg: string;

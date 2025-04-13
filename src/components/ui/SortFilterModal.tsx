@@ -1,7 +1,7 @@
-import FilterSelect from '@/components/new/FilterSelect';
+import FilterSelect from '@/features/filters/FilterSelectNew';
 import { SortOptions } from '@/types/optionsTypes'; // types import
 import { sortOptions } from '@/constants/sortOptions';
-import Sort from '@/components/Sort';
+import Sort from '@/features/filters/Sort';
 import { filterPriceOptions } from '@/constants/filterOptions';
 import { filterOptions } from '@/constants/filterOptions';
 import { RootState } from '@/stores/core/store';

@@ -1,6 +1,6 @@
-import { ProductListMobile } from '@/components/Mobile/ProductListMobile';
-import { OurPopularM } from '@/components/Mobile/ProductListMobile';
-import { ProductListDesktop } from '@/components/Mobile/ProductListMobile';
+import { ProductListMobile } from '@/features/products/ProductListMobile';
+import { OurPopularM } from '@/features/products/ProductListMobile';
+import { ProductListDesktop } from '@/features/products/ProductListMobile';
 import { NavLink } from 'react-router-dom';
 import styles from '@/CSSModules/Content-m.module.css';
 import checkMark from '@/assets/icons/checkMark.svg';

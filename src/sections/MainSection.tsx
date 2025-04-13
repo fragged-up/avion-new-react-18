@@ -1,4 +1,4 @@
-import { ProductCatalog, DeskCatalog } from "../components/Mobile/ProductListMobile";
+import { ProductCatalog, DeskCatalog } from "../features/products/ProductListMobile";
 import styles from "@/CSSModules/AllProducts.module.css";
 import dr from "@/assets/images/cart-down.svg";
 import lucyCatalog from "@/assets/images/lucy-catalog.svg";

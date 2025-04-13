@@ -1,4 +1,4 @@
-import { Inspect as InspectPage } from "../components/InProduct";
+import { Inspect as InspectPage } from "@/features/products/InProduct";
 
 export default function Inspect() {
   return (
