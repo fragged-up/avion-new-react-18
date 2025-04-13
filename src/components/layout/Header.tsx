@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '@/CSSModules/HomeM.module.css';
+import styles from '@/styles/css/HomeM.module.css';
 import menuIcon from '@/assets/icons/menuIcon.svg';
 import searchIcon from '@/assets/icons/searchIcon.svg';
 import userCart from '@/assets/icons/user-cart.svg';

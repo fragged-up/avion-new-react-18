@@ -1,5 +1,5 @@
 // import styles from "/@/ShoppingCart.module.css";
-import styles from '@/CSSModules/ShoppingCart.module.css';
+import styles from '@/styles/css/ShoppingCart.module.css';
 import pr1 from '@/assets/images/shop-image-1.svg';
 import pr2 from '@/assets/images/shop-image2.svg';
 

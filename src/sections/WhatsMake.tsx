@@ -1,8 +1,8 @@
-import checkMark from '../assets/icons/checkMark.svg';
-import recycleIcon from '../assets/icons/recycleIcon.svg';
-import purchaseIcon from '../assets/icons/purchaseIcon.svg';
-import transitDelivery from '../assets/icons/transitDelivery.svg';
-import JoinTheClub from './JoinTheClub';
+import checkMark from '@/assets/icons/checkMark.svg';
+import recycleIcon from '@/assets/icons/recycleIcon.svg';
+import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
+import transitDelivery from '@/assets/icons/transitDelivery.svg';
+import JoinTheClub from '@/sections/JoinTheClub';
 
 const items = [
   {

@@ -1,6 +1,6 @@
 // import { useState } from "react";
 
-import styles from '@/design/ProductListMobile.module.css';
+import styles from '@/styles/css/ProductListMobile.module.css';
 
 // Define the interface for product properties
 

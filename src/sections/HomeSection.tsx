@@ -2,7 +2,7 @@ import { ProductListMobile } from '@/features/products/ProductListMobile';
 import { OurPopularM } from '@/features/products/ProductListMobile';
 import { ProductListDesktop } from '@/features/products/ProductListMobile';
 import { NavLink } from 'react-router-dom';
-import styles from '@/CSSModules/Content-m.module.css';
+import styles from '@/styles/css/Content-m.module.css';
 import checkMark from '@/assets/icons/checkMark.svg';
 import recycleIcon from '@/assets/icons/recycleIcon.svg';
 import purchaseIcon from '@/assets/icons/purchaseIcon.svg';

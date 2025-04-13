@@ -1,4 +1,4 @@
-import styles from '@/CSSModules/AboutSc.module.css';
+import styles from '@/styles/css/AboutSc.module.css';
 import imageSc from '@/assets/images/Image-sc.svg';
 import srImage from '@/assets/images/sr-image.svg';
 

@@ -1,8 +1,8 @@
-import styles from '@/CSSModules/Content-m.module.css';
-import checkMark from '../assets/icons/checkMark.svg';
-import recycleIcon from '../assets/icons/recycleIcon.svg';
-import purchaseIcon from '../assets/icons/purchaseIcon.svg';
-import transitDelivery from '../assets/icons/transitDelivery.svg';
+import styles from '@/styles/css/Content-m.module.css';
+import checkMark from '@/assets/icons/checkMark.svg';
+import recycleIcon from '@/assets/icons/recycleIcon.svg';
+import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
+import transitDelivery from '@/assets/icons/transitDelivery.svg';
 
 export default function Unique() {
   return (

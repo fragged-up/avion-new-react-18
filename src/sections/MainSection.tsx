@@ -1,5 +1,5 @@
-import { ProductCatalog, DeskCatalog } from "../features/products/ProductListMobile";
-import styles from "@/CSSModules/AllProducts.module.css";
+import { ProductCatalog, DeskCatalog } from "@/features/products/ProductListMobile";
+import styles from "@/styles/css/AllProducts.module.css";
 import dr from "@/assets/images/cart-down.svg";
 import lucyCatalog from "@/assets/images/lucy-catalog.svg";
 import silkyCatalog from "@/assets/images/silky-catalog.svg";

@@ -1,4 +1,4 @@
-import styles from '@/design/HomeM.module.css';
+import styles from '@/styles/css/HomeM.module.css';
 import UICredit from '@/sections/UICredit';
 import '@/styles/global.css';
 

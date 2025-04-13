@@ -1,4 +1,3 @@
-import React from 'react';
 
 const UICredit: React.FC = () => {
   return (
@@ -11,7 +10,7 @@ const UICredit: React.FC = () => {
         rel="noopener noreferrer"
         className="underline hover:text-gray-700"
       >
-        JustUX
+         JustUX
       </a>
       —
       <a
