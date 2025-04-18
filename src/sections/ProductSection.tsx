@@ -14,7 +14,7 @@ import dVase from "@/assets/deskProduct/VASE.svg";
 import dSm from "@/assets/deskProduct/SMALLCHR.svg";
 import dOrangeLucy from "@/assets/deskProduct/ORANGELUCY.svg";
 
-export default function MainSection() {
+export default function ProductSection() {
   return (
     <>
       <div className={styles["Ap-s-wrapper"]}>
@@ -80,6 +80,7 @@ export default function MainSection() {
           </div>
         </div>
       </div>
+      {/* End of "Ap-s-wrapper" */}
 
       <div className={styles["desk-ap-w"]}>
         <div className={styles["desk-ap-c"]}>

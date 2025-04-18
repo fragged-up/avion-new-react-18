@@ -6,9 +6,8 @@ import About from "@/routes/About";
 import Products from "@/routes/Products";
 import ProductDetails from "@/routes/ProductDetails";
 import Category from "@/routes/Category";
-import Listing from "@/routes/Listing";
+import OldPrd from "@/routes/OldPrd";
 import Basket from "@/routes/Basket";
-import Sort from "@/routes/Sort";
 import Test from "@/routes/Test";
 import NotFound from "@/routes/NotFound";
 
@@ -18,15 +17,16 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "all", element: <Sort /> },
+      { path: "all", element: <Products /> },
       { path: "about", element: <About /> },
-      { path: "products", element: <Products /> },
-      { path: "listing", element: <Listing /> },
       { path: "products/:id", element: <ProductDetails /> },
       { path: ":category", element: <Category /> },
-      { path: "old-products", element: <ProductOverview /> },
-      { path: "basket", element: <Basket /> },
       { path: "test", element: <Test /> },
+
+
+      { path: "old-products", element: <ProductOverview /> },
+      { path: "oldPrD", element: <OldPrd /> },
+      { path: "basket", element: <Basket /> },
       { path: "*", element: <NotFound /> },
     ],
   },
