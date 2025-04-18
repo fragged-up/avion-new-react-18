@@ -26,7 +26,7 @@ export default function Header() {
   };
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-black">
       <MobileHeader />
       <DesktopHeader />
     </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import searchIcon from '@/assets/searchIcon.svg';
-import menuIcon from '@/assets/menuIcon.svg';
+import searchIcon from '@/assets/icons/searchIcon.svg';
+import menuIcon from '@/assets/icons/menuIcon.svg';
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -32,18 +32,15 @@ export default function MobileHeader() {
         <img src={menuIcon} alt="menu-icon" className="w-full" onClick={toggleMenu} />
       </div>
 
-      <div
-        className={`
-          fixed top-0 right-0 h-full overflow-hidden z-[1]
-          bg-[#2a254b] text-white flex flex-col items-end gap-4
+      <div className={` fixed top-0 right-0 h-full overflow-hidden z-[1]  bg-[#2a254b] text-white flex flex-col items-end gap-4
           transition-all duration-500 ease-out delay-300
           ${isMenuOpen ? 'w-full opacity-100 visible block' : 'w-0 opacity-0 invisible hidden'}
-        `}
-      >
+        `}>
+
         <div
           className="relative w-full left-[22px] top-[14px] cursor-pointer"
-          onClick={handleCloseMenu}
-        >
+          onClick={handleCloseMenu}>
+
           <span className="absolute top-0 block">|</span>
           <span className="absolute top-0 block">|</span>
         </div>
@@ -54,8 +51,7 @@ export default function MobileHeader() {
               key={to}
               to={to}
               onClick={handleCloseMenu}
-              className="font-clash font-normal text-[1.7em]"
-            >
+              className="font-clash font-normal text-[1.7em]">
               {label}
             </Link>
           ))}

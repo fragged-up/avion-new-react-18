@@ -33,7 +33,7 @@ export default function Products() {
   return (
     <div className="w-full bg-white">
       <div className="w-full">
-        <ProductDetails  />
+        <ProductDetails />
       </div>
 
       {allProducts.length > 0 && (

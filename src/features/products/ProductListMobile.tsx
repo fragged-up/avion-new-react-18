@@ -1,9 +1,4 @@
-// import { useState } from "react";
-
 import styles from '@/styles/css/ProductListMobile.module.css';
-
-// Define the interface for product properties
-
 interface ProductProps {
   prImg: string;
   prTitle: string;
@@ -92,16 +87,11 @@ function ProductCart({ prImg, prTitle, prDesc, prPrice }: ProductProps) {
 
       <div className={styles['product-text-c']}>
         <h2 className={styles['product-cart-title']}>{prTitle}</h2>
-
         <p className={styles['product-cart-desc']}>{prDesc}</p>
-
         <p className={styles['product-cart-price']}>{'£' + prPrice}</p>
-
         <div className={styles['product-quantity-c']}>
           <button className={styles['product-quantity-subtract']}>-</button>
-
           <h2 className={styles['product-number']}>1</h2>
-
           <button className={styles['product-quantity-add']}>+</button>
         </div>
       </div>
@@ -116,12 +106,9 @@ function CheckOutM({ total }: { total: number | string }) {
     <div className={styles['checkout-w']}>
       <div className={styles['checkout-c']}>
         <h1 className={styles['sub-total']}>Subtotal</h1>
-
         <span className={styles['summary']}>£{total}</span>
       </div>
-
       <p className={styles['sb-note']}>Taxes and shipping are calculated at checkout</p>
-
       <div className={styles['go-to-checkout-c']}>
         <button className={styles['go-to-checkout-button']}>Go to Checkout</button>
       </div>
@@ -137,9 +124,7 @@ function DeskCatalog({ prImg, prTitle, prPrice }: ProductProps) {
       <div className={styles['img-wrapper']}>
         <img src={prImg} alt='' className={styles['deskpr-img']} />
       </div>
-
       <h2 className={styles['deskpr-title']}>{prTitle}</h2>
-
       <h2 className={styles['deskpr-price']}>£{prPrice}</h2>
     </div>
   );

@@ -15,7 +15,8 @@ type ProductInformationProps = {
   dcDepth: string;
 };
 
-function DcText({
+//change to productid-section-right name instead of dctext
+function ProductDetails({
   dcTitle,
   dcPrice,
   dcT,
@@ -99,11 +100,10 @@ function DcText({
   );
 }
 
-function Inspect() {
+function ProductOverview() {
   const titleValue = 'The Dandy Chair';
+  const dctValue = 'A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.';
 
-  const dctValue =
-    'A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.';
 
   return (
     <>
@@ -112,7 +112,7 @@ function Inspect() {
           <img src={inspectImage} alt="" className={styles['inspect-img']} />
         </div>
 
-        <DcText
+        <ProductDetails
           dcTitle={titleValue}
           dcPrice={'250'}
           dcT={dctValue}
@@ -136,7 +136,7 @@ function Inspect() {
           </div>
 
           <div className={styles['desk-inspect-right-side']}>
-            <DcText
+            <ProductDetails
               dcTitle={titleValue}
               dcPrice={'250'}
               dcT={dctValue}
@@ -177,4 +177,4 @@ function Inspect() {
   );
 }
 
-export { Inspect, DcText };
+export { ProductOverview, ProductDetails };
