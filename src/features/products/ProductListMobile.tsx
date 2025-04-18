@@ -8,11 +8,23 @@ interface ProductProps {
   total?: number;
 }
 
+interface ProductListProps {
+  image:string | any;
+  title:string;
+  price:number;
+  popularClass?:string;
+}
+
+interface PopularProps{
+  image:string | any
+  title:string
+  price:number
+}
+
 // Mobile Product List component
 
 function ProductListMobile({ prImg, prTitle, prPrice }: ProductProps) {
   // const [isClicked, setIsClicked] = useState<false | true>(false);
-
   return (
     <div className={styles['product-w']}>
       <div className={styles['product-c']}>
@@ -28,34 +40,30 @@ function ProductListMobile({ prImg, prTitle, prPrice }: ProductProps) {
 
 // Desktop Product List component
 
-function ProductListDesktop({ prImg, prTitle, prPrice, popularClass }: ProductProps) {
+function ProductListDesktop({ image, title, price, popularClass }: ProductListProps) {
   const imgClasses = `${styles['desk-product-img']} ${popularClass ? popularClass : ''}`;
 
   return (
     <div className={styles['product-w']}>
       <div className={styles['product-c']}>
-        <img src={prImg} alt='' className={imgClasses} />
+        <img src={image} alt='product-image' className={imgClasses} />
       </div>
-
-      <h2 className={styles['product-title']}>{prTitle}</h2>
-
-      <h2 className={styles['product-price']}>{prPrice}</h2>
+      <h2 className={styles['product-title']}>{title}</h2>
+      <h2 className={styles['product-price']}>£{price}</h2>
     </div>
   );
 }
 
 // Popular Product component
 
-function OurPopularM({ prImg, prTitle, prPrice }: ProductProps) {
+function OurPopularM({ image, title, price }: PopularProps) {
   return (
     <div className={styles['popular-w']}>
       <div className={styles['popular-c']}>
-        <img src={prImg} alt='' className={styles['our-img']} />
+        <img src={image} alt='' className={styles['our-img']} />
       </div>
-
-      <h2 className={styles['popular-title']}>{prTitle}</h2>
-
-      <h2 className={styles['popular-price']}>{prPrice}</h2>
+      <h2 className={styles['popular-title']}>{title}</h2>
+      <h2 className={styles['popular-price']}>£{price}</h2>
     </div>
   );
 }
@@ -70,7 +78,6 @@ function ProductCatalog({ prImg, prTitle, prPrice }: ProductProps) {
       </div>
 
       <h2 className={styles['catalog-title']}>{prTitle}</h2>
-
       <h2 className={styles['catalog-price']}>{prPrice}</h2>
     </div>
   );

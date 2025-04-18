@@ -1,8 +1,8 @@
+import type { ProductCard as Product } from '@/types';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import { fetchProductById } from '@/stores/products';
-import type { ProductCard as Product } from '@/types';
 import { RootState } from '@/stores/core/store';
 
 export default function ProductDetails() {

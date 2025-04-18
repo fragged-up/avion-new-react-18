@@ -1,29 +1,16 @@
+import { NavLink } from 'react-router-dom';
 import { ProductListMobile } from '@/features/products/ProductListMobile';
 import { OurPopularM } from '@/features/products/ProductListMobile';
 import { ProductListDesktop } from '@/features/products/ProductListMobile';
-import { NavLink } from 'react-router-dom';
+import { CatalogAPI as CatalogDeskAPI } from '@/services/api/base';
+import { OurPopAPI } from '@/services/api/base';
+import { RasticImage, DandyImage, SilkyImage, SpaImage, DarkDandyImage, SofaImage, TransitIcon, CheckmarkIcon, PurchaseIcon, RecycleIcon, DandyChairImage, LucyLampImage} from '@/icons';
 import styles from '@/styles/css/Content-m.module.css';
-import checkMark from '@/assets/icons/checkMark.svg';
-import recycleIcon from '@/assets/icons/recycleIcon.svg';
-import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
-import transitDelivery from '@/assets/icons/transitDelivery.svg';
-import Rastic from '@/assets/images/RasticVasset.svg';
-import LucyLamp from '@/assets/images/LucyLamp.svg';
-import dandy from '@/assets/images/DandyChair.svg';
-import silkyVase from '@/assets/images/SilkyVase.svg';
-import popularRastic from '@/assets/images/popular-rustic.svg';
-import popularLucy from '@/assets/images/popular-lucylamp.svg';
-import spa from '@/assets/images/spa-image.svg';
-import dandyDesktop from '@/assets/images/dandy-desktop.svg';
-import lucyDesktop from '@/assets/images/lucy-desktop.svg';
-import rusticDesktop from '@/assets/images/rustic-desktop.svg';
-import silkyDesktop from '@/assets/images/silky-desktop.svg';
-import darkDandy from '@/assets/images/darkDandy.svg';
-import sofa from '@/assets/images/Large.svg';
+
 
 export default function Home() {
   return (
-    <div className='bg-black'>
+    <div className="bg-black/60">
       <div className={styles['wrapper-mobile']}>
         <div className={styles['container']}>
           <div className={styles['head-cont']}>
@@ -44,7 +31,7 @@ export default function Home() {
             </NavLink>
           </div>
         </div>
-
+           {/* Desktop */}
         <div className={styles['desk-w']}>
           <div className={styles['desk-c']}>
             <div className={styles['desk-hero']}>
@@ -78,40 +65,32 @@ export default function Home() {
 
               <div className={styles['desk-ct-w']}>
                 <div className={styles['desk-ct-1']}>
-                  <img src={transitDelivery} alt="" className={styles['desk-ct-1-ic']} />
-
+                  <img src={TransitIcon} alt="" className={styles['desk-ct-1-ic']} />
                   <h2 className={styles['desk-ct-1-sb']}>Next day as standard</h2>
-
                   <p className={styles['desk-ct-1-pr']}>
                     Order before 3pm and get your order the next day as standard
                   </p>
                 </div>
 
                 <div className={styles['desk-ct-1']}>
-                  <img src={checkMark} alt="" className={styles['desk-ct-1-ic']} />
-
+                  <img src={CheckmarkIcon} alt="" className={styles['desk-ct-1-ic']} />
                   <h2 className={styles['desk-ct-1-sb']}>Made by true artisans</h2>
-
                   <p className={styles['desk-ct-1-pr']}>
                     Handmade crafted goods made with real passion and craftmanship
                   </p>
                 </div>
 
                 <div className={styles['desk-ct-1']}>
-                  <img src={purchaseIcon} alt="" className={styles['desk-ct-1-ic']} />
-
+                  <img src={PurchaseIcon} alt="" className={styles['desk-ct-1-ic']} />
                   <h2 className={styles['desk-ct-1-sb']}>Unbeatable prices</h2>
-
                   <p className={styles['desk-ct-1-pr']}>
                     For our materials and quality you won’t find better prices anywhere
                   </p>
                 </div>
 
                 <div className={styles['desk-ct-1']}>
-                  <img src={recycleIcon} alt="" className={styles['desk-ct-1-ic']} />
-
+                  <img src={RecycleIcon} alt="" className={styles['desk-ct-1-ic']} />
                   <h2 className={styles['desk-ct-1-sb']}>Recycled packaging</h2>
-
                   <p className={styles['desk-ct-1-pr']}>
                     We use 100% recycled packaging to ensure our footprint is manageable
                   </p>
@@ -126,29 +105,9 @@ export default function Home() {
 
               <div className={styles['desk-ct-2-products-main-c']}>
                 <div className={styles['desk-ct-2-products-sub-c']}>
-                  <ProductListDesktop
-                    prImg={dandyDesktop}
-                    prTitle={'The Dandy Chair'}
-                    prPrice={'£250'}
-                  />
-
-                  <ProductListDesktop
-                    prImg={rusticDesktop}
-                    prTitle={'Rustic Vase Set'}
-                    prPrice={'£155'}
-                  />
-
-                  <ProductListDesktop
-                    prImg={silkyDesktop}
-                    prTitle={'The Silky Vase'}
-                    prPrice={'£125'}
-                  />
-
-                  <ProductListDesktop
-                    prImg={lucyDesktop}
-                    prTitle={'The Lucy Lamp'}
-                    prPrice={'£399'}
-                  />
+                  {CatalogDeskAPI.map((product) => (
+                    <ProductListDesktop key={product.id} {...product} />
+                  ))}
                 </div>
               </div>
 
@@ -166,15 +125,15 @@ export default function Home() {
 
               <div className={styles['desk-our-popular-products-c']}>
                 <div className={styles['desk-ct-3-products-sx']}>
-                  <OurPopularM prImg={sofa} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
+                  <OurPopularM image={SofaImage} title={'The Lucy Lamp'} price={399} />
                 </div>
 
                 <div className={styles['desk-ct-3-products-sx']}>
-                  <OurPopularM prImg={dandyDesktop} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
+                  <OurPopularM image={DandyChairImage} title={'Rustic Vase Set'} price={155} />
                 </div>
 
                 <div className={styles['desk-ct-3-products-sx']}>
-                  <OurPopularM prImg={darkDandy} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
+                  <OurPopularM image={DarkDandyImage} title={'Rustic Vase Set'} price={155} />
                 </div>
               </div>
 
@@ -200,7 +159,6 @@ export default function Home() {
                     className={styles['desk-join-in']}
                     placeholder="your@email.com"
                   />
-
                   <button className={styles['desk-join-button']}>Sign Up</button>
                 </div>
               </div>
@@ -240,7 +198,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+          {/* End of Desktop */}
         <div className={styles['section-wrapper']}>
           <div className={styles['section-content-1']}>
             <div className={styles['head-block-1-container']}>
@@ -250,40 +208,32 @@ export default function Home() {
             </div>
 
             <div className={styles['ct-1']}>
-              <img src={transitDelivery} alt="" className={styles['ct-1-ic']} />
-
+              <img src={TransitIcon} alt="" className={styles['ct-1-ic']} />
               <h2 className={styles['ct-1-sb']}>Next day as standard</h2>
-
               <p className={styles['ct-1-pr']}>
                 Order before 3pm and get your order the next day as standard
               </p>
             </div>
 
             <div className={styles['ct-1']}>
-              <img src={checkMark} alt="" className={styles['ct-1-ic']} />
-
+              <img src={CheckmarkIcon} alt="" className={styles['ct-1-ic']} />
               <h2 className={styles['ct-1-sb']}>Made by true artisans</h2>
-
               <p className={styles['ct-1-pr']}>
                 Handmade crafted goods made with real passion and craftmanship
               </p>
             </div>
 
             <div className={styles['ct-1']}>
-              <img src={purchaseIcon} alt="" className={styles['ct-1-ic']} />
-
+              <img src={PurchaseIcon} alt="" className={styles['ct-1-ic']} />
               <h2 className={styles['ct-1-sb']}>Unbeatable prices</h2>
-
               <p className={styles['ct-1-pr']}>
                 For our materials and quality you won’t find better prices anywhere
               </p>
             </div>
 
             <div className={styles['ct-1']}>
-              <img src={recycleIcon} alt="" className={styles['ct-1-ic']} />
-
+              <img src={RecycleIcon} alt="" className={styles['ct-1-ic']} />
               <h2 className={styles['ct-1-sb']}>Recycled packaging</h2>
-
               <p className={styles['ct-1-pr']}>
                 We use 100% recycled packaging to ensure our footprint is manageable
               </p>
@@ -297,15 +247,25 @@ export default function Home() {
 
             <div className={styles['ct-2-products-main-c']}>
               <div className={styles['ct-2-products-sub-c']}>
-                <ProductListMobile prImg={Rastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-
-                <ProductListMobile prImg={LucyLamp} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
+                <ProductListMobile
+                  prImg={RasticImage}
+                  prTitle={'Rustic Vase Set'}
+                  prPrice={'£155'}
+                />
+                <ProductListMobile
+                  prImg={LucyLampImage}
+                  prTitle={'The Lucy Lamp'}
+                  prPrice={'£399'}
+                />
               </div>
 
               <div className={styles['ct-2-products-sub-c']}>
-                <ProductListMobile prImg={silkyVase} prTitle={'The Silky Vase'} prPrice={'£125'} />
-
-                <ProductListMobile prImg={dandy} prTitle={'The Dandy Chair'} prPrice={'£250'} />
+                <ProductListMobile prImg={SilkyImage} prTitle={'The Silky Vase'} prPrice={'£125'} />
+                <ProductListMobile
+                  prImg={DandyImage}
+                  prTitle={'The Dandy Chair'}
+                  prPrice={'£250'}
+                />
               </div>
             </div>
 
@@ -321,34 +281,9 @@ export default function Home() {
 
             <div className={styles['our-popular-products-c']}>
               <div className={styles['ct-3-products-sx']}>
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
-                <OurPopularM prImg={popularLucy} prTitle={'The Lucy Lamp'} prPrice={'£399'} />
-                <OurPopularM prImg={popularRastic} prTitle={'Rustic Vase Set'} prPrice={'£155'} />
+                {OurPopAPI.map((popular) => (
+                  <OurPopularM key={popular.id} {...popular} />
+                ))}
               </div>
             </div>
 
@@ -397,12 +332,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+            {/* Only Mobile Section here Sofa */}
         <div className={styles['spa-c']}>
-          <img src={spa} alt="" className={styles['spa-img']} />
+          <img src={SpaImage} alt="spa-image" className={styles['spa-img']} />
         </div>
       </div>
     </div>
   );
 }
-
