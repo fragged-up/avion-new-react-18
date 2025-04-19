@@ -1,3 +1,5 @@
+import { AvatarIcon } from "@/icons";
+
 type AvatarProps = {
   src?: string;
   alt?: string;
@@ -5,13 +7,13 @@ type AvatarProps = {
 };
 
 const sizeMap = {
-  sm: 'w-8 h-8',
+  sm: 'w-5 h-5',
   md: 'w-10 h-10',
   lg: 'w-14 h-14',
 };
 
-export const Avatar = ({ src, alt = 'User', size = 'md' }: AvatarProps) => {
-  const imageSrc = src || '/anonymous.jpg';
+export const AvatarBadge = ({ src, alt = 'User', size = 'sm' }: AvatarProps) => {
+  const imageSrc = src || AvatarIcon;
   const sizeClasses = sizeMap[size];
 
   return (

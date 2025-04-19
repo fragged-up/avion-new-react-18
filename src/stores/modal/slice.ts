@@ -5,6 +5,7 @@ interface TriggerState {
   isSortOpen: boolean;
   isFilterOpen: null | boolean;
   resultsNumber: null | number;
+  isMenuOpen:boolean;
 }
 
 const initialState: TriggerState = {
@@ -12,12 +13,20 @@ const initialState: TriggerState = {
   isSortOpen: false,
   isFilterOpen: null,
   resultsNumber: 0,
+  isMenuOpen:false
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
+    openMenu: (state: TriggerState) => {
+      state.isMenuOpen = true
+    },
+    closeMenu: (state: TriggerState) => {
+      state.isMenuOpen = false
+    },
+
     openGlobalModal: (state: TriggerState, action) => {
       state.isOpen = action.payload;
     },
@@ -44,7 +53,11 @@ export const {
   openGlobalModal,
   toggleSort,
   toggleFilter,
+  openMenu,
+  closeMenu,
   openSortFromModal,
   openFilterFromModal,
 } = modalSlice.actions;
+
+
 export default modalSlice.reducer;
