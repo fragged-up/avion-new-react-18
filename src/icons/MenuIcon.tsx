@@ -1,11 +1,11 @@
 import MenuModal from '@/components/ui/MenuModal';
 import { MenuBadgeIcon } from '.';
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/stores/core/store';
+import { useSelector } from 'react-redux'
 import { openMenu, selectIsMenuOpen } from '@/stores/modal';
+import { useAppDispatch } from '@/stores/core/hooks';
 
 export default function MenuIcon() {
- const dispatch = useDispatch()
+ const dispatch = useAppDispatch()
  const isMenuOpen = useSelector(selectIsMenuOpen)
 
   const handleOpenMenu = () => {
@@ -13,9 +13,12 @@ export default function MenuIcon() {
   }
 
   return (
-    <div onClick={handleOpenMenu} className="cursor-pointer">
-      <img src={MenuBadgeIcon} className="w-4 h-4" alt="menu-icon" />
+    <div className="cursor-pointer">
+      <img src={MenuBadgeIcon} className="w-4 h-4 cursor-pointer" alt="menu-icon" onClick={handleOpenMenu}  />
+      <div>
       {isMenuOpen && <MenuModal />}
+      </div>
+
     </div>
   )
 }

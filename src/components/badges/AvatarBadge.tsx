@@ -20,7 +20,7 @@ export const AvatarBadge = ({ src, alt = 'User', size = 'sm' }: AvatarProps) => 
     <img
       src={imageSrc}
       alt={alt}
-      className={`rounded-full object-cover ${sizeClasses}`}
+      className={`cursor-pointer rounded-full object-cover ${sizeClasses}`}
     />
   );
 };
