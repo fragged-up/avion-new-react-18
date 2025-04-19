@@ -2,6 +2,7 @@ import styles from '@/styles/css/ShoppingCart.module.css';
 import pr1 from '@/assets/images/shop-image-1.svg';
 import pr2 from '@/assets/images/shop-image2.svg';
 import { ProductCart, CheckOutM } from '@/features/products/ProductListMobile';
+import CartItem from './CartItem';
 
 export default function ShoppingCart() {
   const desc1 = `A timeless ceramic vase with a tri color grey glaze.`;
@@ -19,6 +20,9 @@ export default function ShoppingCart() {
 
       <div className={styles['shopping-cart-c']}>
         <ProductCart prImg={pr2} prTitle={'Graystone vase'} prDesc={desc2} prPrice={'85'} />
+      </div>
+      <div>
+        <CartItem image={pr2} title={'Graystone Vase'} description={desc2} price={85} />
       </div>
 
       <div className={styles['shopping-cart-s']}>

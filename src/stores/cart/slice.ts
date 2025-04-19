@@ -1,6 +1,5 @@
-// src/stores/cart/slice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { CartItem, CartState } from '@/types/cart';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loadCartFromLocalStorage } from './thunks';
 
 const initialState: CartState = {
