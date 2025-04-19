@@ -28,6 +28,7 @@ export default function Header() {
   return (
     <div className="w-full">
       <MobileHeader />
+      {/* <Avatar src={user?.profileImage} size="lg" /> */}
       <DesktopHeader />
     </div>
   );
