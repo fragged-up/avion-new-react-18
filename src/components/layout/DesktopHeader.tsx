@@ -33,7 +33,7 @@ export default function DesktopHeader() {
   return (
     <div className="">
       <div className="w-full block">
-        <div className="w-[95%] bg-black mx-auto flex justify-between py-4 border-b border-[hsl(0,0%,80%)]">
+        <div className="w-[95%] bg-white mx-auto flex justify-between py-4 border-b border-[hsl(0,0%,80%)]">
           <div className="flex">
             <img src={searchIcon} alt="" className="w-full" />
           </div>
