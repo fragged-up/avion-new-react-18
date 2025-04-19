@@ -3,7 +3,7 @@ const UICredit: React.FC = () => {
   return (
     <footer className="w-full text-center text-sm text-gray-500 py-4">
       <h1>Copyright 2022 Avion LTD</h1>
-      UI Design by
+      UI Design by{' '}
       <a
         href="https://www.figma.com/@justux"
         target="_blank"
@@ -12,7 +12,9 @@ const UICredit: React.FC = () => {
       >
          JustUX
       </a>
+      {' '}
       —
+      {' '}
       <a
         href="https://creativecommons.org/licenses/by/4.0/"
         target="_blank"

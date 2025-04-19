@@ -386,22 +386,22 @@
 }
 
 .footer-join-in {
-  max-height: 43px;
+ height: 100%;
   width: 70%;
   background-color: #4e4d93;
-  padding-block: 1.1em;
+  padding-block: 1.1rem;
   border-radius: 0;
   color: white;
+  padding-left: 1em;
 }
 
 .footer-join-in-::placeholder {
   padding-block: 1em;
-  padding-inline: 1.5em;
+
   color: white;
 }
 
 .footer-join-button {
-  max-height: 43px;
   width: 30%;
   background-color: white;
   color: #2a254b;
@@ -575,10 +575,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: start;
+    max-height: 43px;
   }
 
   .desk-footer-join-in {
-    max-height: 43px;
+    height:100%;
     background-color: #4e4d93;
     padding-inline: 3.8rem;
     padding-block: 1.1em;
@@ -597,15 +598,17 @@
   }
 
   .desk-footer-join-button {
-    max-height: 43px;
-    padding: 1em 2em;
+    height:100%;
+    width: 100%;
+    padding-inline:1.5em;
     background-color: white;
     color: #2a254b;
     cursor: pointer;
     font-family: var(--font-satoshi-family);
     font-weight: var(--font-wght-regular);
-    text-align: start;
+    text-align: center;
     text-wrap: nowrap;
+    outline:none;
   }
 
   .desk-copyright-c {

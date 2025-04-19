@@ -1,9 +1,9 @@
-import SearchIcon from "@/icons/SearchIcon";
+import SearchIcon from '@/icons/SearchIcon';
 
 export default function SearchBadge() {
   return (
-      <div className="">
-    <SearchIcon />
-      </div>
+    <div className="cursor-pointer">
+      <SearchIcon />
+    </div>
   );
 }
