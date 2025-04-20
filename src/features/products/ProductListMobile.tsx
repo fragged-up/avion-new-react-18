@@ -16,9 +16,14 @@ interface ProductListProps {
 }
 
 interface PopularProps{
-  image:string | any
-  title:string
-  price:number
+  image:string | any;
+  title:string;
+  price:number;
+}
+interface CatalogProps {
+  image:string | any;
+  title:string;
+  price:number;
 }
 
 // Mobile Product List component
@@ -125,15 +130,15 @@ function CheckOutM({ total }: { total: number | string }) {
 
 // Desktop Catalog component
 
-function DeskCatalog({ prImg, prTitle, prPrice }: ProductProps) {
+function DeskCatalog({ image, title, price }: CatalogProps) {
   return (
-    <div className={styles['deskpr-c']}>
-      <div className={styles['img-wrapper']}>
-        <img src={prImg} alt='' className={styles['deskpr-img']} />
+      <div className='flex flex-col justify-start items-start gap-[16px] max-w-[375px]'>
+        <div className='flex'>
+          <img src={image} alt='catalog-image' className='w-full h-full' />
+        </div>
+        <h2 className='font-satoshi text-[1.3em] font-light'>{title}</h2>
+        <h2 className='font-satoshi text-[1.3em] font-extralight'>{`£ ${price}`}</h2>
       </div>
-      <h2 className={styles['deskpr-title']}>{prTitle}</h2>
-      <h2 className={styles['deskpr-price']}>£{prPrice}</h2>
-    </div>
   );
 }
 
