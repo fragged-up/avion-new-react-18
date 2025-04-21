@@ -7,9 +7,9 @@ import Products from "@/routes/Products";
 import ProductDetails from "@/routes/ProductDetails";
 import Category from "@/routes/Category";
 import OldPrd from "@/routes/OldPrd";
-import Basket from "@/routes/Basket";
 import Test from "@/routes/Test";
 import NotFound from "@/routes/NotFound";
+
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +26,6 @@ export const router = createBrowserRouter([
 
       { path: "old-products", element: <ProductOverview /> },
       { path: "oldPrD", element: <OldPrd /> },
-      { path: "basket", element: <Basket /> },
       { path: "*", element: <NotFound /> },
     ],
   },

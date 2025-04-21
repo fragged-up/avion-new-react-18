@@ -5,6 +5,7 @@ export const selectCartTotal = (state: RootState) => state.cart.items.reduce((to
 export const selectCartCount = (state: RootState) => state.cart.items.reduce((count, item) => count + item.quantity, 0);
 export const isProductInCart = (id: string) => (state: RootState) =>  state.cart.items.some(item => item.id === id);
 
+export const selectIsCartOpen = (state: RootState) => state.cart.isCartOpen;
 /*
 usage in comp :
 const total = useAppSelector(selectCartTotal);

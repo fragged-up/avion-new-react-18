@@ -5,9 +5,16 @@ import { CartBadge, AvatarBadge } from '@/components/badges';
 
 import LogoIcon from '@/icons/LogoIcon';
 import SearchIcon from '@/icons/SearchIcon';
+import CartScreen from "@/features/cart/CartScreen";
+import { toggleCart, selectIsCartOpen } from  '@/stores/cart';
+import { useAppSelector, useAppDispatch } from '@/stores/core/hooks';
+
+
+
 
 export default function DesktopHeader() {
-
+  const dispatch = useAppDispatch();
+  const isCartOpen = useAppSelector(selectIsCartOpen);
   return (
       <div className="w-full">
 
@@ -20,7 +27,7 @@ export default function DesktopHeader() {
            </div>
 
           <div className="flex justify-between items-center gap-[20px]">
-            <CartBadge />
+          <CartBadge onClick={() => dispatch(toggleCart())} />
             <AvatarBadge />
           </div>
         </div>

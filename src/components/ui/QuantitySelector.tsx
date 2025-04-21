@@ -9,7 +9,7 @@ type QuantityProps = {
 
 export default function QuantitySelector({ quantity, onIncrease, onDecrease }: QuantityProps) {
   return (
-    <div className="bg-[#f9f9f9] flex justify-center items-center gap-[30px] px-5 py-1.5 border-black">
+    <div className="bg-[#f9f9f9] flex justify-center items-center gap-[30px] px-5 py-[5px] border-black">
       <button onClick={onDecrease} className="text-[#ebe8f4] bg-transparent appearance-none">-</button>
       <h2 className="font-satoshi">{quantity}</h2>
       <button  onClick={onIncrease} className="text-[#ebe8f4] bg-transparent appearance-none">+</button>
