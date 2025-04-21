@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { ProductDetails as ProductIdProps } from '@/types';
 import WhatsMake from '@/sections/WhatsMake';
-import ProductDetails from '@/routes/ProductDetails';
+import ProductDetails from '@/features/products/ProductDetails';
 import RecommendedProducts from '@/features/products/RecommendedProducts';
 
 export default function Products() {

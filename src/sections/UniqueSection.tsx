@@ -4,7 +4,7 @@ import recycleIcon from '@/assets/icons/recycleIcon.svg';
 import purchaseIcon from '@/assets/icons/purchaseIcon.svg';
 import transitDelivery from '@/assets/icons/transitDelivery.svg';
 
-export default function Unique() {
+export default function UniqueSection() {
   return (
     <>
       <div className={styles['unique-w']}>
