@@ -28,48 +28,40 @@ function ProductDetails({
   dcDepth,
 }: ProductInformationProps) {
   return (
-    <div className={styles['dc-w']}>
-      <div className={styles['dc-c']}>
-        <div className={styles['dc-main-head-c']}>
-          <h1 className={styles['dc-main-head']}>{dcTitle}</h1>
-
-          <h1 className={styles['dc-price']}>£{dcPrice}</h1>
+    <div className=''>
+      <div className='flex flex-col justify-start items-start px-[1.5em] py-[2em] gap-[0.6em]'>
+        <div className='flex flex-col justify-start items-start gap-[1em]'>
+          <h1 className='text-[1em] font-clash font-normal'>{dcTitle}</h1>
+          <h1 className='text-[1.2em] font-clash font-normal'>{`£ ${dcPrice}`}</h1>
         </div>
 
-        <div className={styles['dc-sub-title-c']}>
-          <h2 className={styles['dc-sub-title']}>Product description</h2>
-
-          <p className={styles['dc-text']}>{dcT}</p>
-
-          <ul className={styles['dc-grants']}>
-            <li className={styles['dc-grants-li']}>{dcG1}</li>
-
-            <li className={styles['dc-grants-li']}>{dcG2}</li>
-
-            <li className={styles['dc-grants-li']}>{dcG3}</li>
+        <div className='flex flex-col justify-start items-start gap-4 py-[1.5em]'>
+          <h2 className='text-[1em] font-clash font-normal'>Product description</h2>
+          <p className='text-[1em] font-regular font-clash'>{dcT}</p>
+          <ul className='pl-[2em]'>
+            <li className='list-disc font-clash text-[0.9em]'>{dcG1}</li>
+            <li className='list-disc font-clash text-[0.9em]'>{dcG2}</li>
+            <li className='list-disc font-clash text-[0.9em]'>{dcG3}</li>
           </ul>
         </div>
 
-        <div className={styles['dc-dimensions-c']}>
-          <h1 className={styles['dc-dimensions-head']}>Dimensions</h1>
+        <div className='w-full flex flex-col justify-start items-start gap-4'>
+          <h1 className='text-[1em] font-clash font-normal'>Dimensions</h1>
 
-          <div className={styles['dimensions-container']}>
-            <div className={styles['dim-child']}>
-              <p className={styles['dc-d-h']}>Height</p>
-
-              <p className={styles['dc-d-v']}>{dcHeight}cm</p>
+          <div className='w-full flex justify-start items-start'>
+            <div className='w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em]'>
+              <p className='text-center text-[1em] font-clash font-normal'>Height</p>
+              <p className='font-satoshi text-[0.8em] text-center font-normal'>{dcHeight}cm</p>
             </div>
 
-            <div className={styles['dim-child-2']}>
-              <p className={styles['dc-d-h']}>Width</p>
-
-              <p className={styles['dc-d-v']}>{dcWidth}cm</p>
+            <div className='w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em] border-l border-[#ebe8f4] pl-[0.5em]'>
+              <p className='text-center text-[1em] font-clash font-normal'>Width</p>
+              <p className='font-satoshi text-[0.8em] text-center font-normal'>{dcWidth}cm</p>
             </div>
 
-            <div className={styles['dim-child-3']}>
-              <p className={styles['dc-d-h']}>Depth</p>
-
-              <p className={styles['dc-d-v']}>{dcDepth}cm</p>
+            <div className='w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em] border-l border-[#ebe8f4] pl-[0.5em]'>
+              <p className='text-center text-[1em] font-clash font-normal'>Depth</p>
+              <p className='font-satoshi text-[0.8em] text-center font-normal'>{dcDepth}cm</p>
             </div>
           </div>
         </div>
@@ -81,14 +73,12 @@ function ProductDetails({
 
           <div className={styles['quantity-m-c']}>
             <button className={styles['quantity-subtract']}>-</button>
-
             <h2 className={styles['quantity-number']}>1</h2>
-
             <button className={styles['quantity-add']}>+</button>
           </div>
 
-          <div className={styles['add-to-cart-c']}>
-            <button className={styles['add-to-cart-button']}>Add to cart</button>
+          <div className=''>
+            <button className='bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]'>Add to cart</button>
           </div>
         </div>
 
@@ -104,12 +94,12 @@ function ProductOverview() {
   const titleValue = 'The Dandy Chair';
   const dctValue = 'A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.';
 
-
   return (
     <>
-      <div className={styles['inspect-w']}>
-        <div className={styles['inspect-c']}>
-          <img src={inspectImage} alt="" className={styles['inspect-img']} />
+    {/* Mobile */}
+      <div className='md:none'>
+        <div className='flex'>
+          <img src={inspectImage} alt="product-image" className='w-full h-full' />
         </div>
 
         <ProductDetails
@@ -129,13 +119,13 @@ function ProductOverview() {
         <Unique />
       </div>
 
-      <div className={styles['desk-inspect-w']}>
-        <div className={styles['desk-inspect-c']}>
-          <div className={styles['desk-inspect-left-side']}>
-            <div className={styles['desk-inspect-logo']}></div>
+      <div className='hidden md:block'>
+        <div className='md:w-full md:flex'>
+          <div className='w-2/4'>
+          <div className="h-full bg-[url('/src/assets/images/Inspect-image.svg')] bg-cover bg-no-repeat bg-center" />
           </div>
 
-          <div className={styles['desk-inspect-right-side']}>
+          <div className='h-[100%] w-2/4'>
             <ProductDetails
               dcTitle={titleValue}
               dcPrice={'250'}
@@ -154,21 +144,20 @@ function ProductOverview() {
 
         <Unique />
 
-        <div className={styles['desk-content-4']}>
-          <div className={styles['desk-w-4']}>
-            <div className={styles['desk-join-c']}>
-              <h4 className={styles['desk-join-sb']}>Join the club and get the benefits</h4>
+        <div className='bg-[#f9f9f9] flex justify-center items-center gap-[2em] p-[3em]'>
+          <div className='bg-white py-[3em] px-[8em] flex flex-col justify-center items-center'>
+            <div className='flex w-[80%] flex-col justify-center items-start gap-[1em]'>
+              <h4 className='text-[1.6em] font-clash font-normal text-nowrap text-center self-center'>Join the club and get the benefits</h4>
 
-              <p className={styles['desk-join-pr']}>
+              <p className='text-[0.7em] font-satoshi font-normal text-center pb-[2em]'>
                 Sign up for our newsletter and receive exclusive offers on new ranges, sales, pop up
                 stores and more
               </p>
             </div>
 
-            <div className={styles['desk-join-in-c']}>
-              <input type="text" className={styles['desk-join-in']} placeholder="your@email.com" />
-
-              <button className={styles['desk-join-button']}>Sign Up</button>
+            <div className='w-full pt-[3em] pb-[1em] flex justify-center items-center'>
+              <input type="text" className='bg-[#f9f9f9] py-[1em] px-[1.5em] placeholder:py-[1em] placeholder:px-[1.5em]' placeholder="your@email.com" />
+              <div><button className='w-full bg-[#2a254b] text-white font-satoshi font-normal py-[1em] px-[2em] cursor-pointer'>Sign Up</button></div>
             </div>
           </div>
         </div>

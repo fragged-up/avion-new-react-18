@@ -8,6 +8,7 @@ import dRustic from '@/assets/deskProduct/RUSTIC.svg';
 import dSilky from '@/assets/deskProduct/SILKY.svg';
 import dLucy from '@/assets/deskProduct/LUCY.svg';
 import dDandy from '@/assets/deskProduct/DANDY.svg';
+import { Link } from 'react-router-dom';
 
 function CatalogDataContainer() {
   return (
@@ -51,9 +52,11 @@ function CatalogDataContainer() {
           <ProductCatalog prImg={dDandy} prTitle={'The Dandy chair'} prPrice={'£250'} />
         </div>
 
-        <div className={styles['desk-view-btn-c']}>
-          <button className={styles['desk-view-btn']}>View Collection</button>
-        </div>
+        <Link to="/products">
+          <div className={styles['desk-view-btn-c']}>
+            <button className={styles['desk-view-btn']}>View Collection</button>
+          </div>
+        </Link>
       </div>
     </>
   );

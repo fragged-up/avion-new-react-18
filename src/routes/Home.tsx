@@ -6,6 +6,7 @@ import { CatalogAPI as CatalogDeskAPI } from '@/services/api/base';
 import { OurPopAPI } from '@/services/api/base';
 import { RasticImage, DandyImage, SilkyImage, SpaImage, DarkDandyImage, SofaImage, TransitIcon, CheckmarkIcon, PurchaseIcon, RecycleIcon, DandyChairImage, LucyLampImage} from '@/icons';
 import styles from '@/styles/css/Content-m.module.css';
+import { Link } from 'react-router-dom';
 
 
 export default function Home() {
@@ -26,7 +27,7 @@ export default function Home() {
               modern web technologies.
             </p>
 
-            <NavLink to="/chairs">
+            <NavLink to="/products">
               <button className={styles['view-collection-button']}>View Collection</button>
             </NavLink>
           </div>
@@ -41,7 +42,7 @@ export default function Home() {
                   <br /> future, with timeless designs
                 </h1>
 
-                <NavLink to="/chairs">
+                <NavLink to="/products">
                   <button className={styles['desk-view-collection-button']}>View Collection</button>
                 </NavLink>
                 <br />
@@ -112,7 +113,7 @@ export default function Home() {
               </div>
 
               <div className={styles['desk-ct-2-btn-c']}>
-                <NavLink to="/ceramics">
+                <NavLink to="/products">
                   <button className={styles['desk-ct-2-button']}>View Collection</button>
                 </NavLink>
               </div>
@@ -137,9 +138,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={styles['desk-ct-2-btn-c']}>
-                <button className={styles['desk-ct-2-button']}>View Collection</button>
-              </div>
+             <Link to="/products" className='cursor-pointer'>
+                <div className={styles['desk-ct-2-btn-c']}>
+                  <button className={styles['desk-ct-2-button']}>View Collection</button>
+                </div>
+             </Link>
             </div>
 
             <div className={styles['desk-content-4']}>
@@ -287,9 +290,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className={styles['ct-2-btn-c']}>
+            <Link to="/products" className={styles['ct-2-btn-c']}>
               <button className={styles['ct-2-button']}>View Collection</button>
-            </div>
+            </Link>
           </div>
 
           <div className={styles['section-content-4']}>
