@@ -95,12 +95,15 @@
 //   );
 // }
 
-import styles from '@/styles/css/Inspect.module.css';
 import inspectImage from '@/assets/images/Inspect-image.svg';
 import CatalogDataContainer from '@/features/products/CatalogData';
 import Unique from '@/sections/UniqueSection';
+import QuantitySelector from '@/components/ui/QuantitySelector';
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
+import { addToCart, decreaseQty, increaseQty, selectProductQuantity } from '@/stores/cart';
 
 type ProductId = {
+  id: number;
   title: string;
   price: string;
   description: string;
@@ -116,20 +119,38 @@ type ProductId = {
   };
 };
 
-
-
 type ProductDetailsProps = {
   product: ProductId;
 };
 
- const ProductDetails = ({ product }: ProductDetailsProps) =>{
-
+const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { title, price, description, features, dimensions } = product;
   const { height, width, depth } = dimensions;
+
+  const dispatch = useAppDispatch();
+  const handleIncrease = () => {
+    dispatch(increaseQty(product.id)); // You can update the quantity in the store
+  };
+
+  const handleDecrease = () => {
+    dispatch(decreaseQty(product.id)); // You can update the quantity in the store
+  };
+  const quantity = useAppSelector((state) =>
+    selectProductQuantity(state, product.id)
+  );
+
+  const handleAddToCart = (product:any) => {
+    dispatch(addToCart(product.id));
+  };
+
   return (
     <div className="flex flex-col md:flex-row">
       <div className="flex md:w-2/4">
-        <img src={inspectImage} alt="product-image" className="w-full h-full object-cover cursor-pointer" />
+        <img
+          src={inspectImage}
+          alt="product-image"
+          className="w-full h-full object-cover cursor-pointer"
+        />
       </div>
 
       <div className="flex flex-col md:w-2/4  justify-start items-start px-[1.5em] py-[2em] gap-[0.6em]">
@@ -169,17 +190,16 @@ type ProductDetailsProps = {
           </div>
         </div>
 
-        <div className={styles['quantity-c']}>
-          <div className={styles['quantity-head-c']}>
-            <h2 className={styles['quantity-sb']}>Quantity</h2>
+        <div className="w-full flex flex-col gap-[1.5em] py-[1.5em]">
+          <div className="">
+            <h2 className="font-clash text-[1em]">Quantity</h2>
           </div>
 
-          <div className={styles['quantity-m-c']}>
-            <button className={styles['quantity-subtract']}>-</button>
-            <h2 className={styles['quantity-number']}>1</h2>
-            <button className={styles['quantity-add']}>+</button>
+          <div className="bg-[#f9f9f9] flex justify-center items-center gap-[30px] px-5 py-[5px] border-black">
+           <button onClick={()=>handleDecrease} className="text-[#ebe8f4] bg-transparent appearance-none">-</button>
+           <h2 className="font-satoshi">{quantity}</h2>
+           <button onClick={()=>handleIncrease} className="text-[#ebe8f4] bg-transparent appearance-none">+</button>
           </div>
-
           <div className="w-full">
             <button className="w-full bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]">
               Add to cart
@@ -195,4 +215,16 @@ type ProductDetailsProps = {
   );
 };
 
-export default ProductDetails
+export default ProductDetails;
+
+{
+  /* <QuantitySelector
+:product-id="props.selectedProduct.id"
+:quantity="cartStore.cartItems.find(item => item.id === selectedProduct.id)?.quantity ?? 1"
+:addQuantity="increaseQuantity"
+:removeQuantity="decreaseQuantity"
+:add-class="'px-6 md:text-start'"
+/> */
+}
+
+

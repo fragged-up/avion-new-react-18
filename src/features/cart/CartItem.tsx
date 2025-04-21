@@ -1,26 +1,15 @@
 import QuantitySelector from '@/components/ui/QuantitySelector';
+import type { CartItem as CartItemT } from '@/types/cart';
 
 type CartItemProps = {
-  id: string;
-  image: string;
-  title: string;
-  description: string;
-  price: number;
-  quantity: number;
-  onIncrease: (id: string) => void;
-  onDecrease: (id: string) => void;
+  cartItem:CartItemT
+  onIncrease: (id: number) => void;
+  onDecrease: (id: number) => void;
 };
 
-export default function CartItem({
-  id,
-  image,
-  title,
-  description,
-  price,
-  quantity,
-  onIncrease,
-  onDecrease,
-}: CartItemProps) {
+export default function CartItem({cartItem,onIncrease,onDecrease}: CartItemProps) {
+  const { id, image, title, description, price, quantity } = cartItem;
+
   return (
     <div className="flex justify-start items-start gap-2.5 pr-5">
       <div className="flex">
@@ -33,6 +22,7 @@ export default function CartItem({
         <p className="text-[0.8em] font-satoshi font-thin">{`£ ${price}`}</p>
 
         <QuantitySelector
+          item={cartItem}
           quantity={quantity}
           onIncrease={() => onIncrease(id)}
           onDecrease={() => onDecrease(id)}

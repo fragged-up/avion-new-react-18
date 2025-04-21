@@ -5,6 +5,7 @@ import type { FiltersMeta, Product, ProductsState } from "@/types/products";
 const initialState: ProductsState = {
   items: [],
   products: [],
+  selectedProduct: null,
   filtersMeta: null,
   loading: false,
   error: null,
@@ -13,7 +14,28 @@ const initialState: ProductsState = {
 export const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedProduct(state, action: PayloadAction<Product | null>) {
+      state.selectedProduct = action.payload;
+    },
+
+    //   setSelectedProduct = (id: number) => {
+    //   if (!products|| products.length === 0) {
+    //     console.log('Products not loaded yet!')
+    //     return
+    //   }
+    //   const findId = products.value.find((p) => p.id === id) || null
+
+    //   if (!findId) {
+    //     console.log('Product Not Found for ID:', id)
+    //   } else {
+    //     selectedProduct.value = findId
+    //     console.log('Selected Product:', selectedProduct.value)
+    //   }
+    // }
+
+
+  },
 
   extraReducers: (builder) => {
     // FetchProducts
@@ -59,5 +81,5 @@ export const productsSlice = createSlice({
       });
   },
 });
-
+export const {  setSelectedProduct } = productsSlice.actions;
 export default productsSlice.reducer;

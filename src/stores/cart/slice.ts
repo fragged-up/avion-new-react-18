@@ -1,9 +1,10 @@
 import type { CartItem, CartState } from '@/types/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loadCartFromLocalStorage } from './thunks';
 
 const initialState: CartState = {
-  items: [],
+  cartItems: [],
+  cartTotalQuantity:0,
+  cartTotalAmount:0,
   isCartOpen: false,
 };
 
@@ -20,49 +21,52 @@ const slice = createSlice({
     closeCart: (state) => {
       state.isCartOpen = false;
     },
-    addItem(state, action: PayloadAction<CartItem>) {
-      const existing = state.items.find((i) => i.id === action.payload.id);
+    clearCart(state) {
+      state.cartItems = [];
+    },
+
+
+    addToCart(state, action: PayloadAction<CartItem>) {
+      const existing = state.cartItems.find((i) => i.id === action.payload.id);
       if (existing) {
         existing.quantity += action.payload.quantity;
       } else {
-        state.items.push(action.payload);
+        const cartItem = {...action.payload, quantity:1}
+        state.cartItems.push(cartItem);
       }
     },
-    removeItem(state, action: PayloadAction<string>) {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+
+    removeItem(state, action: PayloadAction<CartItem["id"]>) {
+      state.cartItems = state.cartItems.filter((item) => item.id !== action.payload);
     },
-    updateQuantity(state, action: PayloadAction<{ id: string; quantity: number }>) {
-      const item = state.items.find((i) => i.id === action.payload.id);
+
+
+
+    increaseQty: (state,action: PayloadAction<CartItem["id"]>) => {
+      const item = state.cartItems.find((item) => item.id === action.payload);
       if (item) {
-        item.quantity = action.payload.quantity;
+        item.quantity++;
       }
     },
-    clearCart(state) {
-      state.items = [];
-    },
-    addOrToggleItem(state, action: PayloadAction<CartItem>) {
-      const existing = state.items.find((i) => i.id === action.payload.id);
-      if (existing) {
-        state.items = state.items.filter((i) => i.id !== action.payload.id);
-      } else {
-        state.items.push(action.payload);
+
+    decreaseQty: (state, action: PayloadAction<CartItem["id"]>) => {
+      const item = state.cartItems.find((item) => item.id === action.payload);
+      if (item && item.quantity > 1) {
+        item.quantity--;
       }
     },
+
   },
-  extraReducers: (builder) => {
-    builder.addCase(loadCartFromLocalStorage.fulfilled, (state, action) => {
-      state.items = action.payload;
-    });
-  },
+
 });
 
 export const {
-  addItem,
+  addToCart,
   removeItem,
-  updateQuantity,
   clearCart,
-  addOrToggleItem,
 
+  increaseQty,
+  decreaseQty,
   closeCart,
   openCart,
   toggleCart,
@@ -70,3 +74,10 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
+
+// import { loadCartFromLocalStorage } from './thunks';
+// extraReducers: (builder) => {
+//   builder.addCase(loadCartFromLocalStorage.fulfilled, (state, action) => {
+//     state.items = action.payload;
+//   });
+// },

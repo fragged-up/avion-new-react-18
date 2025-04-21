@@ -90,6 +90,7 @@ export type FiltersMeta = {
 
 export type ProductsState = {
   items: any[];
+  selectedProduct:null | any[] | any;
   products: Product[];
   filtersMeta: FiltersMeta | null;
   loading: boolean;

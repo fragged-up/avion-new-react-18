@@ -1,13 +1,16 @@
 
 export type CartItem = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   quantity: number;
+  description:string;
   image?: string;
 };
 
 export type CartState = {
-  items: CartItem[];
+  cartItems: CartItem[];
   isCartOpen: boolean;
+  cartTotalQuantity:number
+  cartTotalAmount:number
 };
