@@ -2,6 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { QueryParams } from "@/types/products";
 import axios from "axios";
 
+const backendAPI=`https://avm-back-production.up.railway.app`
+
+console.log(" backendAPI:", backendAPI)
+
 export const fetchFilteredProducts = createAsyncThunk(
   "products/fetchFilteredProducts",
   async (params: QueryParams, thunkAPI) => {
@@ -12,7 +16,7 @@ export const fetchFilteredProducts = createAsyncThunk(
       if (params.priceRanges) {
         params.priceRanges.forEach((range) => query.append("priceRanges", range));
       }
-      const res = await axios.get(`http://localhost:5001/products?${query.toString()}`);
+      const res = await axios.get(`${backendAPI}/products?${query.toString()}`);
       return res.data;
     } catch (err: any) {
       return thunkAPI.rejectWithValue(err.response?.data || "Fetch error");

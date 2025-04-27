@@ -1,5 +1,5 @@
 export type Product = {
-  id: number;
+  _id: string;
   name?: string;
   slug?: string;
   productImage?: string;
@@ -28,7 +28,6 @@ export type Product = {
     descTwo?: string;
     descThree?: string;
   };
-
   productDimensions?: {
     height?: string;
     weight?: string;

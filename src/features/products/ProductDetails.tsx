@@ -102,42 +102,28 @@ import QuantitySelector from '@/components/ui/QuantitySelector';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import { addToCart, decreaseQty, increaseQty, selectProductQuantity } from '@/stores/cart';
 
-type ProductId = {
-  id: number;
-  title: string;
-  price: string;
-  description: string;
-  features: {
-    material: string;
-    craftsmanship: string;
-    quality: string;
-  };
-  dimensions: {
-    height: string;
-    width: string;
-    depth: string;
-  };
-};
+import type { Product } from '@/types';
+
+
 
 type ProductDetailsProps = {
-  product: ProductId;
+  product: Product;
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { title, price, description, features, dimensions } = product;
-  const { height, width, depth } = dimensions;
+  const { productTitle, productPrice, } = product;
 
   const dispatch = useAppDispatch();
   const handleIncrease = () => {
-    dispatch(increaseQty(product.id)); // You can update the quantity in the store
+    // dispatch(increaseQty(product.id));
   };
 
   const handleDecrease = () => {
-    dispatch(decreaseQty(product.id)); // You can update the quantity in the store
   };
-  const quantity = useAppSelector((state) =>
-    selectProductQuantity(state, product.id)
-  );
+    // dispatch(decreaseQty(product.id));
+  // const quantity = useAppSelector((state) =>
+  //   selectProductQuantity(state, product.id)
+  // );
 
   const handleAddToCart = (product:any) => {
     dispatch(addToCart(product.id));
@@ -155,17 +141,17 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 
       <div className="flex flex-col md:w-2/4  justify-start items-start px-[1.5em] py-[2em] gap-[0.6em]">
         <div className="flex flex-col justify-start items-start gap-[1em]">
-          <h1 className="text-[1em] font-clash font-normal">{title}</h1>
-          <h1 className="text-[1.2em] font-clash font-normal">{`£ ${price}`}</h1>
+          <h1 className="text-[1em] font-clash font-normal">{productTitle}</h1>
+          <h1 className="text-[1.2em] font-clash font-normal">{`£ ${productPrice}`}</h1>
         </div>
 
         <div className="flex flex-col justify-start items-start gap-4 py-[1.5em]">
           <h2 className="text-[1em] font-clash font-normal">Product description</h2>
-          <p className="text-[1em] font-regular font-clash">{description}</p>
+          <p className="text-[1em] font-regular font-clash">{product?.productDescription?.main}</p>
           <ul className="pl-[2em]">
-            <li className="list-disc font-clash text-[0.9em]">{features.material}</li>
-            <li className="list-disc font-clash text-[0.9em]">{features.craftsmanship}</li>
-            <li className="list-disc font-clash text-[0.9em]">{features.quality}</li>
+            <li className="list-disc font-clash text-[0.9em]">{product?.productDescription?.descOne}</li>
+            <li className="list-disc font-clash text-[0.9em]">{product?.productDescription?.descTwo}</li>
+            <li className="list-disc font-clash text-[0.9em]">{product.productDescription?.descThree}</li>
           </ul>
         </div>
 
@@ -175,17 +161,17 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <div className="w-full flex justify-start items-start">
             <div className="w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em]">
               <p className="text-center text-[1em] font-clash font-normal">Height</p>
-              <p className="font-satoshi text-[0.8em] text-center font-normal">{height}cm</p>
+              <p className="font-satoshi text-[0.8em] text-center font-normal">{product.productDimensions?.height}cm</p>
             </div>
 
             <div className="w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em] border-l border-[#ebe8f4] pl-[0.5em]">
               <p className="text-center text-[1em] font-clash font-normal">Width</p>
-              <p className="font-satoshi text-[0.8em] text-center font-normal">{width}cm</p>
+              <p className="font-satoshi text-[0.8em] text-center font-normal">{product.productDimensions?.weight}cm</p>
             </div>
 
             <div className="w-full flex flex-col justify-start items-start border-none py-[5px] gap-[0.5em] border-l border-[#ebe8f4] pl-[0.5em]">
               <p className="text-center text-[1em] font-clash font-normal">Depth</p>
-              <p className="font-satoshi text-[0.8em] text-center font-normal">{depth}cm</p>
+              <p className="font-satoshi text-[0.8em] text-center font-normal">{product.productDimensions?.depth}cm</p>
             </div>
           </div>
         </div>
@@ -197,7 +183,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
 
           <div className="bg-[#f9f9f9] flex justify-center items-center gap-[30px] px-5 py-[5px] border-black">
            <button onClick={()=>handleDecrease} className="text-[#ebe8f4] bg-transparent appearance-none">-</button>
-           <h2 className="font-satoshi">{quantity}</h2>
+           {/* <h2 className="font-satoshi">{quantity}</h2> */}
            <button onClick={()=>handleIncrease} className="text-[#ebe8f4] bg-transparent appearance-none">+</button>
           </div>
           <div className="w-full">
