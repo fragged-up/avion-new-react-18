@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 import { NavLinks } from '@/config';
 import { CartBadge, AvatarBadge } from '@/components/badges';
-
+import { toggleCart, selectIsCartOpen } from '@/stores/cart';
+import { useAppSelector, useAppDispatch } from '@/stores/core/hooks';
 import LogoIcon from '@/icons/LogoIcon';
 import SearchIcon from '@/icons/SearchIcon';
 import CartScreen from '@/features/cart/CartScreen';
-import { toggleCart, selectIsCartOpen } from '@/stores/cart';
-import { useAppSelector, useAppDispatch } from '@/stores/core/hooks';
+
+
+
+
+
 
 export default function DesktopHeader() {
   const dispatch = useAppDispatch();

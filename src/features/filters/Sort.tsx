@@ -14,7 +14,6 @@ export interface SortProps {
   onChange?: (value: string) => void;
   onClick?: (action: any) => Promise<void> | Promise<any> | any;
 }
-
 const Sort: React.FC<SortProps> = ({
   sortingOptions,
   currSelection,

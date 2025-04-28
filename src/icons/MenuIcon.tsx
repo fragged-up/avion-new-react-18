@@ -14,7 +14,7 @@ export default function MenuIcon() {
 
   return (
     <div className="cursor-pointer">
-      <img src={MenuBadgeIcon} className="w-4 h-4 cursor-pointer" alt="menu-icon" onClick={handleOpenMenu}  />
+      <img src={MenuBadgeIcon} className="w-5 h-5 cursor-pointer" alt="menu-icon" onClick={handleOpenMenu}  />
       <div>
       {isMenuOpen && <MenuModal />}
       </div>

@@ -13,12 +13,12 @@ export default function Products() {
 
   const handleNavigation = (product: Product) => {
     console.log(product);
-      navigateToProductId(`/${product.slug}`, {state: { product },});
+      navigateToProductId(`/products/${product.slug}`, {state: { product },});
   };
 
   const fetchProducts = async (currentPage: number) => {
     try {
-      const req = await fetch(`http://localhost:5001/products`, {
+      const req = await fetch(`http://localhost:5001/products?chairs`, {
         method: 'GET',
       });
       if (!req.ok) throw new Error('HTTP Exception');

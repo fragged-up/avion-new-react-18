@@ -91,7 +91,7 @@ export type ProductsState = {
   items: any[];
   selectedProduct:null | any[] | any;
   products: Product[];
-  filtersMeta: FiltersMeta | null;
+  filtersMeta: FiltersMeta | {};
   loading: boolean;
   error: string | null;
 };

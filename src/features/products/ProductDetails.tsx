@@ -95,7 +95,6 @@
 //   );
 // }
 
-import inspectImage from '@/assets/images/Inspect-image.svg';
 import CatalogDataContainer from '@/features/products/CatalogData';
 import Unique from '@/sections/UniqueSection';
 import QuantitySelector from '@/components/ui/QuantitySelector';
@@ -111,7 +110,7 @@ type ProductDetailsProps = {
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { productTitle, productPrice, } = product;
+  const { productImage,productTitle, productPrice, } = product;
 
   const dispatch = useAppDispatch();
   const handleIncrease = () => {
@@ -133,7 +132,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     <div className="flex flex-col md:flex-row">
       <div className="flex md:w-2/4">
         <img
-          src={inspectImage}
+          src={productImage}
           alt="product-image"
           className="w-full h-full object-cover cursor-pointer"
         />

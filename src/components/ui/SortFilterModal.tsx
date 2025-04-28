@@ -10,7 +10,7 @@ import { toggleSelection } from '@/utils/updateFilter';
 import { clearFilters } from '@/stores/filters/slice';
 import { FilterOptions } from '@/types/optionsTypes';
 import FilterSelect from '@/features/filters/FilterSelectNew';
-import { openGlobalModal,openFilterFromModal,openSortFromModal} from '@/stores/modal/slice';
+import { openSortFilterModal,openFilterFromModal,openSortFromModal} from '@/stores/modal/slice';
 import Sort from '@/features/filters/Sort';
 import fsIcon from '@/assets/icons/fsIcon.svg'; // icons imports
 import chevronLeft from '@/assets/icons/chevronLeft.svg';
@@ -48,7 +48,7 @@ const SortFilterModal = () => {
     dispatch(clearFilters());
   };
   const handleOpenModal = () => {
-    dispatch(openGlobalModal(!isOpen));
+    dispatch(openSortFilterModal(true));
   };
   const handleFilterFromModal = () => {
     dispatch(openFilterFromModal());
@@ -187,3 +187,7 @@ const SortFilterModal = () => {
 };
 
 export default SortFilterModal;
+function openGlobalModal(arg0: boolean): any {
+  throw new Error('Function not implemented.');
+}
+

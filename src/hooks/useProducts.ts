@@ -1,38 +1,39 @@
-import { useState } from 'react';
-import { useAppDispatch } from '@/stores/core/hooks';
-import { fetchFilteredProducts } from '@/stores/products/thunks';
+import { useState, useEffect } from 'react';
 
-type Params = {
-  category: string;
-  sort?: string;
-  priceRanges?: string[];
-  limit?:number |string
-  offset?:number | string;
-
+type API = {
+  filtersMeta: any | any[];
+  products: any[] | any;
 };
 
-export function useFilteredProducts() {
-  const dispatch = useAppDispatch();
-  const [products, setProducts] = useState<any[]>([]);
-  const [filtersMeta, setFiltersMeta] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<any>(null);
+export const useProducts = (url: string) => {
+  const [api, setAPI] = useState<API | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const fetch = async (params: Params) => {
-    setLoading(true);
-    setError(null);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        if (!url) {
+          setError('URL is required');
+          setLoading(false);
+          return;
+        }
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: API = await response.json();
+          setAPI(data);
+          console.log("data : ",data);
+          setLoading(false);
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch products');
+        setLoading(false);
+      }
+    };
 
-    try {
-      const result = await dispatch(fetchFilteredProducts(params)).unwrap();
-      setProducts(result.products);
-      setFiltersMeta(result.filtersMeta);
-    } catch (err) {
-      console.error("Failed to fetch filtered products:", err);
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchProducts();
+  }, [url]);
 
-  return { products, filtersMeta, fetch, loading, error };
-}
+  return { api, loading, error };
+};

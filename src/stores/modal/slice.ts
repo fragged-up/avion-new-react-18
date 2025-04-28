@@ -11,7 +11,7 @@ interface TriggerState {
 const initialState: TriggerState = {
   isOpen: false,
   isSortOpen: false,
-  isFilterOpen: null,
+  isFilterOpen: false,
   resultsNumber: 0,
   isMenuOpen:false
 };
@@ -27,15 +27,22 @@ const modalSlice = createSlice({
       state.isMenuOpen = false
     },
 
-    openGlobalModal: (state: TriggerState, action) => {
+    openSortFilterModal: (state: TriggerState,action) => {
       state.isOpen = action.payload;
     },
+
+
+
+
     toggleSort: (state: TriggerState, action) => {
       state.isSortOpen = action.payload;
     },
     toggleFilter: (state) => {
       state.isFilterOpen = !state.isFilterOpen;
     },
+
+
+
     openSortFromModal: (state) => {
       state.isOpen = true;
       state.isSortOpen = true;
@@ -50,7 +57,7 @@ const modalSlice = createSlice({
 });
 
 export const {
-  openGlobalModal,
+  openSortFilterModal,
   toggleSort,
   toggleFilter,
   openMenu,
