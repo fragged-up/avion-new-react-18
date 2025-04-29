@@ -30,9 +30,9 @@ const modalSlice = createSlice({
     openSortFilterModal: (state: TriggerState,action) => {
       state.isOpen = action.payload;
     },
-
-
-
+    closeSortFilterModal: (state: TriggerState,action) => {
+      state.isOpen = action.payload;
+    },
 
     toggleSort: (state: TriggerState, action) => {
       state.isSortOpen = action.payload;
@@ -40,8 +40,6 @@ const modalSlice = createSlice({
     toggleFilter: (state) => {
       state.isFilterOpen = !state.isFilterOpen;
     },
-
-
 
     openSortFromModal: (state) => {
       state.isOpen = true;
@@ -58,6 +56,7 @@ const modalSlice = createSlice({
 
 export const {
   openSortFilterModal,
+  closeSortFilterModal,
   toggleSort,
   toggleFilter,
   openMenu,

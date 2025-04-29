@@ -35,7 +35,7 @@ export default function Test() {
   /* Actions & Handlers */
 
   const toggleModal = () => {
-    dispatch(openSortFilterModal(true));
+    dispatch(openSortFilterModal(false));
   };
 
   const handleSortChange = (selectedValue: string) => {
@@ -61,19 +61,15 @@ export default function Test() {
     }
 
     dispatch(fetchProducts(params));
-  }, []); // Empty dependency array means this runs once on component mount
+  }, []);
 
   return (
     <div className="w-full min-h-screen bg-white p-6">
       <FilterSortBar />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-        {loading ? (
-          <Loading message="Loading products..." />
-        ) : error ? (
-          <ErrorMessage message="Error loading products." />
-        ) : (
-          products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} />)
+        {loading ? (  <Loading message="Loading products..." />) : error ? (<ErrorMessage message="Error loading products." />) :
+         (products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} />)
         )}
       </div>
 
@@ -81,11 +77,11 @@ export default function Test() {
         isOpen={isModalOpen}
         onClose={toggleModal}
         sortOptions={sortOptions}
+        filterGroups={filters}
         sortSelection={sortOption}
         onSortChange={handleSortChange}
-        filterGroups={filters}
-        itemCount={itemCount}
         showAction={handleShowResults}
+        itemCount={itemCount}
       />
     </div>
   );

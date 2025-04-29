@@ -1,74 +1,32 @@
-import React, { useState } from 'react';
 import { cn } from '@/utils';
+import { useState } from 'react';
 
-interface AccordionItemProps {
-  title: string;
-  content: React.ReactNode;
-}
-
-interface AccordionProps {
-  items: AccordionItemProps[];
-}
-
-export const Accordion = ({ items }: AccordionProps) => {
-  return (
-    <ul className="divide-y divide-gray-200">
-      {items.map((item, index) => (
-        <AccordionItem key={index} item={item} index={index} />
-      ))}
-    </ul>
-  );
+type AccordionProps = {
+  children?: React.ReactNode;
+  title?: string;
+  icon?: string | React.ReactSVGElement;
 };
 
-interface SingleAccordionItemProps {
-  item: AccordionItemProps;
-  index: number;
-}
-
-export const AccordionItem = ({ item, index }: SingleAccordionItemProps) => {
+export const Accordion = ({ children, title, icon }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleAccordion = () => setIsOpen(!isOpen);
+  const accordionStyle = { 'max-h-0': !isOpen, 'max-h-screen': isOpen };
+  const accordionId = `accordion-panel-${title}`;
 
   return (
-    <li className="py-4">
+    <li className="py-5 group list-none border-b border-b-gray-200">
       <button
         type="button"
-        className="flex items-center justify-between w-full text-left focus:outline-none"
+        className="flex items-center justify-between w-full text-left focus:outline-none cursor-pointer"
         onClick={toggleAccordion}
         aria-expanded={isOpen}
-        aria-controls={`accordion-panel-${index}`}
-      >
-        <span className="font-medium">{item.title}</span>
-        <svg
-          className={cn(
-            'w-5 h-5 transition-transform duration-200',
-            { 'rotate-180': isOpen }
-          )}
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
+        aria-controls={accordionId}>
+        <span className="font-medium accordion-label text-gray group-hover:underline">{title}</span>
+        {icon && <img src={icon as any} className="w-5 h-5" alt="drop-down-icon" />}
       </button>
-      <div
-        id={`accordion-panel-${index}`}
-        className={cn('mt-2 overflow-hidden transition-max-h duration-300', {
-          'max-h-0': !isOpen,
-          'max-h-screen': isOpen, // Adjust as needed based on content
-        })}
-        aria-hidden={!isOpen}
-      >
-        <div className="px-4 py-3 text-gray-500">{item.content}</div>
+      <div id={accordionId} className={cn('mt-2 overflow-hidden transition-max-h duration-300', accordionStyle)} aria-hidden={!isOpen}>
+        <div className="px-4 py-3 text-gray-500">{children}</div>
       </div>
     </li>
   );
 };
-
-export default Accordion;
