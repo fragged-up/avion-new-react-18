@@ -3,4 +3,4 @@ export * from './formatPrice';
 export * from './getSortedProducts';
 export * from './toaster';
 export * from './updateFilter';
-export * from './thunkHandler';
+export * from "./tw"
