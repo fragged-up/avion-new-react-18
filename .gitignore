@@ -27,6 +27,7 @@ dist-ssr
 
 # .gitignore
 .env
+.env.production
 .env.local
 .DS_Store
 

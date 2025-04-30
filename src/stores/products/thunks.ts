@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export interface QueryParams {
   category?: string | undefined;
@@ -10,44 +10,29 @@ export interface QueryParams {
   colors?: string[] | undefined;
   brands?: string[] | undefined;
   materials?: string[] | undefined;
-  [key: string]: string | number | boolean | undefined| any[];
+  [key: string]: string | number | boolean | undefined | any[];
 }
 
-
-
-
-
-
 // const url = 'http://localhost:5001/products?'
-const url =`avm-back-production.up.railway.app/products?`
+const url = `https://avion-back.onrender.com/products?`;
 
-export const fetchProducts =createAsyncThunk("products/fetchProducts",
-  async (params: QueryParams , thunkAPI) => {
-    try {
-      const query = new URLSearchParams();
-      for (const key in params) {
-        if (params.hasOwnProperty(key) && params[key] !== undefined) {
-          query.append(key, String(params[key]));
-        }
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async (params: QueryParams, thunkAPI) => {
+  try {
+    const query = new URLSearchParams();
+    for (const key in params) {
+      if (params.hasOwnProperty(key) && params[key] !== undefined) {
+        query.append(key, String(params[key]));
       }
-      const res = await axios.get(`${url}${query.toString()}`);
-      console.log(res);
-      return res.data;
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(err.response?.data || "Fetch error");
     }
+    const res = await axios.get(`${url}${query.toString()}`);
+    console.log(res);
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response?.data || 'Fetch error');
   }
-);
+});
 
-
-
-
-
-
-
-
-
-export const fetchProductById = createAsyncThunk("products/fetchById", async (id: string) => {
+export const fetchProductById = createAsyncThunk('products/fetchById', async (id: string) => {
   const res = await fetch(`/api/products/${id}`);
   return await res.json();
 });
