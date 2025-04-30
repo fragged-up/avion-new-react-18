@@ -54,7 +54,6 @@ export default function Test() {
     // useProducts(url);
     toggleModal();
   };
-
   const handleCategorySelect = (category: string | null) => {
     setCurrentCategory(category);
     setSortOption(null);
