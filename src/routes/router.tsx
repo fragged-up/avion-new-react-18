@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "@/routes/Layout";
-import Home from "@/routes/Home";
-import About from "@/routes/About";
-import Products from "@/routes/Products";
-import Test from "@/routes/Test";
-import NotFound from "@/routes/NotFound";
-import ProductOverview from "@/routes/ProductOverview";
+import Layout from "./Layout";
+import Home from "./Home";
+import About from "./About";
+import Products from "./Products";
+import Test from "./Test";
+import NotFound from "./NotFound";
+import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 
 

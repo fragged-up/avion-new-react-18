@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div className="bg-black/60">
+    <div className="bg-white">
       <div className={styles['wrapper-mobile']}>
         <div className={styles['container']}>
           <div className={styles['head-cont']}>

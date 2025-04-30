@@ -1,4 +1,5 @@
-{"packageManager": "pnpm@10.7.1",
+{
+  "packageManager": "pnpm@10.7.1",
   "name": "avion-new",
   "private": true,
   "version": "0.0.0",
