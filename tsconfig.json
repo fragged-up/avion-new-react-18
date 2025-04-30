@@ -19,7 +19,7 @@
     "strict": true,
     "allowJs": true
   },
-"include": ["src/**/*", "src/.eslintrc.ts"],
+"include": ["src/**/*.ts", "src/**/*.tsx"],
 "exclude": ["node_modules", "dist", "build"]
 }
 
