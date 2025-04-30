@@ -18,15 +18,15 @@
     "paths": {
       "@/*": ["src/*"]
     },
-
+    "strict": true,
+    "allowJs": true
     /* Linting */
-    "strict": true
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*", "src/.eslintrc.ts", "pfr/unkown/NF-uk.tsx", "pfr/unkown/SelectNF-uk.tsx"],
-  "exclude": ["node_modules", "Remainders/**", "node:sqlite"]
+"include": ["src/**/*", "src/.eslintrc.ts", ],
+"exclude": ["node_modules", "dist", "build"]
 }
 
 // {
