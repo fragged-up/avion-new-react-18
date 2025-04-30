@@ -1,105 +1,128 @@
-import { CatalogCard } from '@/features/products/CatalogCard';
-import SortFilterModal from '@/components/ui/SortFilterModal';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Loading, ErrorMessage } from '@/components/feedback';
+import { sortOptions } from '@/config';
+
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
+import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOpen, selectResultsNumber } from '@/stores/modal/selectors';
+import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
+import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
+
+import ProductCard from '@/features/products/ProductCard';
+import FilterSortModal from '@/features/filter-sort/FilterSortModal';
+import FilterSortBar from '@/features/filter-sort/FilterSortBar';
+import { fetchProducts } from '@/stores/products/thunks';
 import type { Product } from '@/types';
+import { useNavigate } from 'react-router-dom';
+import Hero from '@/sections/Hero';
 
 export default function Products() {
-  const [items, setItems] = useState<any[]>([]);
-  const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const dispatch = useAppDispatch();
+
+  const [sortOption, setSortOption] = useState<string | null>(null);
+  const [currentCategory, setCurrentCategory] = useState<string | null>(null);
+  const [itemCount, setItemCount] = useState<number | null>(null);
+  const [meta, setMeta] = useState<any | any[]>([]);
   const navigateToProductId = useNavigate();
 
   const handleNavigation = (product: Product) => {
     console.log(product);
-      navigateToProductId(`/products/${product.slug}`, {state: { product },});
+    navigateToProductId(`/products/${product.slug}`, { state: { product } });
   };
 
-  const fetchProducts = async (currentPage: number) => {
-    try {
-      const req = await fetch(`http://localhost:5001/products?chairs`, {
-        method: 'GET',
-      });
-      if (!req.ok) throw new Error('HTTP Exception');
-      const data = await req.json();
+  /* Selectors */
+  const products = useAppSelector(selectProductsResponse);
+  const loading = useAppSelector(selectProductsLoading);
+  const error = useAppSelector(selectProductsError);
+  const filters = useAppSelector(selectProductsFilters);
+  const isModalOpen = useAppSelector(selectIsModalOpen);
+  const isSortOpen = useAppSelector(selectIsSortOpen);
+  const isFilterOpen = useAppSelector(selectIsFilterOpen);
+  const resultsNumber = useAppSelector(selectResultsNumber);
+  const isMenuOpen = useAppSelector(selectIsMenuOpen);
 
-      if (data?.products && data.products.length > 0) {
-        setItems((prevItems) => [...prevItems, ...data.products]);
-      } else {
-        setHasMore(false);
-      }
-      console.log('data', data);
-    } catch (err: any) {
-      console.log(err);
-      setHasMore(false);
-    } finally {
-      setLoadingMore(false);
-    }
+  /* Actions & Handlers */
+
+  const toggleModal = () => {
+    dispatch(openSortFilterModal(false));
+  };
+
+  const handleSortChange = (selectedValue: string) => {
+    setSortOption(selectedValue);
+  };
+
+  const handleShowResults = () => {
+    // useProducts(url);
+    toggleModal();
+  };
+
+  const handleCategorySelect = (category: string | null) => {
+    setCurrentCategory(category);
+    setSortOption(null);
   };
 
   useEffect(() => {
-    fetchProducts(page);
+    const params = {
+      category: 'tables',
+    };
+    if (products) {
+      setMeta(filters);
+    }
+
+    dispatch(fetchProducts(params));
   }, []);
 
-  const handleLoadMore = () => {
-    if (hasMore && !loadingMore) {
-      setLoadingMore(true);
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  useEffect(() => {
-    if (page > 1) {
-      fetchProducts(page);
-    }
-  }, [page]);
+  // const handleLoadMore = () => {
+  //   if (hasMore && !loadingMore) {
+  //     setLoadingMore(true);
+  //     fetchProducts({ category: 'tables' });
+  //   }
+  // };
 
   return (
     <div className="">
-      <section className="hero-section">
-        <div className="all-products-hero">
-          <p className="all-products-hero-logo">All Products</p>
-        </div>
-      </section>
+      <Hero />
 
       <section className="py-8">
-        <SortFilterModal />
+        <FilterSortBar />
       </section>
 
-      <section>
-        <div className="flex justify-center px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-            {items.map((product: any,idx) => (
-              <div
-                key={`${product._id}-${idx}`}
-                className="max-w-[375px] w-full cursor-pointer"
-                onClick={() => handleNavigation(product)}
-              >
-                <CatalogCard
-                  image={product.productImage}
-                  title={product.name}
-                  price={product.productPrice}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="w-full py-8 flex justify-center items-center">
-        {hasMore ? (
-          <button
-            className="border-none cursor-pointer bg-[#f9f9f9] py-5 px-12 font-satoshi text-center color-[#2a254b]"
-            onClick={handleLoadMore}
-            disabled={loadingMore}
-          >
-            {loadingMore ? 'Loading...' : 'Load More'}
-          </button>
-        ) : (
-          <p>No more products to load.</p>
-        )}
-      </div>
+      <FilterSortModal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+        sortOptions={sortOptions}
+        filterGroups={filters}
+        sortSelection={sortOption}
+        onSortChange={handleSortChange}
+        showAction={handleShowResults}
+        itemCount={itemCount}
+      />
+      <main>
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+          {loading ? (
+            <Loading message="Loading products..." />
+          ) : error ? (
+            <ErrorMessage message="Error loading products." />
+          ) : (
+            products.products.map((product: any, idx: number) => (
+              <ProductCard key={`${product.id}-${idx}`} product={product} onClick={() => handleNavigation(product)} />
+            ))
+          )}
+        </section>
+        {/* <div className="w-full py-8 flex justify-center items-center">
+          {hasMore ? (
+            <button
+              className="border-none cursor-pointer bg-[#f9f9f9] py-5 px-12 font-satoshi text-center color-[#2a254b]"
+              onClick={handleLoadMore}
+              disabled={loadingMore}>
+              {loadingMore ? 'Loading...' : 'Load More'}
+            </button>
+          ) : (
+            <p>No more products to load.</p>
+          )}
+        </div> */}
+      </main>
     </div>
   );
 }

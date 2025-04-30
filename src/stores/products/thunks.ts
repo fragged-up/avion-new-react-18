@@ -18,8 +18,8 @@ export interface QueryParams {
 
 
 
-const url = 'http://localhost:5001/products?'
-
+// const url = 'http://localhost:5001/products?'
+const url =`avm-back-production.up.railway.app/products?`
 
 export const fetchProducts =createAsyncThunk("products/fetchProducts",
   async (params: QueryParams , thunkAPI) => {

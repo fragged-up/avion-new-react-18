@@ -2,12 +2,13 @@ import type { ProductCard as Product } from "@/types/products";
 
 type ProductCardProps = {
   product: Product;
+  onClick?:(event:any)=>void;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, onClick}: ProductCardProps) {
   return (
     <div className="product-container">
-      <div className="product-item">
+      <div className="product-item cursor-pointer" onClick={onClick}>
         <div className="inline-flex">
           <img
             className="product-exc-image"
