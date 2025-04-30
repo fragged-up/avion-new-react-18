@@ -7,8 +7,6 @@ import { OurPopAPI } from '@/services/api/base';
 import { RasticImage, DandyImage, SilkyImage, SpaImage, DarkDandyImage, SofaImage, TransitIcon, CheckmarkIcon, PurchaseIcon, RecycleIcon, DandyChairImage, LucyLampImage} from '@/icons';
 import styles from '@/styles/css/Content-m.module.css';
 import { Link } from 'react-router-dom';
-
-
 export default function Home() {
   return (
     <div className="bg-white">
