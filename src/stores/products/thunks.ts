@@ -13,8 +13,8 @@ export interface QueryParams {
   [key: string]: string | number | boolean | undefined | any[];
 }
 
-// const url = 'http://localhost:5001/products?'
-const url = `https://avion-back.onrender.com/products?`;
+const url = 'http://localhost:5001/products?'
+// const url = `https://avion-back.onrender.com/products?`;
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async (params: QueryParams, thunkAPI) => {
   try {

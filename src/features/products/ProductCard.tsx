@@ -1,5 +1,7 @@
+import { AspectRatio } from "@/components/ui/AspectRatio";
 import type { ProductCard as Product } from "@/types/products";
-
+import { cn } from "@/utils";
+import { useState } from "react";
 type ProductCardProps = {
   product: Product;
   onClick?:(event:any)=>void;
@@ -7,16 +9,11 @@ type ProductCardProps = {
 
 export default function ProductCard({ product, onClick}: ProductCardProps) {
   return (
-    <div className="product-container">
       <div className="product-item cursor-pointer" onClick={onClick}>
-        <div className="inline-flex">
-          <img
-            className="product-exc-image"
-            src={product.productImage}
-            alt={product.name}
-            loading="lazy"
-          />
-        </div>
+    {product.productImage && (
+    <AspectRatio className="" ratio={16 / 9} image={product.productImage} />
+  )}
+
         <div className="product-details">
           <h1 className="text-wrap font-clash text-xl font-light">
             {product.name}
@@ -25,7 +22,12 @@ export default function ProductCard({ product, onClick}: ProductCardProps) {
             £{product.productPrice}
           </h1>
         </div>
+
+
       </div>
-    </div>
   );
 }
+
+
+
+

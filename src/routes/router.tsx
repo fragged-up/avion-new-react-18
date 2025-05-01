@@ -9,7 +9,7 @@ import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 
 
-export const router = createBrowserRouter([
+export const routes = [
   {
     path: "/",
     element: <Layout />,
@@ -23,4 +23,9 @@ export const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
     ],
   },
-]);
+];
+export const router =createBrowserRouter(routes, {
+  future: {
+    v7_relativeSplatPath: true,
+  },
+});
