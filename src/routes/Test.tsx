@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Loading, ErrorMessage } from '@/components/feedback';
+import { ErrorMessage } from '@/components/feedback';
 import { sortOptions } from '@/config';
 
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
@@ -13,6 +13,7 @@ import FilterSortBar from '@/features/filter-sort/FilterSortBar';
 import { fetchProducts } from '@/stores/products/thunks';
 import type { Product } from '@/types';
 import { useNavigate } from 'react-router-dom';
+import ProductSkeleton from '@/features/products/ProductSkeleton';
 
 export default function Test() {
   const dispatch = useAppDispatch();
@@ -20,14 +21,13 @@ export default function Test() {
   const [sortOption, setSortOption] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
   const [itemCount, setItemCount] = useState<number | null>(null);
-  const [meta,setMeta] = useState<any| any[]>([])
-   const navigateToProductId = useNavigate();
+  const [meta, setMeta] = useState<any | any[]>([]);
+  const navigateToProductId = useNavigate();
 
   const handleNavigation = (product: Product) => {
     console.log(product);
-      navigateToProductId(`/products/${product.slug}`, {state: { product },});
+    navigateToProductId(`/products/${product.slug}`, { state: { product } });
   };
-
 
   /* Selectors */
   const products = useAppSelector(selectProductsResponse);
@@ -63,8 +63,8 @@ export default function Test() {
     const params = {
       category: 'tables',
     };
-    if(products){
-      setMeta((filters))
+    if (products) {
+      setMeta(filters);
     }
 
     dispatch(fetchProducts(params));
@@ -75,8 +75,11 @@ export default function Test() {
       <FilterSortBar />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-        {loading ? (  <Loading message="Loading products..." />) : error ? (<ErrorMessage message="Error loading products." />) :
-         (products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} onClick={()=>handleNavigation(product)} />)
+        {loading ? (
+          <ProductSkeleton /> ) : error ? ( <ErrorMessage message="Error loading products." /> ) : (
+           products.products.map((product: any, idx: number) => (
+            <ProductCard key={`${product.id}-${idx}`} product={product} onClick={() => handleNavigation(product)} />
+          ))
         )}
       </div>
 
