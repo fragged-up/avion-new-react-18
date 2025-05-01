@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "./Layout.tsx";
+import Layout from "./Layout";
 import Home from "./Home";
 import About from "./About";
 import Products from "./Products";
@@ -9,7 +9,7 @@ import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 
 
-export const routes = [
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
@@ -23,9 +23,4 @@ export const routes = [
       { path: "*", element: <NotFound /> },
     ],
   },
-];
-export const router =createBrowserRouter(routes, {
-  future: {
-    v7_relativeSplatPath: true,
-  },
-});
+]);
