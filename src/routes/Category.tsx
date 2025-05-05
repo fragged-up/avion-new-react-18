@@ -1,106 +1,86 @@
-// import {useEffect, useState} from 'react';
-// import {useNavigate, useParams} from 'react-router-dom';
-// import SelectDropDown from '@/components/ui/SelectDropDown';
-// import SortFilterModal from '@/components/ui/SortFilterModal';
-// import {ProductCardTypes} from '@/types/products';
-// import { RootState } from '@/stores/core/store';
-// import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { ErrorMessage } from '@/components/feedback';
+import { sortOptions } from '@/config';
 
-// export default function Category() {
-//   const [prs, setProducts] = useState<ProductCardTypes[]>([]);
-//   const [offset, setOffset] = useState(0);
-//   const {category} = useParams();
-//   const navigateToProductId = useNavigate();
-//   const initialLimit = 20;
-//   const loadMoreLimit = 12;
-//   const products = useSelector((state: RootState) => state.products.products);
-//  console.log("selectProducts :",products);
-//   const handleNavigation = (product: ProductCardTypes) => {
-//     if (product.slug) {
-//       navigateToProductId(`/${category}/${product.slug}`, {
-//         state: {product},
-//       });
-//     } else {
-//       console.warn('No slug found for product:', product);
-//     }
-//   };
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
+import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOpen, selectResultsNumber } from '@/stores/modal/selectors';
+import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
+import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
 
-//   const getProductApi = async (offset: number, limit: number) => {
-//     try {
-//       const url = category
-//         ? `http://localhost:5001/products?${category}limit=${limit}&offset=${offset}`
-//         : `http://localhost:5001/products`;
-//       const request = await fetch(url, {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'Application/json',
-//         },
-//       });
-//       const response = await request.json();
-//       const productList = response.products || response;
-//       setProducts((prev) => (offset === 0 ? products : [...prev, ...productList]));
-//       // setProducts((prevProducts) => (offset === 0 ? response.products : [...prevProducts, ...response.products]));
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
+import type { Product } from '@/types';
+import { fetchProducts } from '@/stores/products/thunks';
+import { useParams } from 'react-router-dom';
 
-//   useEffect(() => {
-//     setProducts([]); // Reset products when category changes
-//     setOffset(0); // Reset offset When Category Changes
-//     getProductApi(0, initialLimit); // Load first 20 products for the new category
-//   }, [category]);
+import ProductCard from '@/features/products/ProductCard';
+import FilterSortModal from '@/features/filter-sort/FilterSortModal';
+import FilterSortBar from '@/features/filter-sort/FilterSortBar';
+import ProductSkeleton from '@/features/products/ProductSkeleton';
 
-//   const loadMoreProducts = () => {
-//     const newOffset = offset + loadMoreLimit;
-//     setOffset(newOffset);
-//     getProductApi(newOffset, loadMoreLimit); // Fetch 12 more products
-//   };
+export default function Category() {
+  const dispatch = useAppDispatch();
+  const { category } = useParams<{ category: string }>();
 
-//   return (
-//     <>
-//       <div className="sort-and-filter-section w-full">
-//         <div className="w-[85%] flex items-center mx-auto gap-4 py-12">
-//           <SortFilterModal />
-//         </div>
-//       </div>
-//       <div className="flex justify-center">
-//         <div className="product-container">
-//           {Array.isArray(products) &&
-//             products.map((prod: ProductCardTypes | any, index) => (
-//               <div
-//                 className="product-item"
-//                 key={`${category || 'product'}-${prod.id}-${index}-${prod.slug || prod.name}`}
-//               >
-//                 <div className="inline-flex" onClick={() => handleNavigation(prod)}>
-//                   <img className="product-exc-image" src={`${prod.productImage}`} alt={prod.name} loading="lazy" />
-//                 </div>
+  const [sortOption, setSortOption] = useState<string | null>(null);
 
-//                 <div className="product-details">
-//                   <h1 className="text-wrap font-clash text-xl font-light">{prod.name}</h1>
-//                   <h1 className="text-wrap font-satoshi text-xl font-extralight">£{prod.productPrice}</h1>
-//                 </div>
-//               </div>
-//             ))}
-//         </div>
-//       </div>
+  const [currentCategory, setCurrentCategory] = useState<string | null>(null);
 
-//       {products.length > 0 && (
-//         <div className="mt-[2.5rem] flex justify-center py-12 md:mt-[3rem]">
-//           <button
-//             onClick={loadMoreProducts}
-//             className="rounded-lg bg-[#F9F9F9] px-4 py-2 font-satoshi text-base text-[#2A254B]"
-//           >
-//             View Collection
-//           </button>
-//         </div>
-//       )}
-//     </>
-//   );
-// }
+  const [itemCount, setItemCount] = useState<number | null>(null);
+  const [meta, setMeta] = useState<any | any[]>([]);
 
-{
-  /* <SelectDropDown label={'Sort By'} options={['hey', 'bye', 'lie']} onSelect={handleCloseModal} />
-<SelectDropDown label={'category'} options={['hey', 'bye', 'lie']} onSelect={handleCloseModal} />
-<SelectDropDown label={'category'} options={['hey', 'bye', 'lie']} onSelect={handleCloseModal} /> */
+  /* Selectors */
+  const products = useAppSelector(selectProductsResponse);
+  const loading = useAppSelector(selectProductsLoading);
+  const error = useAppSelector(selectProductsError);
+  const filters = useAppSelector(selectProductsFilters);
+  const isModalOpen = useAppSelector(selectIsModalOpen);
+  const isSortOpen = useAppSelector(selectIsSortOpen);
+  const isFilterOpen = useAppSelector(selectIsFilterOpen);
+  const resultsNumber = useAppSelector(selectResultsNumber);
+  const isMenuOpen = useAppSelector(selectIsMenuOpen);
+
+  /* Actions & Handlers */
+
+  const toggleModal = () => {
+    dispatch(openSortFilterModal(false));
+  };
+  const handleSortChange = (selectedValue: string) => {
+    setSortOption(selectedValue);
+  };
+  const handleShowResults = () => {
+    // useProducts(url);
+    toggleModal();
+  };
+  const handleCategorySelect = (category: string | null) => {
+    setCurrentCategory(category);
+    setSortOption(null);
+  };
+
+  useEffect(() => {
+    dispatch(fetchProducts({ category }));
+  }, [category]);
+
+  return (
+    <div className="w-full min-h-screen bg-white p-6">
+      <section>
+        <FilterSortBar />
+      </section>
+
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+        {loading ? (    <ProductSkeleton /> ) : error ? (   <ErrorMessage message="Error loading products." /> ) : (
+          products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} />)
+        )}
+      </section>
+
+      <FilterSortModal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+        sortOptions={sortOptions}
+        filterGroups={filters}
+        sortSelection={sortOption}
+        onSortChange={handleSortChange}
+        showAction={handleShowResults}
+        itemCount={itemCount}
+      />
+    </div>
+  );
 }

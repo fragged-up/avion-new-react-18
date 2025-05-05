@@ -1,9 +1,9 @@
-import MenuIcon from '@/icons/MenuIcon';
-import SearchBadge from '../badges/SearchBadge';
 import { Link } from 'react-router-dom';
 import { CartBadge, AvatarBadge } from '@/components/badges';
 import { toggleCart, selectIsCartOpen } from '@/stores/cart';
 import { useAppSelector, useAppDispatch } from '@/stores/core/hooks';
+import MenuIcon from '@/icons/MenuIcon';
+import SearchBadge from '../badges/SearchBadge';
 
 export default function MobileHeader() {
   const dispatch = useAppDispatch();
@@ -11,10 +11,8 @@ export default function MobileHeader() {
 
   return (
     <div className="flex justify-between items-center">
-      <div className="flex p-6 ">
-        <Link to="/">
-          <h1 className="font-satoshi text-base">Avion</h1>
-        </Link>
+      <div className="flex p-6">
+        <Link to="/" className='font-satoshi text-base'>Avion</Link>
       </div>
 
       <div className="flex justify-center items-center p-4 gap-[1.4em]">

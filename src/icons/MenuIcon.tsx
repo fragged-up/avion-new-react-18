@@ -1,8 +1,9 @@
-import MenuModal from '@/components/ui/MenuModal';
-import { MenuBadgeIcon } from '.';
+import { MenuBadgeIcon } from '@/icons';
 import { useSelector } from 'react-redux'
 import { openMenu, selectIsMenuOpen } from '@/stores/modal';
 import { useAppDispatch } from '@/stores/core/hooks';
+import MenuModal from '@/components/layout/MenuModal';
+
 
 export default function MenuIcon() {
  const dispatch = useAppDispatch()

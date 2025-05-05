@@ -1,57 +1,53 @@
 import styles from '@/styles/css/AboutSc.module.css';
 import imageSc from '@/assets/images/Image-sc.svg';
 import srImage from '@/assets/images/sr-image.svg';
-
+import { Link } from 'react-router-dom';
+import JoinTheClub from "@/sections/JoinTheClub"
 export default function About() {
   return (
-    <>
       <div className={styles['about-wrapper']}>
-        <div className={styles['about-c']}>
+        <section className={styles['about-c']}>
           <h1 className={styles['ab-h']}>
             A brand built on the love of craftmanship,
             <br /> quality and outstanding customer service
           </h1>
+          <Link to="/products" className='inline-block'>
+            <button className={styles['ab-button']}>View our products</button>
+          </Link>
+        </section>
 
-          <button className={styles['ab-button']}>View our products</button>
-        </div>
-
-        <div className={styles['main-sc']}>
-          <div className={styles['bio-c']}>
+        <main className={styles['main-sc']}>
+          <section className={styles['bio-c']}>
             <div className={styles['bio']}>
               <h2 className={styles['bio-h']}>It started with a small idea</h2>
-
               <p className={styles['bio-p']}>
-                A global brand with local beginnings, our story begain in a{' '}
-                <br className={styles['line-down']} /> small studio in South London in early 2014
+                A global brand with local beginnings, our story begain in a
+                <br className={styles['line-down']} /> small studio in South
+                London in early 2014
               </p>
-
               <button className={styles['bio-button']}>View Collection</button>
             </div>
 
             <div className={styles['block-c']}>
               <img src={imageSc} alt="" className={styles['sc-img']} />
             </div>
-          </div>
+          </section>
 
-          <div className={styles['semi-b-w']}>
+          <section className={styles['semi-b-w']}>
             <div className={styles['semi-b-c']}>
               <div className={styles['sr-c']}>
                 <img src={srImage} alt="" className={styles['sr-img']} />
               </div>
 
               <div className={styles['our-sr-c']}>
-                <h4 className={styles['sr-h3']}>
-                  Our service isn’t just personal, it’s actually hyper personally exquisite
-                </h4>
+                <h4 className={styles['sr-h3']}>Our service isn’t just personal, it’s actually hyper personally exquisite</h4>
 
                 <small className={styles['sr-small']}>
-                  When we started Avion, the idea was simple. Make high quality furniture affordable
-                  and available for the mass market.
+                  When we started Avion, the idea was simple. Make high quality furniture affordable and available for the mass market.
                   <br />
                   <br />
-                  Handmade, and lovingly crafted furniture and homeware is what we live, breathe and
-                  design so our Chelsea boutique become the hotbed for the London interior design
-                  community.
+                  Handmade, and lovingly crafted furniture and homeware is what we live, breathe and design so our Chelsea boutique become
+                  the hotbed for the London interior design community.
                 </small>
 
                 <div className={styles['get-ccc']}>
@@ -59,9 +55,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
+        <section className='p-8'>
+          <JoinTheClub />
+        </section>
+
       </div>
-    </>
   );
 }

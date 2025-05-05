@@ -29,6 +29,7 @@ interface FooterProps extends React.HTMLAttributes<HTMLElement> {
 interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
     fluid?: boolean;
+    onClick?:()=>void;
 }
 
 // Reusable components with semantic HTML

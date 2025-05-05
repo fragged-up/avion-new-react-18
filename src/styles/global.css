@@ -35,6 +35,9 @@ body {
   min-height: 100vh;
 }
 
+#root{
+  width: 100%;
+}
 /* Header Component Styling */
 
 .wrapper {

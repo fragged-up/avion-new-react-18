@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API } from "@/utils"
 import axios from 'axios';
 
 export interface QueryParams {
@@ -13,8 +14,6 @@ export interface QueryParams {
   [key: string]: string | number | boolean | undefined | any[];
 }
 
-// const url = 'http://localhost:5001/products?'
-const url = `https://avion-back.onrender.com/products?`;
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async (params: QueryParams, thunkAPI) => {
   try {
@@ -24,7 +23,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async (p
         query.append(key, String(params[key]));
       }
     }
-    const res = await axios.get(`${url}${query.toString()}`);
+    const res = await axios.get(`${API}/products?${query.toString()}`);
     console.log(res);
     return res.data;
   } catch (err: any) {
@@ -33,6 +32,6 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async (p
 });
 
 export const fetchProductById = createAsyncThunk('products/fetchById', async (id: string) => {
-  const res = await fetch(`/api/products/${id}`);
+  const res = await fetch(`${API}/products?${id}`);
   return await res.json();
 });

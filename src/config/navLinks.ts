@@ -1,11 +1,11 @@
 export const NavLinks = [
   { to: '/', label: 'Home' },
-  { to: '/About', label: 'About' },
+  { to: '/about', label: 'About' },
   { to: '/products', label: 'Products' },
-  { to: '/Tables', label: 'Tables' },
-  { to: '/Chairs', label: 'Chairs' },
-  { to: '/Plants', label: 'Plants' },
-  { to: '/Ceramics', label: 'Ceramics' },
-  { to: '/Lights', label: 'Lights' },
+  { to: '/tables', label: 'Tables' },
+  { to: '/chairs', label: 'Chairs' },
+  { to: '/plants', label: 'Plants' },
+  { to: '/ceramics', label: 'Ceramics' },
+  { to: '/lights', label: 'Lights' },
   { to: '/test', label: 'Test' },
 ];

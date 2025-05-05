@@ -3,7 +3,7 @@ import FilterSortContainer from './FilterSortContainer';
 import FilterSortContent from './FilterSortContent';
 import FilterSortFooter from './FilterSortFooter';
 import Button from '@/components/ui/Button';
-import  { FilterComponent } from './Filter';
+import Filters from './Filters';
 import { FilterOptions, SortOptions } from '@/types/optionsTypes';
 
 type ModalProps = {
@@ -27,8 +27,8 @@ const FilterSortModal = ({isOpen,onClose,sortOptions,filterGroups,onSortChange,s
      {isOpen && (
       <FilterSortContainer onClose={onClose}>
         <FilterSortContent>
-          <Sort sortLabel="Sort By:" sortingOptions={sortOptions} currSelection={sortSelection || ''} onChange={onSortChange} />
-          <FilterComponent filtersMeta={filterGroups} />
+          <Sort sortLabel="Sort By :" sortingOptions={sortOptions} currSelection={sortSelection || ''} onChange={onSortChange} />
+          <Filters filtersMeta={filterGroups} />
         </FilterSortContent>
 
         <FilterSortFooter>

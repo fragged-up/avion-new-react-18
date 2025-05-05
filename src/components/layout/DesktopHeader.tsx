@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { NavLinks } from '@/config';
 import { CartBadge, AvatarBadge } from '@/components/badges';
 import { toggleCart, selectIsCartOpen } from '@/stores/cart';
 import { useAppSelector, useAppDispatch } from '@/stores/core/hooks';
+import { useEffect, useState } from 'react';
 import LogoIcon from '@/icons/LogoIcon';
 import SearchIcon from '@/icons/SearchIcon';
 import CartScreen from '@/features/cart/CartScreen';
@@ -16,7 +17,12 @@ export default function DesktopHeader() {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector(selectIsCartOpen);
 
+  const [activeLink, setActiveLink] = useState<string>('');
+  const location = useLocation();
 
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location]);
   return (
     <div className="w-full relative">
       <div className="w-[95%] bg-white mx-auto flex justify-between py-4 border-b border-[hsl(0,0%,80%)]">
@@ -34,9 +40,16 @@ export default function DesktopHeader() {
 
       <div className="flex justify-center items-center gap-4 pt-4 pb-8 bg-white text-[#726e8d]">
         {NavLinks.map(({ to, label }) => (
-          <Link key={to} to={to} className="font-clash font-normal text-[1em]">
-            {label}
-          </Link>
+           <Link
+           key={to}
+           to={to}
+           className={`font-clash font-normal text-[1em] ${
+             activeLink === to ? 'text-blue-500' : ''
+           }`}
+           onClick={() => setActiveLink(to)}
+         >
+           {label}
+         </Link>
         ))}
       </div>
 

@@ -4,7 +4,7 @@ import UICredit from '@/sections/UICredit';
 
 export default function Footer() {
   return (
-    <div className={styles['footerM-wrapper']}>
+    <footer className={styles['footerM-wrapper']}>
       <div className={styles['footer-desktop-c']}>
         <div className={styles['footerD-container']}>
           <div className={styles['footer-catagories']}>
@@ -103,6 +103,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

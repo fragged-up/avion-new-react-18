@@ -7,12 +7,13 @@ import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOp
 import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
 import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
 
+import type { Product } from '@/types';
+import { fetchProducts } from '@/stores/products/thunks';
+import { useNavigate } from 'react-router-dom';
+
 import ProductCard from '@/features/products/ProductCard';
 import FilterSortModal from '@/features/filter-sort/FilterSortModal';
 import FilterSortBar from '@/features/filter-sort/FilterSortBar';
-import { fetchProducts } from '@/stores/products/thunks';
-import type { Product } from '@/types';
-import { useNavigate } from 'react-router-dom';
 import ProductSkeleton from '@/features/products/ProductSkeleton';
 
 export default function Test() {

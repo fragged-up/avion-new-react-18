@@ -25,6 +25,28 @@ type UniqueProps = {
 // )
 // }
 
+const api = [
+  {
+    icon: "transitDelivery",
+    title: "Next day as standard",
+    description: "Order before 3pm and get your order the next day as standard"
+  },
+  {
+    icon: "checkMark",
+    title: "Made by true artisans",
+    description: "Handmade crafted goods made with real passion and craftsmanship"
+  },
+  {
+    icon: "purchaseIcon",
+    title: "Unbeatable prices",
+    description: "For our materials and quality you won’t find better prices anywhere"
+  },
+  {
+    icon: "recycleIcon",
+    title: "Recycled packaging",
+    description: "We use 100% recycled packaging to ensure our footprint is manageable"
+  }
+];
 
 
 
@@ -172,3 +194,5 @@ export default function UniqueSection() {
     </>
   );
 }
+
+

@@ -189,13 +189,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={styles['desk-r-5']}>
-                {/* <div className={styles['desk-spa-c']}>
+              <div className={styles['desk-r-5']} draggable={false}></div>
 
-                  <img src={spa} alt='' className={styles['desk-spa-img']} />
 
-                </div> */}
-              </div>
             </div>
           </div>
         </div>
@@ -335,7 +331,7 @@ export default function Home() {
         </div>
             {/* Only Mobile Section here Sofa */}
         <div className={styles['spa-c']}>
-          <img src={SpaImage} alt="spa-image" className={styles['spa-img']} />
+          <img src={SpaImage} alt="spa-image" className={styles['spa-img']}  draggable={false} />
         </div>
       </div>
     </div>

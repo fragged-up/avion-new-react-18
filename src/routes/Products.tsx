@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Loading, ErrorMessage } from '@/components/feedback';
+import { ErrorMessage } from '@/components/feedback';
 import { sortOptions } from '@/config';
 
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
@@ -7,17 +7,18 @@ import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOp
 import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
 import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
 
+import type { Product } from '@/types';
+import { fetchProducts } from '@/stores/products/thunks';
+import { useNavigate } from 'react-router-dom';
+
+
+
 import ProductCard from '@/features/products/ProductCard';
 import FilterSortModal from '@/features/filter-sort/FilterSortModal';
 import FilterSortBar from '@/features/filter-sort/FilterSortBar';
-import { fetchProducts } from '@/stores/products/thunks';
-import type { Product } from '@/types';
-import { useNavigate } from 'react-router-dom';
-import Hero from '@/sections/Hero';
+import ProductSkeleton from '@/features/products/ProductSkeleton';
 
-export default function Products() {
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+export default function Test() {
   const dispatch = useAppDispatch();
 
   const [sortOption, setSortOption] = useState<string | null>(null);
@@ -56,7 +57,6 @@ export default function Products() {
     // useProducts(url);
     toggleModal();
   };
-
   const handleCategorySelect = (category: string | null) => {
     setCurrentCategory(category);
     setSortOption(null);
@@ -73,19 +73,14 @@ export default function Products() {
     dispatch(fetchProducts(params));
   }, []);
 
-  // const handleLoadMore = () => {
-  //   if (hasMore && !loadingMore) {
-  //     setLoadingMore(true);
-  //     fetchProducts({ category: 'tables' });
-  //   }
-  // };
-
   return (
-    <div className="">
-      <Hero />
+    <div className="w-full min-h-screen bg-white p-6">
+      <section><FilterSortBar /></section>
 
-      <section className="py-8">
-        <FilterSortBar />
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+        {loading ? (  <ProductSkeleton /> ) : error ? ( <ErrorMessage message="Error loading products." /> ) : (
+           products.products.map((product: any, idx: number) => (    <ProductCard key={`${product.id}-${idx}`} product={product}  />  ))
+        )}
       </section>
 
       <FilterSortModal
@@ -98,31 +93,6 @@ export default function Products() {
         showAction={handleShowResults}
         itemCount={itemCount}
       />
-      <main>
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-          {loading ? (
-            <Loading message="Loading products..." />
-          ) : error ? (
-            <ErrorMessage message="Error loading products." />
-          ) : (
-            products.products.map((product: any, idx: number) => (
-              <ProductCard key={`${product.id}-${idx}`} product={product} onClick={() => handleNavigation(product)} />
-            ))
-          )}
-        </section>
-        {/* <div className="w-full py-8 flex justify-center items-center">
-          {hasMore ? (
-            <button
-              className="border-none cursor-pointer bg-[#f9f9f9] py-5 px-12 font-satoshi text-center color-[#2a254b]"
-              onClick={handleLoadMore}
-              disabled={loadingMore}>
-              {loadingMore ? 'Loading...' : 'Load More'}
-            </button>
-          ) : (
-            <p>No more products to load.</p>
-          )}
-        </div> */}
-      </main>
     </div>
   );
 }

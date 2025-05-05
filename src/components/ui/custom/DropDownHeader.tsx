@@ -1,5 +1,5 @@
 import React from 'react';
-import drsvg from '@/assets/icons/dropdown.svg';
+import DropDownIcon from '@/assets/icons/dropdown.svg';
 
 interface DropdownHeaderProps {
   label: string | null | undefined| any;
@@ -10,11 +10,11 @@ interface DropdownHeaderProps {
 
 const DropdownHeader: React.FC<DropdownHeaderProps> = ({ label, isOpened, onToggle, children }) => {
   return (
-    <div className="flex cursor-pointer items-center justify-between px-6 py-3" onClick={onToggle}>
-      <p className="font-satoshi text-base" style={{ textDecoration: isOpened ? 'underline black' : 'none' }}>
+    <div className="flex cursor-pointer items-center justify-between font-clash font-bold py-3" onClick={onToggle}>
+      <p className="font-clash font-medium text-lg" style={{ textDecoration: isOpened ? 'underline black' : 'none' }}>
         {label}
       </p>
-      <img src={drsvg} alt="drop-down-icon" className={`h-6 w-6 transition-transform ${isOpened ? 'rotate-180' : 'rotate-0'}`} />
+      <img src={DropDownIcon} alt="drop-down-icon" className={`h-6 w-6 transition-transform ${isOpened ? 'rotate-180' : 'rotate-0'}`} />
     </div>
   );
 };
