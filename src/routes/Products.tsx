@@ -10,7 +10,7 @@ import { selectProductsError, selectProductsFilters, selectProductsLoading, sele
 import type { Product } from '@/types';
 import { fetchProducts } from '@/stores/products/thunks';
 import { useNavigate } from 'react-router-dom';
-
+import { setSortSelection } from '@/stores/products';
 
 
 import ProductCard from '@/features/products/ProductCard';
@@ -50,11 +50,10 @@ export default function Test() {
   };
 
   const handleSortChange = (selectedValue: string) => {
-    setSortOption(selectedValue);
+    dispatch(setSortSelection(selectedValue))
   };
 
   const handleShowResults = () => {
-    // useProducts(url);
     toggleModal();
   };
   const handleCategorySelect = (category: string | null) => {
@@ -62,15 +61,15 @@ export default function Test() {
     setSortOption(null);
   };
 
-  useEffect(() => {
-    const params = {
-      category: 'tables',
-    };
-    if (products) {
-      setMeta(filters);
-    }
 
-    dispatch(fetchProducts(params));
+  const handleFilterChange = ( selectedValue:any ) => {
+    dispatch(setSortSelection(selectedValue))
+  };
+
+  useEffect(() => {
+
+
+    dispatch(fetchProducts({category:"ceramics"}));
   }, []);
 
   return (
@@ -83,16 +82,18 @@ export default function Test() {
         )}
       </section>
 
+
       <FilterSortModal
         isOpen={isModalOpen}
         onClose={toggleModal}
         sortOptions={sortOptions}
-        filterGroups={filters}
-        sortSelection={sortOption}
         onSortChange={handleSortChange}
+        sortSelection={sortOption}
+        onFilterChange={handleFilterChange}
+        filterGroups={filters}
         showAction={handleShowResults}
         itemCount={itemCount}
-      />
+    />
     </div>
   );
 }

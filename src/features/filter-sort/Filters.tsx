@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Label } from '@/components/ui/Label';
 import { Container } from '@/components/ui/Semantic';
 import { Checkbox } from '@/components/ui/CheckBox';
 import { Accordion } from '@/components/ui/Accordion';
 import { cn } from '@/utils';
-import DropDownIcon from '@/assets/icons/dropdown.svg';
 import { ColorVariant } from '@/features/filter-sort/ColorVariant';
+import DropDownIcon from '@/assets/icons/dropdown.svg';
 
 type FilterOption = {
   value: string;
@@ -68,7 +68,7 @@ const FilterGroup: React.FC<FilterGroupProps> = ({ filterItems, hasColors, class
   return (
     <>
       {hasColors ? (
-         <Container className='inline-flex justify-start items-start gap-3'>
+         <Container className='inline-flex justify-start items-start gap-x-3 gap-y-3' style={{ gap:"20px"}}>
          <ColorVariant filterItems={filterItems} handleCheckboxChange={handleCheckboxChange} isChecked={isChecked} />
          </Container>
       ) : (
@@ -97,20 +97,32 @@ const FilterCategory: React.FC<FilterCategoryProps> = ({ title, items, className
       ))}
     </Accordion>
   );
-};
-const Filter: React.FC<{ filtersMeta: FiltersMeta }> = ({ filtersMeta }) => {
-  const [selectedFilters, setSelectedFilters] = useState<{ [category: string]: string[] }>({});
 
+
+};
+
+export type OnFilterChange = (filters: { [category: string]: string[] }) => void;
+
+type FilterProps = {
+    filtersMeta:FiltersMeta
+    onFilterChange: (filters: { [category: string]: string[] }) => void;
+}
+
+const Filter: React.FC<FilterProps> = ({ filtersMeta,  onFilterChange }) => {
+  const [selectedFilters, setSelectedFilters] = useState<{ [category: string]: string[] }>({});
   const handleCheckboxChange = useCallback((category: string, value: string, isChecked: boolean) => {
     setSelectedFilters((prevSelected) => {
       const categoryFilters = prevSelected[category] || [];
-      if (isChecked) {
-        return { ...prevSelected, [category]: [...categoryFilters, value] };
-      } else {
-        return { ...prevSelected, [category]: categoryFilters.filter((item) => item !== value) };
-      }
+      const updatedFilters = isChecked
+        ? { ...prevSelected, [category]: [...categoryFilters, value] }
+        : { ...prevSelected, [category]: categoryFilters.filter((item) => item !== value) };
+      return updatedFilters;
     });
   }, []);
+
+  useEffect(() => {
+    onFilterChange(selectedFilters);
+  }, [selectedFilters, onFilterChange]);
 
   return (
     <Container>
@@ -131,3 +143,4 @@ const Filter: React.FC<{ filtersMeta: FiltersMeta }> = ({ filtersMeta }) => {
 };
 
 export default Filter;
+

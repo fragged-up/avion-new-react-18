@@ -3,7 +3,6 @@ import cart from '@/stores/cart/slice';
 import user from '@/stores/user/slice';
 import search from '@/stores/search/slice';
 import modal from '@/stores/modal/slice';
-import filters from '@/stores/filters/slice';
 import products from '@/stores/products/slice';
 
 const rootReducer = combineReducers({
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
   user,
   search,
   modal,
-  filters,
   products,
 });
 

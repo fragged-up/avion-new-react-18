@@ -1,3 +1,4 @@
+import type { Product } from '@/types';
 import { useState, useEffect } from 'react';
 import { ErrorMessage } from '@/components/feedback';
 import { sortOptions } from '@/config';
@@ -5,11 +6,12 @@ import { sortOptions } from '@/config';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOpen, selectResultsNumber } from '@/stores/modal/selectors';
 import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
-import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
+import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse,selectSortOption} from '@/stores/products/selectors';
 
-import type { Product } from '@/types';
 import { fetchProducts } from '@/stores/products/thunks';
 import { useParams } from 'react-router-dom';
+import { setSortSelection } from '@/stores/products';
+
 
 import ProductCard from '@/features/products/ProductCard';
 import FilterSortModal from '@/features/filter-sort/FilterSortModal';
@@ -20,8 +22,7 @@ export default function Category() {
   const dispatch = useAppDispatch();
   const { category } = useParams<{ category: string }>();
 
-  const [sortOption, setSortOption] = useState<string | null>(null);
-
+  const [filterOption, setFilterOption] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
 
   const [itemCount, setItemCount] = useState<number | null>(null);
@@ -33,6 +34,7 @@ export default function Category() {
   const error = useAppSelector(selectProductsError);
   const filters = useAppSelector(selectProductsFilters);
   const isModalOpen = useAppSelector(selectIsModalOpen);
+  const sortOption =  useAppSelector(selectSortOption);
   const isSortOpen = useAppSelector(selectIsSortOpen);
   const isFilterOpen = useAppSelector(selectIsFilterOpen);
   const resultsNumber = useAppSelector(selectResultsNumber);
@@ -44,19 +46,24 @@ export default function Category() {
     dispatch(openSortFilterModal(false));
   };
   const handleSortChange = (selectedValue: string) => {
-    setSortOption(selectedValue);
+    dispatch(setSortSelection(selectedValue))
   };
   const handleShowResults = () => {
     // useProducts(url);
     toggleModal();
   };
-  const handleCategorySelect = (category: string | null) => {
-    setCurrentCategory(category);
-    setSortOption(null);
+  // const handleCategorySelect = (category: string | null) => {
+  //   setCurrentCategory(category);
+  //   setSortOption(null);
+  // };
+
+  const handleFilterChange = ( selectedValue:any ) => {
+    dispatch(setSortSelection(selectedValue))
   };
 
+
   useEffect(() => {
-    dispatch(fetchProducts({ category }));
+    dispatch(fetchProducts({ category,sort:'availability' }));
   }, [category]);
 
   return (
@@ -66,7 +73,7 @@ export default function Category() {
       </section>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-        {loading ? (    <ProductSkeleton /> ) : error ? (   <ErrorMessage message="Error loading products." /> ) : (
+        {loading ? ( <ProductSkeleton /> ) : error ? (   <ErrorMessage message="Error loading products." /> ) : (
           products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} />)
         )}
       </section>
@@ -75,12 +82,13 @@ export default function Category() {
         isOpen={isModalOpen}
         onClose={toggleModal}
         sortOptions={sortOptions}
-        filterGroups={filters}
-        sortSelection={sortOption}
         onSortChange={handleSortChange}
+        sortSelection={sortOption}
+        onFilterChange={handleFilterChange}
+        filterGroups={filters}
         showAction={handleShowResults}
         itemCount={itemCount}
-      />
+    />
     </div>
   );
 }

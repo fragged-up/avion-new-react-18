@@ -7,6 +7,7 @@ const initialState: ProductsState = {
   products: [],
   selectedProduct: null,
   filtersMeta: {},
+  sortSelection:'name',
   loading: false,
   error: null,
 };
@@ -19,27 +20,14 @@ export const productsSlice = createSlice({
       state.selectedProduct = action.payload;
     },
 
-    //   setSelectedProduct = (id: number) => {
-    //   if (!products|| products.length === 0) {
-    //     console.log('Products not loaded yet!')
-    //     return
-    //   }
-    //   const findId = products.value.find((p) => p.id === id) || null
-
-    //   if (!findId) {
-    //     console.log('Product Not Found for ID:', id)
-    //   } else {
-    //     selectedProduct.value = findId
-    //     console.log('Selected Product:', selectedProduct.value)
-    //   }
-    // }
-
+  setSortSelection:(state,action:PayloadAction<ProductsState["sortSelection"]>)=>{
+   state.sortSelection =action.payload;
+  }
 
   },
 
 
   extraReducers: (builder) => {
-    // FetchProducts
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
@@ -66,5 +54,5 @@ export const productsSlice = createSlice({
 
   },
 });
-export const {  setSelectedProduct } = productsSlice.actions;
+export const {  setSelectedProduct,setSortSelection } = productsSlice.actions;
 export default productsSlice.reducer;

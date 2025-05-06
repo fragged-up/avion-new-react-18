@@ -100,7 +100,7 @@ const bgColor = (color?: string): string | undefined => {
 
   const lowerCaseColor = color.toLowerCase();
 
-  if (lowerCaseColor === 'white') return 'bg-white text-black';
+  if (lowerCaseColor === 'white' || lowerCaseColor.includes("white")) return 'bg-white text-black border-black';
   if (lowerCaseColor === 'black') return 'bg-black text-white';
   if (lowerCaseColor.includes('red')) return 'bg-red-600 text-white';
   if (lowerCaseColor.includes('green')) return 'bg-green-600 text-white';
@@ -160,22 +160,15 @@ const bgColor = (color?: string): string | undefined => {
   return undefined;
 };
 
-const ColorFilter = ({ color }: { color?: string }) => {
+const ColorFilter = ({ color,className }: { color?: string,className?:string }) => {
   const [selected, setSelected] = useState<boolean>(false);
-  const selectedStyle = `${selected ? 'border-2 border-black' : 'border border-gray-300'}`;
   const backgroundColorClass = bgColor(color);
-  const textColorClass = backgroundColorClass?.includes('text-white') ? 'border-black-300' : 'text-black';
+
 
   return (
-    <div
-      className={cn(
-        'rounded-full w-[3.75rem] h-[3.75rem] flex items-center justify-center',
-        selectedStyle,
-        backgroundColorClass,
-        textColorClass,
-      )}
-      onClick={() => setSelected(!selected)}>
-      {selected ? '✔︎' : ''}
+    <div className={cn( 'rounded-full w-[3.75rem] h-[3.75rem] flex items-center justify-center',backgroundColorClass,className )}
+      onClick={() => setSelected(!selected)} style={{border:"2px solid gray", cursor:'pointer'}}>
+      <span>{selected ? '✔︎' : ''}</span>
     </div>
   );
 };
@@ -187,8 +180,8 @@ const ColorFilter = ({ color }: { color?: string }) => {
 
 export const ColorVariant = ({ filterItems, handleCheckboxChange, isChecked }: VariantProps) => {
   return (
-        <div className="flex flex-col items-center justify-center" onClick={() => handleCheckboxChange}>
-        <ColorFilter color={filterItems.value} />
+        <div className="flex flex-col items-center justify-center gap-2" onClick={() => handleCheckboxChange}>
+        <ColorFilter color={filterItems.value} className='m-4' />
         <Label className="items-center">{filterItems.value}</Label>
         <Label className="text-gray-500 text-center flex text-nowrap">{filterItems.count}</Label>
       </div>

@@ -24,14 +24,8 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async (p
       }
     }
     const res = await axios.get(`${API}/products?${query.toString()}`);
-    console.log(res);
     return res.data;
   } catch (err: any) {
     return thunkAPI.rejectWithValue(err.response?.data || 'Fetch error');
   }
-});
-
-export const fetchProductById = createAsyncThunk('products/fetchById', async (id: string) => {
-  const res = await fetch(`${API}/products?${id}`);
-  return await res.json();
 });

@@ -92,6 +92,7 @@ export type ProductsState = {
   selectedProduct:null | any[] | any;
   products: Product[];
   filtersMeta: FiltersMeta | {};
+  sortSelection:string;
   loading: boolean;
   error: string | null;
 };

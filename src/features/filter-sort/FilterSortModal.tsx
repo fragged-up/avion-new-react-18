@@ -3,21 +3,22 @@ import FilterSortContainer from './FilterSortContainer';
 import FilterSortContent from './FilterSortContent';
 import FilterSortFooter from './FilterSortFooter';
 import Button from '@/components/ui/Button';
-import Filters from './Filters';
+import Filters, { OnFilterChange } from './Filters';
 import { FilterOptions, SortOptions } from '@/types/optionsTypes';
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  filterGroups: any;
   sortOptions: SortOptions[];
   sortSelection: string | null;
   onSortChange: (selectedValue: string) => void;
-  filterGroups: any;
+  onFilterChange:OnFilterChange;
   itemCount?: number | null;
   showAction?: () => void;
 };
 
-const FilterSortModal = ({isOpen,onClose,sortOptions,filterGroups,onSortChange,sortSelection,itemCount,showAction}: ModalProps) => {
+const FilterSortModal = ({isOpen,onClose,sortOptions,filterGroups,onSortChange,onFilterChange,sortSelection,itemCount,showAction}: ModalProps) => {
 
   const clearAllStyle = itemCount !== null ? 'bg-gray-400' : 'bg-gray-100';
   const itemCountResult = `Show Results ${itemCount !== null ? itemCount : ''}`;
@@ -28,7 +29,7 @@ const FilterSortModal = ({isOpen,onClose,sortOptions,filterGroups,onSortChange,s
       <FilterSortContainer onClose={onClose}>
         <FilterSortContent>
           <Sort sortLabel="Sort By :" sortingOptions={sortOptions} currSelection={sortSelection || ''} onChange={onSortChange} />
-          <Filters filtersMeta={filterGroups} />
+          <Filters filtersMeta={filterGroups} onFilterChange={onFilterChange} />
         </FilterSortContent>
 
         <FilterSortFooter>
@@ -37,7 +38,8 @@ const FilterSortModal = ({isOpen,onClose,sortOptions,filterGroups,onSortChange,s
             {itemCountResult}
           </Button>
         </FilterSortFooter>
-      </FilterSortContainer> )
+      </FilterSortContainer>
+      )
 
      }
     </>
