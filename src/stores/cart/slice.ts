@@ -67,6 +67,7 @@ const slice = createSlice({
     },
 
 
+
   },
 
 });
@@ -86,9 +87,4 @@ export const {
 
 export default slice.reducer;
 
-// import { loadCartFromLocalStorage } from './thunks';
-// extraReducers: (builder) => {
-//   builder.addCase(loadCartFromLocalStorage.fulfilled, (state, action) => {
-//     state.items = action.payload;
-//   });
-// },
+

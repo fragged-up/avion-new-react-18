@@ -1,43 +1,27 @@
 import type { Product } from '@/types';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import { addToCart, decreaseQty, increaseQty,  } from '@/stores/cart';
+import { addToCart, decreaseQty, increaseQty, selectCartItemCount } from '@/stores/cart';
 import fallbackImage from '@/assets/images/imageNotAvailable.png';
-
-
+import QuantitySelector from '@/components/ui/QuantitySelector';
 
 type ProductDetailsProps = {
   product: Product;
 };
 
-const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { productImage,productTitle, productPrice} = product;
-  const [isFallback, setIsFallback] = useState(false);
+const ProductDetails = ({ product }: ProductDetailsProps | any) => {
   const dispatch = useAppDispatch();
+  const { productImage, productTitle, productPrice } = product;
+  const [ isFallback, setIsFallback] = useState(false);
+  const itemCount = useAppSelector(selectCartItemCount);
+  let quantity = itemCount || 1;
 
-
-
-
-
-
-
-
-  const handleIncrease = () => {
-    // dispatch(increaseQty(product.id));
+  const handleIncrease = (id: string) => {
+    dispatch(increaseQty(id));
   };
 
-  const handleDecrease = () => {
-  };
-    // dispatch(decreaseQty(product.id));
-  // const quantity = useAppSelector((state) =>
-  //   selectProductQuantity(state, product.id)
-  // );
-
-  // const handleAddToCart = (product:any) => {
-  //   dispatch(addToCart(product));
-  // };
-  const handleAddToCart = () => {
-    console.log(product);
+  const handleDecrease = (id: string) => {
+    dispatch(decreaseQty(id));
   };
 
   return (
@@ -46,7 +30,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <img
           src={isFallback ? fallbackImage : productImage}
           alt="product-image"
-          onError={()=>setIsFallback(true)}
+          onError={() => setIsFallback(true)}
           className="w-full h-full object-cover cursor-pointer max-h-[600px]"
           draggable={false}
         />
@@ -94,35 +78,23 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             <h2 className="font-clash text-[1em]">Quantity</h2>
           </div>
 
-          <div className="bg-[#f9f9f9] flex justify-center items-center gap-[30px] px-5 py-[5px] border-black">
-           <button onClick={()=>handleDecrease} className="text-[#ebe8f4] bg-transparent appearance-none">-</button>
-           {/* <h2 className="font-satoshi">{quantity}</h2> */}
-           <button onClick={()=>handleIncrease} className="text-[#ebe8f4] bg-transparent appearance-none">+</button>
-          </div>
+          <QuantitySelector
+            item={product}
+            quantity={quantity}
+            onInc={() => handleIncrease(product._id)}
+            onDec={() => handleDecrease(product._id)}
+          />
           <div className="w-full">
-            <button className="w-full bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]"
-            onClick={()=>dispatch(addToCart(product))} >
+            <button
+              className="w-full bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]"
+              onClick={() => dispatch(addToCart(product))}>
               Add to cart
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
 };
 
 export default ProductDetails;
-
-{
-  /* <QuantitySelector
-:product-id="props.selectedProduct.id"
-:quantity="cartStore.cartItems.find(item => item.id === selectedProduct.id)?.quantity ?? 1"
-:addQuantity="increaseQuantity"
-:removeQuantity="decreaseQuantity"
-:add-class="'px-6 md:text-start'"
-/> */
-}
-
-
-

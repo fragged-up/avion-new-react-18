@@ -10,21 +10,19 @@ import CartItem from '@/features/cart/CartItem';
 
 const CartModal: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isCartOpen = useAppSelector(selectIsCartOpen);
-  const CartItems = useAppSelector(selectCartItems);
   const navigate = useNavigate();
+
+  const isCartOpen = useAppSelector(selectIsCartOpen);
+  const CART_ITEMS = useAppSelector(selectCartItems);
+  const totalPrice = CART_ITEMS.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
 
   const navigateToCheckOut = ()=>{
     dispatch(closeCart())
     navigate('checkout')
-
   }
-  const total = CartItems.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
-
   const handleIncrease = (id: string) => {
     dispatch(increaseQty(id));
   };
-
   const handleDecrease = (id: string) => {
     dispatch(decreaseQty(id));
   };
@@ -42,8 +40,8 @@ const CartModal: React.FC = () => {
       </LayoutHeader>
 
       <Main className="flex flex-col flex-1 gap-4">
-        {CartItems.length > 0 ? (
-          CartItems.map((item: any, idx: number) => (
+        {CART_ITEMS.length > 0 ? (
+          CART_ITEMS.map((item: any, idx: number) => (
             <CartItem key={idx} cartItem={item} onIncrease={handleIncrease} onDecrease={handleDecrease} />
           ))
         ) : (
@@ -53,7 +51,7 @@ const CartModal: React.FC = () => {
 
       <LayoutFooter>
         <CheckOutButton
-        total={total.toFixed(2)}
+        total={totalPrice.toFixed(2)}
         onClick={navigateToCheckOut}
          />
       </LayoutFooter>
