@@ -1,10 +1,9 @@
 import { toggleCart } from '@/stores/cart';
 import { useAppDispatch } from '@/stores/core/hooks';
-import { Link } from 'react-router-dom';
-import styles from '@/styles/css/ProductListMobile.module.css';
 
-type Total = {
+type CartBtnProps = {
   total: number | string;
+  onClick?: () => void;
 };
 
 export const CloseCartButton: React.FC = () => {
@@ -16,16 +15,20 @@ export const CloseCartButton: React.FC = () => {
   );
 };
 
-export const CheckOutButton: React.FC<Total> = ({ total }) => {
+export const CheckOutButton: React.FC<CartBtnProps> = ({ total, onClick }) => {
   return (
-    <div className={styles['checkout-w']}>
-      <div className={styles['checkout-c']}>
-        <h1 className={styles['sub-total']}>Subtotal</h1>
-        <span className={styles['summary']}>£{total}</span>
+    <div className=" flex flex-col gap-4">
+      <div className="border-t border-[#ebe8f4] pt-[1em] gap-4 flex justify-end items-end">
+        <h1 className="flex text-[1em] font-clash font-normal text-[#4e4d93]">Subtotal</h1>
+        <span className="text-[1em] font-clash font-normal">£{total}</span>
       </div>
-      <p className={styles['sb-note']}>Taxes and shipping are calculated at checkout</p>
-      <div className={styles['go-to-checkout-c']}>
-        <Link to="/checkout" className={styles['go-to-checkout-button']}>Go to Checkout</Link>
+      <p className="text-[0.8em] font-satoshi font-normal text-[#4e4d93] self-end">Taxes and shipping are calculated at checkout</p>
+      <div className="flex justfy-end self-end">
+        <button
+          className="px-12 bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi text-center text-[#f9f9f9]"
+          onClick={onClick}>
+          Go to Checkout
+        </button>
       </div>
     </div>
   );

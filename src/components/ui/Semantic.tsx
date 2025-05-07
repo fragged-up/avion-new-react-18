@@ -56,6 +56,15 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     className?: string;
 }
 
+interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  className?: string;
+}
+
+
+export const Img: React.FC<ImgProps> = ({ className, ...rest }) => {
+  return <img className={cn(className)} alt="product-card-image" {...rest} />;
+};
+
 
 
 export const Section: React.FC<SectionProps> = ({ children, className, ...props }) => {

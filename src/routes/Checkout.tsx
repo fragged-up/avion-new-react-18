@@ -1,5 +1,6 @@
+import { selectCartItems, selectIsCartOpen } from '@/stores/cart';
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import React, { useState } from 'react';
-
 interface OrderItem {
   name: string;
   price: number;
@@ -13,6 +14,14 @@ const checkoutItems: OrderItem[] = [
 ];
 
 const CheckoutPage: React.FC = () => {
+
+
+    const dispatch = useAppDispatch();
+    const isCartOpen = useAppSelector(selectIsCartOpen);
+    const CartItems = useAppSelector(selectCartItems);
+
+
+
   const [formData, setFormData] = useState({
     name: 'John Doe',
     address: '123 Main Street, Apartment 5B, Springfield, IL',

@@ -47,18 +47,18 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           src={isFallback ? fallbackImage : productImage}
           alt="product-image"
           onError={()=>setIsFallback(true)}
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover cursor-pointer max-h-[600px]"
           draggable={false}
         />
       </div>
 
-      <div className="flex flex-col md:w-2/4  justify-start items-start px-[1.5em] py-[2em] gap-[0.6em]">
+      <div className="flex flex-col md:w-2/4 justify-start items-start px-[1.5em] pt-[2em] gap-[0.6em]">
         <div className="flex flex-col justify-start items-start gap-[1em]">
           <h1 className="text-[1em] font-clash font-normal">{productTitle}</h1>
           <h1 className="text-[1.2em] font-clash font-normal">{`£ ${productPrice}`}</h1>
         </div>
 
-        <div className="flex flex-col justify-start items-start gap-4 py-[1.5em]">\
+        <div className="flex flex-col justify-start items-start gap-4 py-[1.5em]">
           <h2 className="text-[1em] font-clash font-normal">Product description</h2>
           <p className="text-[1em] font-regular font-clash">{product?.productDescription?.main}</p>
           <ul className="pl-[2em]">
@@ -89,7 +89,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </div>
         </div>
 
-        <div className="w-full flex flex-col gap-[1.5em] py-[1.5em]">
+        <div className="w-full flex flex-col gap-[1.5em] mt-auto ">
           <div className="">
             <h2 className="font-clash text-[1em]">Quantity</h2>
           </div>
