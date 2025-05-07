@@ -1,9 +1,14 @@
 import { cn } from "@/utils";
 
-
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
 }
+
+interface DialogProps extends React.HTMLAttributes<HTMLDialogElement> {
+    open:boolean;
+    children: React.ReactNode;
+    className?: string;
+  }
 
 interface ArticleProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
@@ -12,6 +17,7 @@ interface ArticleProps extends React.HTMLAttributes<HTMLElement> {
 
 interface MainProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
+    className?:string;
 }
 
 interface AsideProps extends React.HTMLAttributes<HTMLElement> {
@@ -38,6 +44,12 @@ interface NavProps extends React.HTMLAttributes<HTMLElement> {
     role?: string;
 }
 
+interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
+    children: React.ReactNode;
+    level?: 'p1' | 'p2' | 'p3' | 'p4';
+    className?: string;
+  }
+
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     children: React.ReactNode;
     level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -46,12 +58,6 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 
 
-
-
-
-
-
-// Reusable components with semantic HTML
 export const Section: React.FC<SectionProps> = ({ children, className, ...props }) => {
     return (
         <section className={cn("", className)} {...props}>
@@ -76,6 +82,15 @@ export const Main: React.FC<MainProps> = ({ children, className, ...props }) => 
         </main>
     );
 };
+
+
+export const Dialog: React.FC<DialogProps> = ({ children, className, open, ...props }) => {
+    return (
+      <dialog className={cn("", className)} open={open} {...props}>
+        {children}
+      </dialog>
+    );
+  };
 
 export const Aside: React.FC<AsideProps> = ({ children, className, ...props }) => {
     return (
@@ -121,6 +136,36 @@ export const Container: React.FC<ContainerProps> = ({ children, className, fluid
         </div>
     );
 };
+
+
+
+
+export const Paragraph: React.FC<ParagraphProps> = ({
+    children,
+    level = 'p2',
+    className,
+    ...props
+  }) => {
+    const baseStyles = 'font-clash';
+    const sizeStyles = {
+      p1: 'text-sm md:text-base lg:text-lg',
+      p2: 'text-base md:text-lg lg:text-xl',
+      p3: 'text-lg md:text-xl lg:text-2xl',
+      p4: 'text-xl md:text-2xl lg:text-3xl',
+    };
+
+
+    return (
+      <p className={cn(baseStyles, sizeStyles[level], className)} {...props}>
+        {children}
+      </p>
+    );
+  };
+
+
+
+
+
 
 export const Heading: React.FC<HeadingProps> = ({
   children,

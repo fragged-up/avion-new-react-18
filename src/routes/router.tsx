@@ -7,6 +7,7 @@ import NotFound from "./NotFound";
 import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 import Category from "./Category";
+import Checkout from "./Checkout";
 
 const routes = [{
   path: "/",
@@ -18,6 +19,7 @@ const routes = [{
     { path: "products", element: <Products /> },
     { path: "products/:slug", element: <ProductOverview /> },
     { path: "/:category", element: <Category /> },
+    { path: "checkout", element: <Checkout /> },
     { path: "*", element: <NotFound /> },
   ],
 }];

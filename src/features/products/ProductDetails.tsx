@@ -1,11 +1,9 @@
 import type { Product } from '@/types';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import { addToCart, decreaseQty, increaseQty, selectProductQuantity } from '@/stores/cart';
+import { addToCart, decreaseQty, increaseQty,  } from '@/stores/cart';
 import fallbackImage from '@/assets/images/imageNotAvailable.png';
-import CatalogDataContainer from '@/features/products/CatalogData';
-import Unique from '@/sections/UniqueSection';
-import QuantitySelector from '@/components/ui/QuantitySelector';
+
 
 
 type ProductDetailsProps = {
@@ -13,9 +11,17 @@ type ProductDetailsProps = {
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { productImage,productTitle, productPrice, } = product;
- const [isFallback, setIsFallback] = useState(false);
+  const { productImage,productTitle, productPrice} = product;
+  const [isFallback, setIsFallback] = useState(false);
   const dispatch = useAppDispatch();
+
+
+
+
+
+
+
+
   const handleIncrease = () => {
     // dispatch(increaseQty(product.id));
   };
@@ -27,8 +33,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   //   selectProductQuantity(state, product.id)
   // );
 
-  const handleAddToCart = (product:any) => {
-    dispatch(addToCart(product.id));
+  // const handleAddToCart = (product:any) => {
+  //   dispatch(addToCart(product));
+  // };
+  const handleAddToCart = () => {
+    console.log(product);
   };
 
   return (
@@ -49,7 +58,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <h1 className="text-[1.2em] font-clash font-normal">{`£ ${productPrice}`}</h1>
         </div>
 
-        <div className="flex flex-col justify-start items-start gap-4 py-[1.5em]">
+        <div className="flex flex-col justify-start items-start gap-4 py-[1.5em]">\
           <h2 className="text-[1em] font-clash font-normal">Product description</h2>
           <p className="text-[1em] font-regular font-clash">{product?.productDescription?.main}</p>
           <ul className="pl-[2em]">
@@ -91,15 +100,13 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
            <button onClick={()=>handleIncrease} className="text-[#ebe8f4] bg-transparent appearance-none">+</button>
           </div>
           <div className="w-full">
-            <button className="w-full bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]">
+            <button className="w-full bg-[#2a254b] border-none cursor-pointer py-[1em] text-[0.8em] font-satoshi font-normal text-center text-[#f9f9f9]"
+            onClick={()=>dispatch(addToCart(product))} >
               Add to cart
             </button>
           </div>
         </div>
 
-        {/* <CatalogDataContainer /> */}
-
-        {/* <Unique /> */}
       </div>
     </div>
   );
@@ -116,5 +123,6 @@ export default ProductDetails;
 :add-class="'px-6 md:text-start'"
 /> */
 }
+
 
 

@@ -1,34 +1,26 @@
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import { selectIsCartOpen } from '@/stores/cart';
-import { Aside, LayoutHeader, LayoutFooter, Section, Main, Heading } from '@/components/ui/Semantic';
+import { selectCartItems, selectIsCartOpen } from '@/stores/cart/selectors';
+import { Aside, LayoutHeader, LayoutFooter, Main, Heading, Paragraph } from '@/components/ui/Semantic';
 import { CloseCartButton, CheckOutButton } from '@/features/cart/CartButtons';
 import CartItem from '@/features/cart/CartItem';
-import pr1 from '@/assets/images/shop-image-1.svg';
-import pr2 from '@/assets/images/shop-image2.svg';
+
+import { decreaseQty, increaseQty } from '@/stores/cart/slice';
 
 
-const cartData = [
-  {
-    id: 1,
-    image: pr1,
-    title: 'Graystone Vase',
-    description: 'A timeless ceramic vase with a tri color grey glaze.',
-    price: 85,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    image: pr2,
-    title: 'Graystone Vase',
-    description: 'Beautiful and simple this is one for the classics',
-    price: 85,
-    quantity: 2,
-  },
-];
 
 const CartModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector(selectIsCartOpen);
+  const CartItems = useAppSelector(selectCartItems);
+  const total = CartItems.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
+
+  const handleIncrease = (id: string) => {
+    dispatch(increaseQty(id));
+  };
+
+  const handleDecrease = (id: string) => {
+    dispatch(decreaseQty(id));
+  };
 
   const cartAsideClassName = `fixed top-0 right-0 h-screen w-[400px] bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out ${
     isCartOpen ? 'translate-x-0' : 'translate-x-full'
@@ -37,27 +29,23 @@ const CartModal: React.FC = () => {
   return (
     <Aside className={cartAsideClassName}>
       <CloseCartButton />
+      <LayoutHeader className="flex justify-center items-center pb-4">
+        <Heading className="text-base md:text-lg lg:text-xl">Your Shopping Cart</Heading>
+      </LayoutHeader>
 
-      <Section className="h-full flex flex-col justify-center px-4 pt-4">
-        <LayoutHeader className="flex pb-4">
-          <Heading className="text-base">Your Shopping Cart</Heading>
-        </LayoutHeader>
+      <Main className="flex flex-col gap-4">
+        {CartItems.length > 0 ? (
+          CartItems.map((item: any, idx: number) => (
+            <CartItem key={idx} cartItem={item} onIncrease={handleIncrease} onDecrease={handleDecrease} />
+          ))
+        ) : (
+          <Paragraph className='text-center'>Your cart is empty.</Paragraph>
+        )}
+      </Main>
 
-        <Main className="flex flex-col gap-4">
-          {cartData.map((item) => (
-            <CartItem
-              key={item.id}
-              cartItem={item}
-              onIncrease={(id) => console.log('Increase', id)}
-              onDecrease={(id) => console.log('Decrease', id)}
-            />
-          ))}
-        </Main>
-
-        <LayoutFooter>
-          <CheckOutButton total={'452'} />
-        </LayoutFooter>
-      </Section>
+      <LayoutFooter>
+        <CheckOutButton total={total.toFixed(2)} />
+      </LayoutFooter>
     </Aside>
   );
 };

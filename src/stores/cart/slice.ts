@@ -1,10 +1,21 @@
-import type { CartItem, CartState } from '@/types/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+export type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+  description:string;
+  image?: string;
+};
+
+export type CartState = {
+  cartItems: CartItem[] | any[] | any;
+  isCartOpen: boolean;
+};
 
 const initialState: CartState = {
   cartItems: [],
-  cartTotalQuantity:0,
-  cartTotalAmount:0,
   isCartOpen: false,
 };
 
@@ -26,35 +37,35 @@ const slice = createSlice({
     },
 
 
-    addToCart(state, action: PayloadAction<CartItem>) {
-      const existing = state.cartItems.find((i) => i.id === action.payload.id);
-      if (existing) {
-        existing.quantity += action.payload.quantity;
+    addToCart: (state, action: PayloadAction<any>) => {
+      const itemId = action.payload._id;
+      const existingItem = state.cartItems.find((item: any) => item._id === itemId);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
       } else {
-        const cartItem = {...action.payload, quantity:1}
-        state.cartItems.push(cartItem);
+        state.cartItems.push({ ...action.payload, quantity: 1 });
       }
     },
 
-    removeItem(state, action: PayloadAction<CartItem["id"]>) {
-      state.cartItems = state.cartItems.filter((item) => item.id !== action.payload);
+
+    removeItem(state, action: PayloadAction<any>) {
+      state.cartItems = state.cartItems.filter((item:any) => item.id !== action.payload);
     },
 
-
-
-    increaseQty: (state,action: PayloadAction<CartItem["id"]>) => {
-      const item = state.cartItems.find((item) => item.id === action.payload);
+    increaseQty(state, action: PayloadAction<string>) {
+      const item = state.cartItems.find((item:any) => item._id === action.payload);
       if (item) {
-        item.quantity++;
+        item.quantity += 1;
+      }
+    },
+    decreaseQty(state, action: PayloadAction<string>) {
+      const item = state.cartItems.find((item:any) => item._id === action.payload);
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
       }
     },
 
-    decreaseQty: (state, action: PayloadAction<CartItem["id"]>) => {
-      const item = state.cartItems.find((item) => item.id === action.payload);
-      if (item && item.quantity > 1) {
-        item.quantity--;
-      }
-    },
 
   },
 

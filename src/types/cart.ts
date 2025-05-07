@@ -8,9 +8,4 @@ export type CartItem = {
   image?: string;
 };
 
-export type CartState = {
-  cartItems: CartItem[];
-  isCartOpen: boolean;
-  cartTotalQuantity:number
-  cartTotalAmount:number
-};
+

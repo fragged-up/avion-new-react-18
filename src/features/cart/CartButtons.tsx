@@ -1,5 +1,6 @@
 import { toggleCart } from '@/stores/cart';
 import { useAppDispatch } from '@/stores/core/hooks';
+import { Link } from 'react-router-dom';
 import styles from '@/styles/css/ProductListMobile.module.css';
 
 type Total = {
@@ -24,7 +25,7 @@ export const CheckOutButton: React.FC<Total> = ({ total }) => {
       </div>
       <p className={styles['sb-note']}>Taxes and shipping are calculated at checkout</p>
       <div className={styles['go-to-checkout-c']}>
-        <button className={styles['go-to-checkout-button']}>Go to Checkout</button>
+        <Link to="/checkout" className={styles['go-to-checkout-button']}>Go to Checkout</Link>
       </div>
     </div>
   );
