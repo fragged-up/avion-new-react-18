@@ -7,5 +7,4 @@ export const NavLinks = [
   { to: '/plants', label: 'Plants' },
   { to: '/ceramics', label: 'Ceramics' },
   { to: '/lights', label: 'Lights' },
-  { to: '/test', label: 'Test' },
 ];
