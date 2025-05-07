@@ -3,7 +3,6 @@ import Layout from "./Layout";
 import Home from "./Home";
 import About from "./About";
 import Products from "./Products";
-import Test from "./Test";
 import NotFound from "./NotFound";
 import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
@@ -19,7 +18,6 @@ const routes = [{
     { path: "products", element: <Products /> },
     { path: "products/:slug", element: <ProductOverview /> },
     { path: "/:category", element: <Category /> },
-    { path: "test", element: <Test /> },
     { path: "*", element: <NotFound /> },
   ],
 }];

@@ -59,6 +59,7 @@ export default function Category() {
 
   const handleFilterChange = ( selectedValue:any ) => {
     dispatch(setSortSelection(selectedValue))
+    console.log("selected",selectedValue);
   };
 
 

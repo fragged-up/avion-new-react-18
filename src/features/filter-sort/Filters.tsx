@@ -105,11 +105,12 @@ export type OnFilterChange = (filters: { [category: string]: string[] }) => void
 
 type FilterProps = {
     filtersMeta:FiltersMeta
-    onFilterChange: (filters: { [category: string]: string[] }) => void;
+    onFilterChange: (filters: { [category: string]: string[] }, filterCounts: { [category: string]: number }) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ filtersMeta,  onFilterChange }) => {
+const Filter: React.FC<FilterProps> = ({ filtersMeta, onFilterChange }) => {
   const [selectedFilters, setSelectedFilters] = useState<{ [category: string]: string[] }>({});
+
   const handleCheckboxChange = useCallback((category: string, value: string, isChecked: boolean) => {
     setSelectedFilters((prevSelected) => {
       const categoryFilters = prevSelected[category] || [];
@@ -121,7 +122,17 @@ const Filter: React.FC<FilterProps> = ({ filtersMeta,  onFilterChange }) => {
   }, []);
 
   useEffect(() => {
-    onFilterChange(selectedFilters);
+    const filterCounts: { [category: string]: number } = Object.keys(selectedFilters).reduce(
+      (acc: { [key: string]: number }, category: string) => {
+        const filtersInCategory = selectedFilters[category];
+        acc[category] = filtersInCategory?.length || 0;
+        return acc;
+      },
+      {}
+    );
+    console.log(filterCounts);
+
+    onFilterChange(selectedFilters, filterCounts);
   }, [selectedFilters, onFilterChange]);
 
   return (
@@ -136,7 +147,7 @@ const Filter: React.FC<FilterProps> = ({ filtersMeta,  onFilterChange }) => {
             selectedOptions={selectedFilters[categoryName] || []}
             onFilterChange={(value, isChecked) => handleCheckboxChange(categoryName, value, isChecked)}
           />
-        ) : null,
+        ) : null
       )}
     </Container>
   );
