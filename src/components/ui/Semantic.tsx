@@ -32,10 +32,29 @@ interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     onClick?:()=>void;
 }
 
+interface NavProps extends React.HTMLAttributes<HTMLElement> {
+    children?: React.ReactNode;
+    className?: string;
+    role?: string;
+}
+
+interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    children: React.ReactNode;
+    level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    className?: string;
+}
+
+
+
+
+
+
+
+
 // Reusable components with semantic HTML
 export const Section: React.FC<SectionProps> = ({ children, className, ...props }) => {
     return (
-        <section className={cn("py-6", className)} {...props}>
+        <section className={cn("", className)} {...props}>
             {children}
         </section>
     );
@@ -52,7 +71,7 @@ export const Article: React.FC<ArticleProps> = ({ children, title, className, ..
 
 export const Main: React.FC<MainProps> = ({ children, className, ...props }) => {
     return (
-        <main className={cn("flex-1", className)} {...props}>
+        <main className={cn("", className)} {...props}>
             {children}
         </main>
     );
@@ -66,17 +85,25 @@ export const Aside: React.FC<AsideProps> = ({ children, className, ...props }) =
     );
 };
 
-export const Header: React.FC<HeaderProps> = ({ children, className, ...props }) => {
+export const LayoutHeader: React.FC<HeaderProps> = ({ children, className, ...props }) => {
     return (
-        <header className={cn("py-4 border-b border-gray-200", className)} {...props}>
+        <header className={cn("", className)} {...props}>
             {children}
         </header>
     );
 };
 
-export const Footer: React.FC<FooterProps> = ({ children, className, ...props }) => {
+  export const Nav: React.FC<NavProps> = ({ children, className, role = 'navigation', ...props }) => {
     return (
-        <footer className={cn("py-4 border-t border-gray-200 text-center text-gray-500", className)} {...props}>
+      <nav className={cn( 'w-full',  className)}   role={role} {...props}>
+        {children}
+      </nav>
+    );
+  };
+
+export const LayoutFooter: React.FC<FooterProps> = ({ children, className, ...props }) => {
+    return (
+        <footer className={cn("", className)} {...props}>
             {children}
         </footer>
     );
@@ -84,8 +111,8 @@ export const Footer: React.FC<FooterProps> = ({ children, className, ...props })
 
 export const Container: React.FC<ContainerProps> = ({ children, className, fluid, ...props }) => {
     const baseClasses = cn(
-        "", // Default horizontal padding
-        fluid ? "w-full" : "max-w-7xl", // Max width for standard container, w-full for fluid
+        "",
+        fluid ? "w-full" : "max-w-7xl",
         className
     );
     return (
@@ -94,3 +121,29 @@ export const Container: React.FC<ContainerProps> = ({ children, className, fluid
         </div>
     );
 };
+
+export const Heading: React.FC<HeadingProps> = ({
+  children,
+  level = 'h1',
+  className,
+  ...props
+}) => {
+  const Tag = level;
+  const baseStyles = 'font-clash';
+  const sizeStyles = {
+    h1: 'text-2xl md:text-3xl lg:text-4xl',
+    h2: 'text-xl md:text-2xl lg:text-3xl',
+    h3: 'text-lg md:text-xl lg:text-2xl',
+    h4: 'text-base md:text-lg lg:text-xl',
+    h5: 'text-sm md:text-base lg:text-lg',
+    h6: 'text-xs md:text-sm lg:text-base',
+  };
+
+  return (
+    <Tag className={cn(baseStyles, sizeStyles[level], className)} {...props}>
+      {children}
+    </Tag>
+  );
+};
+
+

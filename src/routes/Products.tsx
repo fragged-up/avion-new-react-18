@@ -17,6 +17,8 @@ import ProductCard from '@/features/products/ProductCard';
 import FilterSortModal from '@/features/filter-sort/FilterSortModal';
 import FilterSortBar from '@/features/filter-sort/FilterSortBar';
 import ProductSkeleton from '@/features/products/ProductSkeleton';
+import Button from '@/components/ui/Button';
+import { Main, Section, Container } from '@/components/ui/Semantic';
 
 export default function Test() {
   const dispatch = useAppDispatch();
@@ -73,15 +75,20 @@ export default function Test() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-white p-6">
-      <section><FilterSortBar /></section>
+    <Main className="w-full min-h-screen bg-white p-6">
+      <Section>
+        <FilterSortBar />
+      </Section>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-        {loading ? (  <ProductSkeleton /> ) : error ? ( <ErrorMessage message="Error loading products." /> ) : (
-           products.products.map((product: any, idx: number) => (    <ProductCard key={`${product.id}-${idx}`} product={product}  />  ))
+      <Section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+        {loading ? ( <ProductSkeleton /> ) : error ? (   <ErrorMessage message="Error loading products." /> ) : (
+          products.products.map((product: any, idx: number) => <ProductCard key={`${product.id}-${idx}`} product={product} />)
         )}
-      </section>
+      </Section>
 
+         <Container className='flex justify-center items-center py-12'>
+          <Button className='text-center py-4 font-clash text-xl cursor-pointer px-8'>Load More</Button>
+         </Container>
 
       <FilterSortModal
         isOpen={isModalOpen}
@@ -94,6 +101,6 @@ export default function Test() {
         showAction={handleShowResults}
         itemCount={itemCount}
     />
-    </div>
+    </Main>
   );
 }
