@@ -15,7 +15,7 @@ export interface QueryParams {
   materials?: string[] | undefined;
   [key: string]: string | number | boolean | undefined | any[];
 }
-
+console.log(API);
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async (params: QueryParams, thunkAPI) => {
   try {
