@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API } from "@/utils"
 import axios from 'axios';
+
+
+export const API = import.meta.env.VITE_BACKEND_URL;
 
 export interface QueryParams {
   category?: string | undefined;
