@@ -10,6 +10,5 @@ export default defineConfig({
     alias: { "@": path.resolve(__dirname, "./src"),},
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
   },
-  assetsInclude: ['**/*.html'],
   build: { sourcemap: process.env.NODE_ENV === 'production' ? true : 'inline', },
 });
