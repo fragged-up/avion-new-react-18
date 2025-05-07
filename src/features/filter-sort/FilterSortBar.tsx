@@ -1,14 +1,13 @@
-import fsIcon from '@/assets/icons/fsIcon.svg';
-import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import { openSortFilterModal, openFilterFromModal, openSortFromModal } from '@/stores/modal/slice';
-import { RootState } from '@/stores/core/store';
 import { useEffect } from 'react';
+import { RootState } from '@/stores/core/store';
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
+import { openFilterFromModal, openSortFromModal } from '@/stores/modal/slice';
 import Button from '@/components/ui/Button';
+import fsIcon from '@/assets/icons/fsIcon.svg';
 
 export default function FilterSortBar() {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state: RootState) => state.modal);
-
 
   const handleOpenModal = () => {
     dispatch(openFilterFromModal());
@@ -20,12 +19,12 @@ export default function FilterSortBar() {
   const handleOpenSort = () => {
     dispatch(openSortFromModal());
   };
-    useEffect(() => {
-      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-      return () => {
-        document.body.style.overflow = 'auto';
-      };
-    }, [isOpen]);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <div className="flex justify-between items-center bg-white">

@@ -6,8 +6,6 @@ import { closeCart, decreaseQty, increaseQty } from '@/stores/cart/slice';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '@/features/cart/CartItem';
 
-
-
 const CartModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -16,10 +14,10 @@ const CartModal: React.FC = () => {
   const CART_ITEMS = useAppSelector(selectCartItems);
   const totalPrice = CART_ITEMS.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
 
-  const navigateToCheckOut = ()=>{
-    dispatch(closeCart())
-    navigate('checkout')
-  }
+  const navigateToCheckOut = () => {
+    dispatch(closeCart());
+    navigate('checkout');
+  };
   const handleIncrease = (id: string) => {
     dispatch(increaseQty(id));
   };
@@ -45,15 +43,12 @@ const CartModal: React.FC = () => {
             <CartItem key={idx} cartItem={item} onIncrease={handleIncrease} onDecrease={handleDecrease} />
           ))
         ) : (
-          <Paragraph className='text-center'>Your cart is empty.</Paragraph>
+          <Paragraph className="text-center">Your cart is empty.</Paragraph>
         )}
       </Main>
 
       <LayoutFooter>
-        <CheckOutButton
-        total={totalPrice.toFixed(2)}
-        onClick={navigateToCheckOut}
-         />
+        <CheckOutButton total={totalPrice.toFixed(2)} onClick={navigateToCheckOut} />
       </LayoutFooter>
     </Aside>
   );

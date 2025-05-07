@@ -22,14 +22,9 @@ import Button from '@/components/ui/Button';
 export default function Category() {
   const dispatch = useAppDispatch();
   const { category } = useParams<{ category: string }>();
-
-  const [filterOption, setFilterOption] = useState<string | null>(null);
-  const [currentCategory, setCurrentCategory] = useState<string | null>(null);
-
   const [itemCount, setItemCount] = useState<number | null>(null);
   const [meta, setMeta] = useState<any | any[]>([]);
 
-  /* Selectors */
   const products = useAppSelector(selectProductsResponse);
   const loading = useAppSelector(selectProductsLoading);
   const error = useAppSelector(selectProductsError);
@@ -41,27 +36,11 @@ export default function Category() {
   const resultsNumber = useAppSelector(selectResultsNumber);
   const isMenuOpen = useAppSelector(selectIsMenuOpen);
 
-  /* Actions & Handlers */
 
-  const toggleModal = () => {
-    dispatch(openSortFilterModal(false));
-  };
-  const handleSortChange = (selectedValue: string) => {
-    dispatch(setSortSelection(selectedValue))
-  };
-  const handleShowResults = () => {
-    // useProducts(url);
-    toggleModal();
-  };
-  // const handleCategorySelect = (category: string | null) => {
-  //   setCurrentCategory(category);
-  //   setSortOption(null);
-  // };
-
-  const handleFilterChange = ( selectedValue:any ) => {
-    dispatch(setSortSelection(selectedValue))
-    console.log("selected",selectedValue);
-  };
+  const toggleModal = () => dispatch(openSortFilterModal(false));
+  const handleShowResults = () => toggleModal();
+  const handleSortChange = (selectedVal: string) => dispatch(setSortSelection(selectedVal))
+  const handleFilterChange = ( selectedVal:any ) => dispatch(setSortSelection(selectedVal))
 
 
   useEffect(() => {

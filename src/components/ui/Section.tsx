@@ -1,14 +1,8 @@
-
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-  variant?: 'primary' | 'secondary' | 'white' | 'transparent'; // Example variants
+  variant?: 'primary' | 'secondary' | 'white' | 'transparent';
 }
 
-const Section: React.FC<SectionProps> = ({
-  children,
-  className,
-  variant = 'white',
-  ...rest
-}) => {
+const Section: React.FC<SectionProps> = ({ children, className, variant = 'white', ...rest }) => {
   const variantStyles = {
     primary: 'bg-blue-500 text-white',
     secondary: 'bg-gray-200',

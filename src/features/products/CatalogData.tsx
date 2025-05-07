@@ -1,4 +1,5 @@
 import { ProductCatalog } from '@/features/products/ProductListMobile';
+import { Link } from 'react-router-dom';
 import styles from '@/styles/css/AllProducts.module.css';
 import rusticCatalog from '@/assets/images/rustic-catalog.svg';
 import silkyCatalog from '@/assets/images/silky-catalog.svg';
@@ -8,7 +9,6 @@ import dRustic from '@/assets/deskProduct/RUSTIC.svg';
 import dSilky from '@/assets/deskProduct/SILKY.svg';
 import dLucy from '@/assets/deskProduct/LUCY.svg';
 import dDandy from '@/assets/deskProduct/DANDY.svg';
-import { Link } from 'react-router-dom';
 
 function CatalogDataContainer() {
   return (

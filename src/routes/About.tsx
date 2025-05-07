@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import styles from '@/styles/css/AboutSc.module.css';
 import imageSc from '@/assets/images/Image-sc.svg';
 import srImage from '@/assets/images/sr-image.svg';
-import { Link } from 'react-router-dom';
 import JoinTheClub from "@/sections/JoinTheClub"
 export default function About() {
   return (

@@ -1,7 +1,7 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { SortOptions } from '@/types/optionsTypes';
-import DropdownHeader from '@/components/ui/custom/DropDownHeader';
-import DropdownList from '@/components/ui/custom/DropDownList';
+import DropdownHeader from '@/components/ui/DropDownHeader';
+import DropdownList from '@/components/ui/DropDownList';
 
 export interface SortProps {
   sortLabel?: string | null;
@@ -10,12 +10,7 @@ export interface SortProps {
   onChange?: (value: string) => void;
 }
 
-const Sort: React.FC<SortProps> = ({
-  sortingOptions,
-  currSelection,
-  sortLabel = 'Sort By',
-  onChange,
-}) => {
+const Sort: React.FC<SortProps> = ({ sortingOptions, currSelection, sortLabel = 'Sort By', onChange }) => {
   const [isSortOpen, setIsSortOpen] = useState<boolean>(false);
 
   const handleSortOpen = () => {
@@ -37,18 +32,8 @@ const Sort: React.FC<SortProps> = ({
 
   return (
     <div className="flex w-full flex-col">
-      <DropdownHeader
-        label={sortLabel}
-        isOpened={isSortOpen}
-        onToggle={handleSortOpen}
-      />
-
-      {isSortOpen && (
-        <DropdownList
-          items={dropdownItems}
-          name="sort"
-        />
-      )}
+      <DropdownHeader label={sortLabel} isOpened={isSortOpen} onToggle={handleSortOpen} />
+      {isSortOpen && <DropdownList items={dropdownItems} name="sort" />}
     </div>
   );
 };

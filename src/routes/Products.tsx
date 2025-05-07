@@ -6,10 +6,9 @@ import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
 import { selectIsFilterOpen, selectIsMenuOpen, selectIsModalOpen, selectIsSortOpen, selectResultsNumber } from '@/stores/modal/selectors';
 import { openSortFilterModal, openSortFromModal, openFilterFromModal, toggleFilter, toggleSort } from '@/stores/modal/slice';
 import { selectProductsError, selectProductsFilters, selectProductsLoading, selectProductsResponse } from '@/stores/products/selectors';
+import { Main, Section, Container } from '@/components/ui/Semantic';
 
-import type { Product } from '@/types';
 import { fetchProducts } from '@/stores/products/thunks';
-import { useNavigate } from 'react-router-dom';
 import { setSortSelection } from '@/stores/products';
 
 
@@ -18,23 +17,14 @@ import FilterSortModal from '@/features/filter-sort/FilterSortModal';
 import FilterSortBar from '@/features/filter-sort/FilterSortBar';
 import ProductSkeleton from '@/features/products/ProductSkeleton';
 import Button from '@/components/ui/Button';
-import { Main, Section, Container } from '@/components/ui/Semantic';
 
 export default function Test() {
   const dispatch = useAppDispatch();
-
   const [sortOption, setSortOption] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
   const [itemCount, setItemCount] = useState<number | null>(null);
-  const [meta, setMeta] = useState<any | any[]>([]);
-  const navigateToProductId = useNavigate();
 
-  const handleNavigation = (product: Product) => {
-    console.log(product);
-    navigateToProductId(`/products/${product.slug}`, { state: { product } });
-  };
 
-  /* Selectors */
   const products = useAppSelector(selectProductsResponse);
   const loading = useAppSelector(selectProductsLoading);
   const error = useAppSelector(selectProductsError);
@@ -45,7 +35,6 @@ export default function Test() {
   const resultsNumber = useAppSelector(selectResultsNumber);
   const isMenuOpen = useAppSelector(selectIsMenuOpen);
 
-  /* Actions & Handlers */
 
   const toggleModal = () => {
     dispatch(openSortFilterModal(false));
@@ -69,8 +58,6 @@ export default function Test() {
   };
 
   useEffect(() => {
-
-
     dispatch(fetchProducts({category:"ceramics"}));
   }, []);
 

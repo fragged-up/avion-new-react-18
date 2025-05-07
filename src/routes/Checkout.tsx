@@ -1,27 +1,14 @@
 import { selectCartItems, selectIsCartOpen } from '@/stores/cart';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import React, { useState } from 'react';
-interface OrderItem {
-  name: string;
-  price: number;
-}
-
-const checkoutItems: OrderItem[] = [
-  { name: 'Graystone Vase', price: 85 },
-  { name: 'Blue Ceramic Mug', price: 20 },
-  { name: 'Handmade Woolen Blanket', price: 45 },
-  { name: 'Decorative Wall Art', price: 60 },
-];
+import  { useState } from 'react';
 
 const CheckoutPage: React.FC = () => {
-
-
     const dispatch = useAppDispatch();
     const isCartOpen = useAppSelector(selectIsCartOpen);
-    const CartItems = useAppSelector(selectCartItems);
+    const CART_ITEMS = useAppSelector(selectCartItems);
 
-
-
+    const totalPrice = CART_ITEMS.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
+   console.log(CART_ITEMS);
   const [formData, setFormData] = useState({
     name: 'John Doe',
     address: '123 Main Street, Apartment 5B, Springfield, IL',
@@ -42,32 +29,30 @@ const CheckoutPage: React.FC = () => {
     console.log('Form submitted:', formData);
   };
 
-  const totalAmount = checkoutItems.reduce((total, item) => total + item.price, 0);
 
   return (
     <div className="min-h-screen bg-white">
       <header className="bg-[#4E4D91] text-white py-4 text-center">
-        <h1 className="text-3xl font-semibold">Checkout</h1>
+        <h1 className="text-3xl font-clash font-medium">Checkout</h1>
       </header>
 
       <div className="flex flex-col md:flex-row justify-between p-8 max-w-screen-xl mx-auto">
         <div className="w-full md:w-2/3 bg-gray-100 p-6 rounded-lg shadow-lg mb-8 md:mb-0">
           <h2 className="text-2xl font-semibold text-[#4E4D91] mb-4">Order Summary</h2>
           <ul className="space-y-3">
-            {checkoutItems.map((item, index) => (
-              <li key={index} className="flex justify-between">
+            {CART_ITEMS > 0  && CART_ITEMS.map((item:any, idx:number) => (
+              <li key={idx} className="flex justify-between">
                 <span>{item.name}</span>
-                <span>${item.price}</span>
+                <span>${item.productPrice}</span>
               </li>
             ))}
             <li className="flex justify-between font-semibold">
               <span>Total</span>
-              <span>${totalAmount}</span>
+              <span>${totalPrice}</span>
             </li>
           </ul>
         </div>
 
-        {/* Right Column: Billing Details */}
         <div className="w-full md:w-1/3 bg-gray-100 p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-[#4E4D91] mb-4">Billing Details</h2>
           <form onSubmit={handleSubmit}>
@@ -133,9 +118,6 @@ const CheckoutPage: React.FC = () => {
         </div>
       </div>
 
-      <footer className="bg-[#4E4D91] text-white text-center py-4 mt-8">
-        <p>&copy; 2025 Your Company. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

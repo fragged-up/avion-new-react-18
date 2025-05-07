@@ -68,12 +68,12 @@ const FilterGroup: React.FC<FilterGroupProps> = ({ filterItems, hasColors, class
   return (
     <>
       {hasColors ? (
-         <Container className='inline-flex justify-start items-start gap-x-3 gap-y-3' style={{ gap:"20px"}}>
-         <ColorVariant filterItems={filterItems} handleCheckboxChange={handleCheckboxChange} isChecked={isChecked} />
-         </Container>
+        <Container className="inline-flex justify-start items-start gap-x-3 gap-y-3" style={{ gap: '20px' }}>
+          <ColorVariant filterItems={filterItems} handleCheckboxChange={handleCheckboxChange} isChecked={isChecked} />
+        </Container>
       ) : (
         <Container className={cn('flex justify-between', className)}>
-        <DefaultVariant filterItems={filterItems} handleCheckboxChange={handleCheckboxChange} isChecked={isChecked} />
+          <DefaultVariant filterItems={filterItems} handleCheckboxChange={handleCheckboxChange} isChecked={isChecked} />
         </Container>
       )}
     </>
@@ -81,7 +81,7 @@ const FilterGroup: React.FC<FilterGroupProps> = ({ filterItems, hasColors, class
 };
 
 const FilterCategory: React.FC<FilterCategoryProps> = ({ title, items, className, selectedOptions, onFilterChange }) => {
-  const hasColors = title.includes("Colors");
+  const hasColors = title.includes('Colors');
   return (
     <Accordion title={title} icon={DropDownIcon} selectedOptions={selectedOptions}>
       {items.map((item) => (
@@ -91,22 +91,19 @@ const FilterCategory: React.FC<FilterCategoryProps> = ({ title, items, className
           filterItems={item}
           className={className}
           onFilterChange={onFilterChange}
-          isSelected={selectedOptions.includes(item.value)
-          }
+          isSelected={selectedOptions.includes(item.value)}
         />
       ))}
     </Accordion>
   );
-
-
 };
 
 export type OnFilterChange = (filters: { [category: string]: string[] }) => void;
 
 type FilterProps = {
-    filtersMeta:FiltersMeta
-    onFilterChange: (filters: { [category: string]: string[] }, filterCounts: { [category: string]: number }) => void;
-}
+  filtersMeta: FiltersMeta;
+  onFilterChange: (filters: { [category: string]: string[] }, filterCounts: { [category: string]: number }) => void;
+};
 
 const Filter: React.FC<FilterProps> = ({ filtersMeta, onFilterChange }) => {
   const [selectedFilters, setSelectedFilters] = useState<{ [category: string]: string[] }>({});
@@ -128,10 +125,8 @@ const Filter: React.FC<FilterProps> = ({ filtersMeta, onFilterChange }) => {
         acc[category] = filtersInCategory?.length || 0;
         return acc;
       },
-      {}
+      {},
     );
-    console.log(filterCounts);
-
     onFilterChange(selectedFilters, filterCounts);
   }, [selectedFilters, onFilterChange]);
 
@@ -147,11 +142,10 @@ const Filter: React.FC<FilterProps> = ({ filtersMeta, onFilterChange }) => {
             selectedOptions={selectedFilters[categoryName] || []}
             onFilterChange={(value, isChecked) => handleCheckboxChange(categoryName, value, isChecked)}
           />
-        ) : null
+        ) : null,
       )}
     </Container>
   );
 };
 
 export default Filter;
-
