@@ -1,7 +1,6 @@
 import { cn } from '@/utils';
 import { useState } from 'react';
 
-
 type AccordionProps = {
   children?: React.ReactNode;
   title?: string;

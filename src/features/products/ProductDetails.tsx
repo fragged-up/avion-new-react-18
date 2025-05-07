@@ -12,7 +12,7 @@ type ProductDetailsProps = {
 const ProductDetails = ({ product }: ProductDetailsProps | any) => {
   const dispatch = useAppDispatch();
   const { productImage, productTitle, productPrice } = product;
-  const [ isFallback, setIsFallback] = useState(false);
+  const [isFallback, setIsFallback] = useState(false);
   const itemCount = useAppSelector(selectCartItemCount);
   let quantity = itemCount || 1;
 

@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import { selectCartItems, selectIsCartOpen } from '@/stores/cart';
 import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
-import  { useState } from 'react';
+import CheckoutSummaryItem from '@/features/cart/CheckoutSummaryItem';
 
 const CheckoutPage: React.FC = () => {
-    const dispatch = useAppDispatch();
-    const isCartOpen = useAppSelector(selectIsCartOpen);
-    const CART_ITEMS = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+  const isCartOpen = useAppSelector(selectIsCartOpen);
+  const CART_ITEMS = useAppSelector(selectCartItems);
+  const totalPrice = CART_ITEMS.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
 
-    const totalPrice = CART_ITEMS.reduce((sum: any, item: any) => sum + item.productPrice * item.quantity, 0);
-   console.log(CART_ITEMS);
+  console.log(CART_ITEMS);
   const [formData, setFormData] = useState({
     name: 'John Doe',
     address: '123 Main Street, Apartment 5B, Springfield, IL',
@@ -29,7 +30,6 @@ const CheckoutPage: React.FC = () => {
     console.log('Form submitted:', formData);
   };
 
-
   return (
     <div className="min-h-screen bg-white">
       <header className="bg-[#4E4D91] text-white py-4 text-center">
@@ -38,26 +38,31 @@ const CheckoutPage: React.FC = () => {
 
       <div className="flex flex-col md:flex-row justify-between p-8 max-w-screen-xl mx-auto">
         <div className="w-full md:w-2/3 bg-gray-100 p-6 rounded-lg shadow-lg mb-8 md:mb-0">
-          <h2 className="text-2xl font-semibold text-[#4E4D91] mb-4">Order Summary</h2>
+          <h2 className="text-2xl font-semibold text-[#4E4D91] mb-4 font-clash">Order Summary</h2>
           <ul className="space-y-3">
-            {CART_ITEMS > 0  && CART_ITEMS.map((item:any, idx:number) => (
-              <li key={idx} className="flex justify-between">
-                <span>{item.name}</span>
-                <span>${item.productPrice}</span>
-              </li>
-            ))}
-            <li className="flex justify-between font-semibold">
-              <span>Total</span>
-              <span>${totalPrice}</span>
+            {CART_ITEMS.length > 0 ? (
+              CART_ITEMS.map((item: any) => (
+                <li key={item._id}>
+                  <CheckoutSummaryItem item={item} />
+                </li>
+              ))
+            ) : (
+              <li>Your cart is empty.</li>
+            )}
+            <li className="flex justify-between font-semibold pt-4 border-t border-gray-300">
+              <span className='font-clash font-semibold text-[#4e4d93]'>Total</span>
+              <span className='font-clash'>${totalPrice.toFixed(2)}</span>
             </li>
           </ul>
         </div>
 
         <div className="w-full md:w-1/3 bg-gray-100 p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-[#4E4D91] mb-4">Billing Details</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='font-satoshi'>
             <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700">Full Name</label>
+              <label htmlFor="name" className="block text-gray-700">
+                Full Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -70,7 +75,9 @@ const CheckoutPage: React.FC = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="address" className="block text-gray-700">Address</label>
+              <label htmlFor="address" className="block text-gray-700">
+                Address
+              </label>
               <input
                 type="text"
                 id="address"
@@ -83,7 +90,9 @@ const CheckoutPage: React.FC = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700">Email</label>
+              <label htmlFor="email" className="block text-gray-700">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -96,7 +105,9 @@ const CheckoutPage: React.FC = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="card" className="block text-gray-700">Credit Card Number</label>
+              <label htmlFor="card" className="block text-gray-700">
+                Credit Card Number
+              </label>
               <input
                 type="text"
                 id="card"
@@ -110,14 +121,12 @@ const CheckoutPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-[#4E4D91] text-white py-3 rounded-md hover:bg-[#3a3a7a] focus:outline-none focus:ring-2 focus:ring-[#4E4D91]"
-            >
+              className="w-full bg-[#4E4D91] font-clash text-xl text-white py-3 rounded-md hover:bg-[#3a3a7a] focus:outline-none focus:ring-2 focus:ring-[#4E4D91]">
               Complete Purchase
             </button>
           </form>
         </div>
       </div>
-
     </div>
   );
 };
