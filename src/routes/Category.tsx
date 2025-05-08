@@ -85,7 +85,7 @@ export default function Category() {
       </Section>
 
 
-        <Container className="flex justify-center items-center py-12">
+        <Container fluid className="flex justify-center items-center py-12">
              <Button onClick={handleLoadMore} className="text-center py-4 font-clash text-xl cursor-pointer px-8">
                Load More
              </Button>

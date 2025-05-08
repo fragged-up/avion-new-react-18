@@ -1,7 +1,8 @@
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
+import { API } from '@/utils';
 
 const signInSchema = z.object({
   email: z.string().email('Invalid email address').nonempty('Email is required'),
@@ -12,18 +13,38 @@ type SignInFormData = z.infer<typeof signInSchema>;
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>({ resolver: zodResolver(signInSchema) });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInFormData>({
-    resolver: zodResolver(signInSchema),
-  });
+  const onSubmit = async (data: SignInFormData) => {
+    try {
+      const response = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-  const onSubmit = (data: SignInFormData) => {
-    console.log(data);
-    navigate('/');
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Sign-in successful!', responseData);
+
+        if (responseData && responseData.access_token) {
+          localStorage.setItem('accessToken', responseData.access_token);
+          navigate('/');
+        } else {
+          console.error('Sign-in successful, but no access token received.');
+
+        }
+      } else {
+        const errorData = await response.json();
+        console.error('Sign-in failed:', errorData);
+
+      }
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+
+    }
   };
 
   return (

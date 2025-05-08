@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
+import { API } from '@/utils';
 
 const signUpSchema = z.object({
   email: z.string().email('Invalid email address').nonempty('Email is required'),
@@ -12,11 +13,36 @@ type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const {register,handleSubmit, formState: { errors },} = useForm<SignUpFormData>({resolver: zodResolver(signUpSchema),});
+  const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormData>({ resolver: zodResolver(signUpSchema) });
 
-  const onSubmit = (data: SignUpFormData) => {
-    console.log(data);
-    navigate('/sign-in');
+  const onSubmit = async (data: SignUpFormData) => {
+    try {
+      const response = await fetch(`${API}/auth/sign-up`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Sign-up successful!', responseData);
+
+        if (responseData && responseData.access_token) {
+          localStorage.setItem('accessToken', responseData.access_token);
+          navigate('/');
+        } else {
+          navigate('/login');
+        }
+      } else {
+        const errorData = await response.json();
+        console.error('Sign-up failed:', errorData);
+      }
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+
+    }
   };
 
   return (

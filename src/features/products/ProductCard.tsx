@@ -8,9 +8,8 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
-  const handleNavigation = () => {
-    navigate(`/products/${product.slug}`, { state: { product } });
-  };
+  const handleNavigation = () =>   navigate(`/products/${product.slug}`, { state: { product } });
+
   return (
     <div className="product-item cursor-pointer" onClick={handleNavigation}>
       <AspectRatio ratio={16 / 9} image={product.productImage} />

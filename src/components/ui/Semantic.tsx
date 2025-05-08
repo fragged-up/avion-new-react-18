@@ -130,9 +130,8 @@ export const LayoutFooter: React.FC<FooterProps> = ({ children, className, ...pr
 };
 
 export const Container: React.FC<ContainerProps> = ({ children, className, fluid, ...props }) => {
-  const baseClasses = cn('', fluid ? 'w-full' : 'max-w-7xl', className);
   return (
-    <div className={baseClasses} {...props}>
+    <div className={ cn('', fluid ? 'w-full' : 'max-w-7xl', className)} {...props}>
       {children}
     </div>
   );
