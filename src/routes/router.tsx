@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
 import About from "./About";
@@ -8,13 +8,17 @@ import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 import Category from "./Category";
 import Checkout from "./Checkout";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
-const routes = [{
+const routes:RouteObject[] = [{
   path: "/",
   element: <Layout />,
-  errorElement:<ErrorPage />,
+  errorElement: <ErrorPage />,
   children: [
     { index: true, element: <Home /> },
+    { path:"login", element: <SignIn /> },
+    { path:"signup", element: <SignUp /> },
     { path: "about", element: <About /> },
     { path: "products", element: <Products /> },
     { path: "products/:slug", element: <ProductOverview /> },

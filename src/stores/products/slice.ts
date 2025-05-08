@@ -1,31 +1,99 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchProducts } from "./thunks";
-import type { FiltersMeta, Product, ProductsState } from "@/types/products";
+// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+// import { fetchProducts } from "./thunks";
+// import type { FiltersMeta, Product, ProductsState } from "@/types/products";
 
+// const initialState: ProductsState = {
+//   items: [],
+//   products: [],
+//   selectedProduct: null,
+//   filtersMeta: {},
+//   sortSelection:'name',
+//   loading: false,
+//   error: null,
+// };
+
+// export const productsSlice = createSlice({
+//   name: "products",
+//   initialState,
+//   reducers: {
+//     setSelectedProduct(state, action: PayloadAction<Product | null>) {
+//       state.selectedProduct = action.payload;
+//     },
+
+//   setSortSelection:(state,action:PayloadAction<ProductsState["sortSelection"]>)=>{
+//    state.sortSelection =action.payload;
+//   }
+
+//   },
+
+
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchProducts.pending, (state) => {
+//         state.loading = true;
+//         state.error = null;
+//       })
+//       .addCase(
+//         fetchProducts.fulfilled,
+//         (
+//           state,
+//           action: PayloadAction<{
+//             products: Product[];
+//             filtersMeta: FiltersMeta;
+//           }>
+//         ) => {
+//           state.loading = false;
+//           state.products = action.payload.products;
+//           state.filtersMeta = action.payload.filtersMeta;
+//         }
+//       )
+//       .addCase(fetchProducts.rejected, (state, action) => {
+//         state.loading = false;
+//         state.error = action.payload as string;
+//       })
+
+//   },
+// });
+// export const {  setSelectedProduct,setSortSelection } = productsSlice.actions;
+// export default productsSlice.reducer;
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchProducts } from './thunks';
+import type { FiltersMeta, Product } from '@/types/products';
+
+
+export interface ProductsState {
+  products: Product[];
+  total?: number;
+  selectedProduct: Product | null;
+  filtersMeta: FiltersMeta | any;
+  sortSelection: string;
+  loading: boolean;
+  error: string | null;
+}
 const initialState: ProductsState = {
-  items: [],
   products: [],
   selectedProduct: null,
   filtersMeta: {},
-  sortSelection:'name',
+  sortSelection: 'name',
   loading: false,
   error: null,
 };
 
 export const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {
     setSelectedProduct(state, action: PayloadAction<Product | null>) {
       state.selectedProduct = action.payload;
     },
-
-  setSortSelection:(state,action:PayloadAction<ProductsState["sortSelection"]>)=>{
-   state.sortSelection =action.payload;
-  }
-
+    setSortSelection(state, action: PayloadAction<ProductsState['sortSelection']>) {
+      state.sortSelection = action.payload;
+    },
+    clearProducts(state) {
+      state.products = [];
+    },
   },
-
 
   extraReducers: (builder) => {
     builder
@@ -38,21 +106,30 @@ export const productsSlice = createSlice({
         (
           state,
           action: PayloadAction<{
-            products: Product[];
-            filtersMeta: FiltersMeta;
+            data: {
+              products: Product[];
+              filtersMeta: FiltersMeta;
+              total: number;
+            };
+            append: boolean;
           }>
         ) => {
           state.loading = false;
-          state.products = action.payload.products;
-          state.filtersMeta = action.payload.filtersMeta;
+          state.products = action.payload.append
+            ? [...state.products, ...action.payload.data.products]
+            : action.payload.data.products;
+
+          state.filtersMeta = action.payload.data.filtersMeta ?? {};
+          state.total = action.payload.data.total; // מעדכנים את ה-total
         }
       )
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      })
-
+      });
   },
+
 });
-export const {  setSelectedProduct,setSortSelection } = productsSlice.actions;
+
+export const { setSelectedProduct, setSortSelection, clearProducts } = productsSlice.actions;
 export default productsSlice.reducer;
