@@ -17,10 +17,10 @@ export const AvatarBadge = ({ src, alt = 'User', size = 'sm' }: AvatarProps) => 
   const sizeClasses = sizeMap[size];
 
   return (
-    <img
-      src={imageSrc}
-      alt={alt}
-      className={`cursor-pointer rounded-full object-cover ${sizeClasses}`}
-    />
+      <img
+        src={imageSrc}
+        alt={alt}
+        className={`cursor-pointer rounded-full object-cover ${sizeClasses}`}
+      />
   );
 };

@@ -1,5 +1,5 @@
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,14 +12,7 @@ type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
   const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
-  });
+  const {register,handleSubmit, formState: { errors },} = useForm<SignUpFormData>({resolver: zodResolver(signUpSchema),});
 
   const onSubmit = (data: SignUpFormData) => {
     console.log(data);

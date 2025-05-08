@@ -3,6 +3,7 @@ import { CartBadge, AvatarBadge } from '@/components/badges';
 import { toggleCart } from '@/stores/cart';
 import { useAppDispatch } from '@/stores/core/hooks';
 import { Container, LayoutHeader, Nav } from '../ui/Semantic';
+import { Link } from 'react-router-dom';
 import LogoIcon from '@/icons/LogoIcon';
 import SearchIcon from '@/icons/SearchIcon';
 import CartModal from '@/features/cart/CartModal';
@@ -12,6 +13,9 @@ import SearchBar from '@/components/search/SearchBar';
 export default function DesktopHeader() {
   const dispatch = useAppDispatch();
   const [searchOpen, setSearchOpen] = useState(false)
+
+//  const { isAuthenticated } = useAuthStore()
+  // if()
 
   const handleSearch = async (query: string) => {
     console.log("Searching:", query)
@@ -35,7 +39,11 @@ export default function DesktopHeader() {
         </Container>
         <Container className="flex justify-between items-center gap-[20px]">
           <CartBadge onClick={() => dispatch(toggleCart())} />
-          <AvatarBadge />
+
+             <Link to="/login">
+             <AvatarBadge />
+             </Link>
+
         </Container>
       </LayoutHeader>
 
