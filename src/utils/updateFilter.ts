@@ -5,4 +5,3 @@ export const toggleSelection = <T>(currentSelection: T[], option: T): T[] => {
   return updatedFilters;
 };
 
-//
