@@ -8,7 +8,7 @@ import ProductOverview from "./ProductOverview";
 import ErrorPage from "./ErrorPage";
 import Category from "./Category";
 import Checkout from "./Checkout";
-import SignIn from "./SignIn";
+import Login from "./Login";
 import SignUp from "./SignUp";
 
 const routes:RouteObject[] = [{
@@ -17,7 +17,7 @@ const routes:RouteObject[] = [{
   errorElement: <ErrorPage />,
   children: [
     { index: true, element: <Home /> },
-    { path:"login", element: <SignIn /> },
+    { path:"login", element: <Login /> },
     { path:"signup", element: <SignUp /> },
     { path: "about", element: <About /> },
     { path: "products", element: <Products /> },

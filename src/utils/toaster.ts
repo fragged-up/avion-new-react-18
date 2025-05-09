@@ -5,6 +5,15 @@ type ToastType = 'success' | 'error' | 'loading' | 'default';
 const baseConfig: ToastOptions = {
   position: 'top-right',
   duration: 3000,
+  style: {
+    borderRadius: '10px',
+    background: '#333',
+    color: '#fff',
+  },
+  iconTheme: {
+    primary: '#fff',
+    secondary: '#333',
+  },
 };
 
 const toaster = {
@@ -35,15 +44,3 @@ const toaster = {
 };
 
 export default toaster;
-
-// usage :
-// import toaster from '@/utils/toaster';
-
-// toaster.success('Saved!');
-// toaster.error('Something went wrong.');
-// toaster.promise(fetchData(), {
-//   loading: 'Loading...',
-//   success: 'Loaded!',
-//   error: 'Failed.',
-// });
-

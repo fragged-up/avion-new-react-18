@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
-import { API } from '@/utils';
+import { useAppDispatch, useAppSelector } from '@/stores/core/hooks';
+import { selectAuthLoading, signupUser } from '@/stores/auth';
+import toaster from '@/utils/toaster';
 
 const signUpSchema = z.object({
   email: z.string().email('Invalid email address').nonempty('Email is required'),
@@ -13,37 +15,27 @@ type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(selectAuthLoading);
   const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormData>({ resolver: zodResolver(signUpSchema) });
 
   const onSubmit = async (data: SignUpFormData) => {
-    try {
-      const response = await fetch(`${API}/auth/sign-up`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+    toaster.loading('Signing up...');
+    dispatch(signupUser(data))
+      .unwrap()
+      .then(() => {
+        toaster.success('Sign up successful!');
+        navigate('/login');
+      })
+      .catch((rejectedValue) => {
+        console.error('Sign up failed:', rejectedValue);
+        toaster.error(rejectedValue as string || 'Sign up failed.');
       });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log('Sign-up successful!', responseData);
-
-        if (responseData && responseData.access_token) {
-          localStorage.setItem('accessToken', responseData.access_token);
-          navigate('/');
-        } else {
-          navigate('/login');
-        }
-      } else {
-        const errorData = await response.json();
-        console.error('Sign-up failed:', errorData);
-      }
-    } catch (error) {
-      console.error('Error during sign-up:', error);
-
-    }
   };
+
+  //Todo :
+  // style the toaster his outputing a number instead actual toast
+  // we got sucess from backend and acesstoken, store it the localstorage for now + redirect to home or make a dashboard page with toaster login success
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -79,7 +71,9 @@ export default function SignUp() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            disabled={loading === 'pending'}
+          >
             Sign Up
           </button>
         </form>

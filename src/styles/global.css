@@ -40,6 +40,73 @@ body {
   width: 100%;
 
 }
+
+/* Style for all toasts */
+.Toastify__toast {
+  border-radius: 8px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for success toasts */
+.Toastify__toast--success {
+  background-color: #e6ffe6;
+  color: #1a731a;
+}
+
+.Toastify__toast--success .Toastify__toast-body {
+  color: #1a731a; /* Ensure text color is also set */
+}
+
+/* Style for error toasts */
+.Toastify__toast--error {
+  background-color: #ffe6e6;
+  color: #d32f2f;
+}
+
+.Toastify__toast--error .Toastify__toast-body {
+  color: #d32f2f; /* Ensure text color is also set */
+}
+
+/* Style for the toast body text */
+.Toastify__toast-body {
+  padding: 10px 15px;
+}
+
+/* Style for the progress bar */
+.Toastify__progress-bar {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Header Component Styling */
 
 .wrapper {
